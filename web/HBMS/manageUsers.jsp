@@ -38,8 +38,19 @@
                         <span class="fas fa-caret-down first"></span>
                     </a>
                     <ul class="feat-show">
-                        <li><a href="unconfirmed.jsp">Unconfirmed</a></li>
-                        <li><a href="confirmed.jsp">Confirmed</a></li>
+                        <!-- need to make this into form tags-->
+                        <!--li><a href="unconfirmed.jsp" class="selected">Unconfirmed</a></li>
+                        <li><a href="confirmed.jsp">Confirmed</a></li-->
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet">
+                                <button class="center" type="submit" name="status" value="unconfirmed">Unconfirmed Records</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet">
+                                <button class="center" type="submit" name="status" value="confirmed">Confirmed Records</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <%

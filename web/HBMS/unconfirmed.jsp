@@ -173,7 +173,6 @@
                 <rect width="2000" height="650" style="fill:rgb(255, 255, 255);stroke-width:3;stroke:rgb(0,0,0)" />
             </svg>
             <!-- Start of Records body -->
-            
                 <form method = "POST" id="fetchItem"></form>
                 <section class="unconfirmed">
                     <form method="POST" id="item-form" action="ManageRecordsServlet">
@@ -211,7 +210,6 @@
                                 {
                                     if (i != records.size())
                                     {
-                                        
                                         BookingRecord record = records.get(i);
                                         int id = record.getBookingId();
                                         Timestamp date_booked = record.getDateBooked();
