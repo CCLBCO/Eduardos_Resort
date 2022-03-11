@@ -76,6 +76,10 @@
         <servlet-name>ManageUsersServlet</servlet-name>
         <servlet-class>controller.ManageUsersServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerifyCaptcha</servlet-name>
+        <servlet-class>controller.VerifyCaptcha</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageRecordsServlet</servlet-name>
         <url-pattern>/ManageRecordsServlet</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ManageUsersServlet</servlet-name>
         <url-pattern>/ManageUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyCaptcha</servlet-name>
+        <url-pattern>/VerifyCaptcha</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
