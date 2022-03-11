@@ -60,6 +60,9 @@ public class loginServlet extends HttpServlet {
             // Inputs from Login Page
             userArg = request.getParameter("username");
             passArg = request.getParameter("password");
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		System.out.println("Response: " + gRecaptchaResponse);
+		// boolean verify = VerifyCaptcha.verify(gRecaptchaResponse);
   
             // Checks for Blank Username and Password
 //            if (userArg.equals("") && passArg.equals(""))
