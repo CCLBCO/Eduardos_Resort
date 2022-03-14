@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletConfig;
@@ -61,19 +62,66 @@ public class EditRecordsServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            session = request.getSession();
         
+            if(con != null){
+                try{
+                    AccessRecords record = new AccessRecords(con);
+                    session = request.getSession();
+                    
+                    String editButtonType = request.getParameter("editType");
+                    String statusRecords = request.getParameter("status");
+                    
+                    System.out.println("the edit type you're trying to do is: " + editButtonType);
+                    System.out.println("the status of the records you're trying to get is: " + statusRecords);
+                    
+                    String bookingIDs[] = request.getParameterValues("bookingID");
+                    
+                    if(bookingIDs.length == 0) {
+                        
+                    }
+//                    ResultSet rs = record.showRecords(statusRecords);
+//                    brList = new ArrayList<>();
+//                    String status_type = "";
+//                    int numberOfRecords = 0;
+//                    while(rs.next()){
+//                        switch(rs.getInt("status_id")) 
+//                        {
+//                            case 0: status_type = "unconfirmed";
+//                                    break;                         
+//                            case 1: status_type = "confirmed";
+//                                    break;    
+//                            case 2: status_type = "cancelled";
+//                                    break;  
+//                        }
+//                        
+//                        numberOfRecords++;
+//                        System.out.println("the name of this record is " + rs.getString("name"));
+//                    }
+//
+//                    session.setAttribute("brList", brList);
+//
+//                    System.out.println(numberOfRecords);
+
+                    
+
+                    
+                    
+
+                    //allRecordsFromDB.close();
+                    //record.close();  
+
+                    response.sendRedirect(path);
+
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

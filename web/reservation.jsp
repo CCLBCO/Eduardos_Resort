@@ -29,40 +29,40 @@
           </ul>
         </div>
         <div class="form">
-          <form>
+          <form method="post" action="ReservationServlet">
             <div class="inpbox full">
               <!--span class="flaticon-taxi"></span-->
-              <select id="cars" name="cars">
+              
+              <select id="rooms" name="rooms">
                 <option value="">Select Room Type</option>
-                <option value="volvo">Family Room</option>
-                <option value="saab">Deluxe Room</option>
-                <option value="fiat">Single Deluxe Room</option>
-                <option value="audi">Function Hall</option>
+                <option value="1">Family Room</option>
+                <option value="2">Deluxe Room</option>
               </select>
             </div>
             <div class="inpbox">
               <span class="flaticon-calendar"></span>
-              <input type="date" placeholder="Pickup Date">
+              <input type="date" placeholder="Pickup Date" name="pckupDate">
             </div>
             <div class="inpbox">
               <span class="flaticon-calendar"></span>
-              <input type="date" placeholder="Drop Date">
+              <input type="date" placeholder="Drop Date" name="drpDate">
             </div>
+              
             <div class="inpbox">
               <span class="flaticon-user"></span>
-              <input type="text" placeholder="Full Name">
+              <input type="text" placeholder="Full Name" name="cstmName">
             </div>
             <div class="inpbox">
               <span class="flaticon-email"></span>
-              <input type="email" placeholder="Email">
+              <input type="email" placeholder="Email" name="email">
             </div>
             <div class="inpbox">
               <span class="flaticon-location"></span>
-              <input type="text" placeholder="Phone Number">
+              <input type="text" placeholder="Phone Number" name="phnNumber">
             </div>
             <div class="inpbox">
               <span class="flaticon-globe"></span>
-              <input type="text" placeholder="Country">
+              <input type="text" placeholder="Country" name="country">
             </div>
 
             <!--div-- class="inpbox full">
