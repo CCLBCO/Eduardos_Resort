@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Eduardos_Resort-1/web/css/reservation.css</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Eduardos_Resort-1/src/java/controller/loginServlet.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Eduardos_Resort-1/src/java/controller/VerifyCaptcha.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Eduardos_Resort-1/web/login.jsp</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Eduardos_Resort-1/web/rooms.jsp</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Eduardos_Resort-1/src/java/controller/ReservationServlet.java</file>
         </group>
     </open-files>
 </project-private>
