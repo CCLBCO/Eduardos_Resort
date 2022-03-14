@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
 <html>
 <head>
 	<title>Admin Login</title>
@@ -35,6 +36,11 @@
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
+                <!-- reCAPTCHA -->
+                <div class="g-recaptcha"
+                     data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">
+                </div>
+
             	<a href="#">Forgot Password?</a>
             	<input type="submit" class="btn" value="Login">
             </form>
