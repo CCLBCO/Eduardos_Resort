@@ -32,7 +32,6 @@ public class ManageRecordsServlet extends HttpServlet {
     private HttpSession session;
     private String path;
 
-    private String search, filter, sort;
     private int currentPage;
     private int MAX_RECORDS_PER_PAGE = 10;
     
@@ -62,10 +61,8 @@ public class ManageRecordsServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                session = request.getSession();
+            session = request.getSession();
         
-        //session handler
-        //if(session.getAttribute("userID") != null){
             if(con != null){
                 try{
                     AccessRecords record = new AccessRecords(con);
@@ -147,11 +144,6 @@ public class ManageRecordsServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-        /*}else{
-            request.setAttribute("msg", "Please login again");
-            session.invalidate();
-            //throw new SessionException();
-        }   */
     }
 
     private boolean hasValue(String s) {

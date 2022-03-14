@@ -5,18 +5,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BookingRecord"%>
 <%@page import="java.text.DecimalFormat"%>
+
 <!DOCTYPE html>
 
-    <%  // Gets session object and throws user-defined SessionDestroyedException when the Session Attribute is not Created 
+<%  // Gets session object and throws user-defined SessionDestroyedException when the Session Attribute is not Created 
+        System.out.println("user: "+session.getAttribute("sessionUser"));
+        System.out.println("role: "+session.getAttribute("role"));
         if(session.getAttribute("sessionUser") == null)
         {
            //throw new SessionDestroyedException();
         }
         
-        // If a user that's not an admin logins and tries to access the admin.jsp it will throw an exception
-        if(!session.getAttribute("role").equals("admin")){
-            //throw new WrongAdminException();
-        }
         final int MAX_RECORDS_PER_PAGE = 10;
         
         int currentPage = 1;    //TEMP VALUES
@@ -25,244 +24,284 @@
         // Needed to Disable Back-tracking without Session
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Expires", "0");
-     %>
-     
-<html lang="en">
+%>
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Eduardo's Resort</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- Our Custom CSS -->
     <link rel="stylesheet" href="hbms.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 
 <body>
-    <div class="sidebar">
-        <nav class="text">
-            <p class="center">Eduardo's Resort</p>
-            <ul>
-                <li>
-                    <h3 class="center">Dashboard</h3>
-                <li class="active">
-                    <a href="#" class="feat-btn"> Bookings
-                        <span class="fas fa-caret-down first rotate"></span>
-                    </a>
-                    <ul class="feat-show show">
-                        <!-- need to make this into form tags-->
-                        <!--li><a href="unconfirmed.jsp" class="selected">Unconfirmed</a></li>
-                        <li><a href="confirmed.jsp">Confirmed</a></li-->
-                        <li>
-                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet">
-                                <button class="center" type="submit" name="status" value="unconfirmed">Unconfirmed Records</button>
-                            </form>
-                        </li>
-                        <li>
-                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet">
-                                <button class="center" type="submit" name="status" value="confirmed">Confirmed Records</button>
-                            </form>
-                        </li>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><span class="text-danger">Eduardo's</span><span class="text-warning"> Resort</span></h3>
+            </div>
 
+            <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true"
+                        class="dropdown-toggle font-weight-bold">BOOKING</a>
+
+                    <ul class="list-unstyled collapse show" id="homeSubmenu">
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
+                                class="pl-5 font-weight-light submenu-form" id="unconfirmedForm">
+                                <button class="submenu" id="unconfirmed" name="status" value="unconfirmed">Unconfirmed Records</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
+                                class="pl-5 font-weight-light submenu-form sub-active" id="confirmedForm">
+                                <button class="submenu" id="confirmed" name="status" value="confirmed">Confirmed Records</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <%
-                    if(!session.getAttribute("role").equals("admin")) {%>
-                        <li>
-                            <a href="#" class="serv-btn"> Accounts
-                                <span class="fas fa-caret-down second"></span>
-                            </a>
-                            <ul class="serv-show"><!--li><a href="manageUsers.jsp">Manage Users</a></li-->
-                                <li>
-                                    <form method="POST" action="<%= request.getContextPath()%>/ManageUsersServlet">
-                                        <button class="center" type="submit" >Manage Users</button>
-                                    </form>
-                                </li><li><a href="manageUsers.jsp">Manage Users</a></li>
-                            </ul>
-                        </li>
-                <%  }%>
+                if(!session.getAttribute("role").equals("admin")) {%>
                 <li>
-                    <form method="POST" action="<%= request.getContextPath()%>/logoutServlet">
-                        <input class="center" type="submit" value="LOG OUT">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle font-weight-bold">ACCOUNTS</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageUsersServlet"
+                                class="pl-5 font-weight-light submenu-form" id="manageUsersForm">
+                                <button class="submenu" id="manageUsers">Manage Users</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                 <%  }%>
+                <li class="logout-action">
+                    <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
+                        class="pl-5 font-weight-light">
+                            <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
                     </form>
                 </li>
             </ul>
         </nav>
-    </div>
-    <div class="main_content">
-        <div class="header1">BOOKINGS</div>
-        <div class="header2 flex">
-            <p>&nbsp&nbspCONFIRMED RECORDS</p><button class="btn">Generate Excel</button>
-        </div>
-        <div class="container">
-            <div>
-                <div class="flex dropdown-list">
-                    <form action="/action_page.php">
-                        <!-- original code, I'm not sure what the java equiv is -->
-                        <select class="header3" name="Date Recorded" id="Date Recorded">
-                            <option class="header3" value="Date Recorded">Date Recorded</option>
-                            <option class="header3" value="saab">Saab</option>
-                            <option class="header3" value="opel">Opel</option>
-                            <option class="header3" value="audi">Audi</option>
-                        </select>
-                    </form>
-                    <form action="/action_page.php">
 
-                        <select class="header3" name="Start Date" id="Start Date">
-                            <option class="header3" value="Start Date">Start Date</option>
-                            <option class="header3" value="saab">Saab</option>
-                            <option class="header3" value="opel">Opel</option>
-                            <option class="header3" value="audi">Audi</option>
-                        </select>
-                    </form>
-                    <form action="/action_page.php">
-
-                        <select class="header3" name="End Date" id="End Date">
-                            <option class="header3" value="End Date">End Date</option>
-                            <option class="header3" value="saab">Saab</option>
-                            <option class="header3" value="opel">Opel</option>
-                            <option class="header3" value="audi">Audi</option>
-                        </select>
-                    </form>
-                    <form action="/action_page.php">
-
-                        <select class="header3" name="Country" id="Country">
-                            <option class="header3" value="Country">Country</option>
-                            <option class="header3" value="saab">Saab</option>
-                            <option class="header3" value="opel">Opel</option>
-                            <option class="header3" value="audi">Audi</option>
-                        </select>
-                    </form>
-                    <form action="/action_page.php">
-                        <select class="header3" name="Room" id="Room">
-                            <option class="header3" value="Room">Room</option>
-                            <option class="header3" value="saab">Saab</option>
-                            <option class="header3" value="opel">Opel</option>
-                            <option class="header3" value="audi">Audi</option>
-                        </select>
-                    </form>
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/menu--v1.png" />
+                    </button>
                 </div>
-                <div class="flex flex-between mt-5">
-                    <div class="flex">
-                        <button class="btn-actions">Filter</button>
-                        <button class="btn-actions">Edit</button>
-                        <button class="btn-actions">Delete</button>
-                        <button class="btn-actions">Move to Confirmed</button>
-                    </div>
-                    <div class="flex pr-24">
-                        <button class="btn-actions">Reset Filter</button>
-                        <button class="btn-actions">Reset Order</button>
+            </nav>
+
+            <div class="content-body h-100 pt-5">
+                <div class="container mt-sm-5 mt-lg-2">
+                    <div class="row p-5">
+                        <div class="w-100">
+                            <div class="row ml-0">
+                                <p class="h2 text-light font-weight-bold align-text-bottom">CONFIRMED RECORDS</p>
+                                <form method="POST" action="">
+                                    <button class="btn btn-base ml-1 ml-lg-3">Generate Excel</button>
+                                </form>
+                            </div>
+                            <div class="row mt-2 w-100 ml-0">
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
+                                    <option selected>Date Recorded</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
+                                    <option selected>Check-In Date</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
+                                    <option selected>Check-Out Date</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select">
+                                    <option selected>Room</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select> 
+                            </div>
+                           <div class="row justify-content-between mt-3 w-100 ml-0">
+                                <div class="row col-sm-12 col-lg-7 pt-2">
+                                    <form method="POST" action="" class="w-100">
+                                            <button
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">Filter</button>
+                                            <button id="editButton" 
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Edit</button>
+                                            <button id="deleteButton" name="editType" value="delete"
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
+                                            <button id="moveButton" name="editType" value="move" 
+                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Unconfirmed</button>
+                                            <input type="hidden" name="status" value="confirmed">
+                                    </form>
+                                </div>
+                                <div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
+                                    <form method="POST" action="" class="w-100 d-flex justify-content-end">
+                                        <button class="col-sm-12 col-lg-5 btn btn-actions ml-0">Reset Filter</button>
+                                        <button class="col-sm-12 col-lg-5 btn btn-actions ml-0 ml-md-3 mt-sm-2 mt-lg-0">Reset Order</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <!--
+                                instead of <div> class look into using <container> to make the box 
+                                vertically scrollable and fit the records content
+                            -->
+                            <div class="content-block bg-light min-vh-100 w-100 mt-4">
+                                <!-- Start of Records body -->
+
+                                <form method="POST" id="fetchItem"></form>
+                                <section class="confirmed">
+                                    <form method="POST" id="edit-confirmed" action="<%=request.getContextPath()%>/EditRecordsServlet">
+                                        <table class="table table-responsive" data-toggle="table" data-search="true"
+                                            data-filter-control="true" data-show-export="true"
+                                            data-click-to-select="true" data-toolbar="#toolbar">
+                                            <thead>
+                                                <tr>
+                                                    <th></th><!-- will make the true or false a variable that toggle visibility when EDIT button is pressed-->
+                                                    <!--th class="booking-id">ID</th-->
+                                                    <th>Date Booked</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Country</th>
+                                                    <th>Room Type</th>
+                                                    <th>Check In</th>
+                                                    <th>Check Out</th>
+                                                    <th>Cost</th>
+                                                    <th>Booking Code</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    //for double values like price
+                                                    DecimalFormat df = new DecimalFormat("###,##0.00");
+                                                    int pageLimit = currentPage * 10;
+                                                    int start = pageLimit - MAX_RECORDS_PER_PAGE;
+                                                    System.out.print("this is before the arraylist");
+                                                    ArrayList<BookingRecord> records = (ArrayList)session.getAttribute("brList");
+                                                    System.out.print("this is after the arraylist");
+                                                    if(records.isEmpty()){
+                                                        System.out.println("brList has nothing :((");
+                                                    }
+                                                    for (int i = start; i < pageLimit; i++)
+                                                    {
+                                                        if (i != records.size())
+                                                        {
+                                                            
+                                                            BookingRecord record = records.get(i);
+                                                            int id = record.getBookingId();
+                                                            Timestamp date_booked = record.getDateBooked();
+                                                            String name = record.getName();
+                                                            String email = record.getEmail();
+                                                            String phone_number = record.getPhoneNumber();
+                                                            String country = record.getCountry();
+                                                            String room_type = record.getRoomType();
+                                                            Date start_booking = record.getStartBookingDate();
+                                                            Date end_booking = record.getEndBookingDate();
+                                                            double cost = record.getCost();
+                                                            String booking_code = record.getBookingCode();        
+                                                            System.out.println("this is the name: " + name);
+                                                %>
+                                                <tr class="details">
+                                                    <td><input type="checkbox" name="bookingID" id="checkBox" value="<%=id%>"></td>
+                                                    <!--td class="item-id"><%=id%></td-->
+                                                    <td><%=date_booked%></td>
+                                                    <td><%=name%></td>
+                                                    <td><%=email%></td>
+                                                    <td><%=phone_number%></td>
+                                                    <td><%=country%></td>
+                                                    <td><%=room_type%></td>
+                                                    <td><%=start_booking%></td>
+                                                    <td><%=end_booking%></td>
+                                                    <td><%=df.format(cost)%></td>
+                                                    <td><%=booking_code%></td>
+                                                </tr>
+                                                <%} else {
+                                                        break;
+                                                    }
+                                                }%>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                <!-- End of Records Body -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- JS for DropDown Button -->
-            <script>
-                let click = document.querySelector('.click1');
-                let list = document.querySelector('.list1');
-                click.addEventListener("click", () => {
-                    list.classList.toggle('newlist');
-                });
-            </script>
-        </div>
-        <div class="box">
-            <svg class="box w-100 h-500">
-                <rect width="2000" height="650" style="fill:rgb(255, 255, 255);stroke-width:3;stroke:rgb(0,0,0)" />
-            </svg>
-            <!-- Start of Records body -->
-            
-                <form method = "POST" id="fetchItem"></form>
-                <section class="confirmed">
-                    <form method="POST" id="item-form" action="ManageRecordsServlet">
-                        <table data-toggle="table" data-search="true" data-filter-control="true" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th class="booking-id">ID</th>
-                                    <th>Date Booked</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Country</th>
-                                    <th>Room Type</th>
-                                    <th>Check In</th>
-                                    <th>Check Out</th>
-                                    <th>Cost</th>
-                                    <th>Booking Code</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <%
-                                //for double values like price
-                                DecimalFormat df = new DecimalFormat("###,##0.00");
-                                int pageLimit = currentPage * 10;
-                                int start = pageLimit - MAX_RECORDS_PER_PAGE;
-                                System.out.print("this is before the arraylist");
-                                ArrayList<BookingRecord> records = (ArrayList)session.getAttribute("brList");
-                                System.out.print("this is after the arraylist");
-                                if(records.isEmpty()){
-                                    System.out.println("brList has nothing :((");
-                                }
-                                for (int i = start; i < pageLimit; i++)
-                                {
-                                    if (i != records.size())
-                                    {
-                                        
-                                        BookingRecord record = records.get(i);
-                                        int id = record.getBookingId();
-                                        Timestamp date_booked = record.getDateBooked();
-                                        String name = record.getName();
-                                        String email = record.getEmail();
-                                        String phone_number = record.getPhoneNumber();
-                                        String country = record.getCountry();
-                                        String room_type = record.getRoomType();
-                                        Date start_booking = record.getStartBookingDate();
-                                        Date end_booking = record.getEndBookingDate();
-                                        double cost = record.getCost();
-                                        String booking_code = record.getBookingCode();        
-                                        System.out.print("this is the name: " + name);
-                            %>
-                                        <tr class="details">
-                                            <td class="item-id"><%=id%></td>
-                                            <td><%=date_booked%></td>
-                                            <td><%=name%></td>
-                                            <td><%=email%></td>
-                                            <td><%=phone_number%></td>
-                                            <td><%=country%></td>
-                                            <td><%=room_type%></td>
-                                            <td><%=start_booking%></td>
-                                            <td><%=end_booking%></td>
-                                            <td><%=df.format(cost)%></td>
-                                            <td><%=booking_code%></td>
-                                        </tr>
-                                  <%} else {
-                                        break;
-                                    }
-                                }%>
-                        </tbody>
-                    </table>
-                </form>
-            </section>
-            <!-- End of Records body -->
         </div>
     </div>
 
-    <!-- JS-->
-    <script>
-        $('.feat-btn').click(function () {
-            $('nav ul .feat-show').toggleClass("show");
-            $('nav ul .first').toggleClass("rotate");
-        });
-        $('.serv-btn').click(function () {
-            $('nav ul .serv-show').toggleClass("show1");
-            $('nav ul .second').toggleClass("rotate");
-        });
-        $('nav ul li').click(function () {
-            $(this).addClass("active").siblings().removeClass("active");
-        });
-    </script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- JQuery script for sidebar toggle -->
+    <script type="text/javascript">
+        (function () {
+            document.getElementById("sidebarCollapse").addEventListener("click", function () {
+                var element = document.getElementById("sidebar").classList.toggle("active");
+            });
+
+            document.getElementById("unconfirmed").addEventListener("click", function () {
+                document.forms["unconfirmedForm"].submit();
+            });
+
+            document.getElementById("confirmed").addEventListener("click", function () {
+                document.forms["confirmedForm"].submit();
+            });
+
+            document.getElementById("manageUsers").addEventListener("click", function () {
+                document.forms["manageUsersForm"].submit();
+            });
+        })();
+       
+        
+
+        function toggleEdit() {
+            var delete = document.getElementById('deleteButton');
+            var move = document.getElementById('moveButton');
+            var checkBox = document.getElementById('checkBox');
+            if(delete.style.visibility === 'visible') {
+                delete.style.visibility = 'hidden';
+                move.style.visibility = 'hidden';
+                checkBox.style.visibility = 'hidden';
+            } else {
+                delete.style.visibility = 'visible';
+                move.style.visibility = 'visible';
+                checkBox.style.visibility = 'visible';
+            }
+//            document.getELementById("deleteButton").style.visibility = "visible";
+//            document.getELementById("moveButton").style.visibility = "visible";
+//            document.getELementById("checkBox").style.visibility = "visible";
+        }
+    </script>
 </body>
 
 </html>

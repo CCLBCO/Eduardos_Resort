@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  * @author admin
  */
 public class BookingRecord {
-    // 10 properties
+    // 13 properties
     private int booking_id;
     private Timestamp date_booked;
     private String name;
