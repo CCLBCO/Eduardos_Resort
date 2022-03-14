@@ -96,27 +96,12 @@ public class ReservationServlet extends HttpServlet {
                 convPckDate = convertToDateViaSqlDate(parsedPckDate);
                 convDropDate = convertToDateViaSqlDate(parsedDropDate);
 
-                days = ChronoUnit.DAYS.between(parsedPckDate, parsedDropDate);
-                System.out.println("Days in between: " + days);
+                convDays = getDaysInBetween(parsedPckDate, parsedDropDate);
+                System.out.println("Days in between: " + convDays);
+                convCost = getCost(convDays);
+                System.out.println(convCost);
                 
-                if(roomType == 1){
-                    cost = days * 2500;
-                }
-                else {
-                    cost = days * 3500;
-                }
-                
-                System.out.println(cost);
-                
-                convDays = Math.toIntExact(days);
-                convCost = Math.toIntExact(cost);
-                
-                RandomStringGenerator generator = new RandomStringGenerator.Builder()
-                    .withinRange('0', 'Z')
-                    .filteredBy(LETTERS, DIGITS)
-                    .build();
-                
-                randomizedCode = generator.generate(7);
+                randomizedCode = generateCode(7);
                 System.out.println(randomizedCode);
 
                 PreparedStatement ps; 
@@ -163,6 +148,31 @@ public class ReservationServlet extends HttpServlet {
     
     public Date convertToDateViaSqlDate(LocalDate dateToConvert) {
     return java.sql.Date.valueOf(dateToConvert);
+    }
+    
+    public int getCost(int days) {
+        if(roomType == 1){
+                    convCost = days * 2500;
+                }
+                else {
+                    convCost = days * 3500;
+                }
+    return convCost;
+    }
+    
+    public int getDaysInBetween(LocalDate pPD, LocalDate dDD) {  
+        days = ChronoUnit.DAYS.between(pPD, dDD);
+    return convDays = Math.toIntExact(days);
+    }
+    
+    public String generateCode(int digits) {
+        RandomStringGenerator generator = new RandomStringGenerator.Builder()
+                    .withinRange('0', 'Z')
+                    .filteredBy(LETTERS, DIGITS)
+                    .build();
+                
+    randomizedCode = generator.generate(digits);        
+    return randomizedCode;
     }
     
 }
