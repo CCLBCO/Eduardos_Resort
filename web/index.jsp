@@ -84,7 +84,7 @@
 </script>
 
 <!--Home Page-->
-<section class="home" id="home">
+<section class="home anchor" id="home">
   <div class="head_container">
     <div class="box">
       <div class="text">
@@ -149,7 +149,7 @@
 </section-->
 
 <!--About-->
-<section class="about top" id="about">
+<section class="about top anchor" id="about">
   <div class="container flex">
     <div class="left">
       <div class="img">
@@ -172,7 +172,7 @@
 </section>
 
 <!--Amenities-->
-<section class="wrapper top" id="amenities">
+<section class="wrapper top anchor2" id="amenities">
   <div class="container">
     <div class="text">
       <h2>Our Amenities</h2>
@@ -203,7 +203,7 @@
 
 <!--Featured Rooms-->
 
-<section class="room top" id="room">
+<section class="room top anchor" id="room">
   <div class="container2">
     <div class="heading_top flex1">
       <div class="heading">
@@ -267,7 +267,7 @@
 </section-->
 
 <!--Event Packages-->
-<section class="restaurant top" id="restaurant">
+<section class="restaurant top anchor" id="restaurant">
   <div class="container flex">
     <div class="left">
       <img src="image/re.PNG" alt="">
@@ -339,7 +339,7 @@
 </script>
 
 <!--Gallery-->
-<section class="gallary mtop " id="gallary">
+<section class="gallary mtop anchor " id="gallary">
   <div class="container">
     <div class="heading_top flex1">
       <div class="heading">
@@ -437,13 +437,6 @@
   <!--Wave Animation-->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-  $(document).ready(function() {
-    if(window.location.hash.length > 0) {
-        window.scrollTo(0, $(window.location.hash).offset().top);
-    }
-});
-  
 <!--Typing Animation-->
 <script>
   !function(a){"use strict";a.fn.typer=function(b){function c(a,b){k<b.length?(g=b[k].split(""),h=g.length,setTimeout(function(){a.append(g[j]),j++,j<h?c(a,b):(j=0,k++,setTimeout(function(){e(a,function(){c(a,b)})},i.backspaceDelay))},i.typeSpeed)):i.repeat&&d(a,b)}function d(a,b){k=0,setTimeout(function(){c(a,b)},i.repeatDelay)}function e(a,b){setTimeout(function(){a.text(a.text().slice(0,-1)),0<a.text().length?e(a,b):"function"==typeof b&&b()},i.backspaceSpeed)}function f(a){setInterval(function(){a.fadeOut(400).fadeIn(400)},900)}var g,h,i=a.extend({typeSpeed:60,backspaceSpeed:20,backspaceDelay:800,repeatDelay:1e3,repeat:!0,autoStart:!0,startDelay:100,useCursor:!0,strings:["Typer.js plugin"]},b),j=0,k=0;return this.each(function(){var b,d,e=a(this);i.autoStart&&(e.append('<span class="typed"></span>'),i.useCursor&&(e.append('<span class="typed_cursor">&#x7c;</span>'),d=e.children(".typed_cursor"),f(d)),b=e.children(".typed"),setTimeout(function(){c(b,i.strings)},i.startDelay))})}}(jQuery);

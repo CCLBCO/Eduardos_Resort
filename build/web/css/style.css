@@ -6,6 +6,18 @@
   box-sizing: border-box;
 }
 
+.anchor{
+    display:block;
+    padding-top:100px;
+    margin-top:-100px;
+}
+
+.anchor2{
+    display:block;
+    padding-top:100px;
+    margin-top:-100px;
+}
+
 body{
   scroll-behavior: smooth;
   font-family: 'Roboto Slab', serif;
