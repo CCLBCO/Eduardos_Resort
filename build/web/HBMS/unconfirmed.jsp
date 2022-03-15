@@ -14,6 +14,7 @@
     {
        //throw new SessionDestroyedException();
     }
+        
 
     final int MAX_RECORDS_PER_PAGE = 10;
     int currentPage = 1;    //TEMP VALUES
