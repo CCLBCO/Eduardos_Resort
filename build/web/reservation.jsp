@@ -33,7 +33,7 @@
             <div class="inpbox full">
               <!--span class="flaticon-taxi"></span-->
               
-              <select id="rooms" name="rooms">
+              <select id="rooms" name="rooms" required>
                 <option value="">Select Room Type</option>
                 <option value="1">Family Room</option>
                 <option value="2">Deluxe Room</option>
@@ -41,28 +41,27 @@
             </div>
             <div class="inpbox">
               <span class="flaticon-calendar"></span>
-              <input type="date" placeholder="Pickup Date" name="pckupDate">
+              <input type="date" placeholder="Pickup Date" name="pckupDate" required>
             </div>
             <div class="inpbox">
               <span class="flaticon-calendar"></span>
-              <input type="date" placeholder="Drop Date" name="drpDate">
+              <input type="date" placeholder="Drop Date" name="drpDate" required>
             </div>
-              
             <div class="inpbox">
               <span class="flaticon-user"></span>
-              <input type="text" placeholder="Full Name" name="cstmName">
+              <input type="text" placeholder="Full Name" name="cstmName" required>
             </div>
             <div class="inpbox">
               <span class="flaticon-email"></span>
-              <input type="email" placeholder="Email" name="email">
+              <input type="email" placeholder="Email" name="email" required>
             </div>
             <div class="inpbox">
               <span class="flaticon-location"></span>
-              <input type="text" placeholder="Phone Number" name="phnNumber">
+              <input type="text" placeholder="Phone Number" name="phnNumber" required>
             </div>
             <div class="inpbox">
               <span class="flaticon-globe"></span>
-              <input type="text" placeholder="Country" name="country">
+              <input type="text" placeholder="Country" name="country" required>
             </div>
 
             <!--div-- class="inpbox full">

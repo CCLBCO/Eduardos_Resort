@@ -323,7 +323,7 @@
       <div class="content grid2 mtop">
         <div class="box flex">
           <div class="left">
-            <img src="image/r1.png" alt="">
+            <img src="image/r1.PNG" alt="">
           </div>
           <div class="right">
             <h4>Family Room</h4>
@@ -345,7 +345,7 @@
 
         <div class="box flex">
           <div class="left">
-            <img src="image/r2.png" alt="">
+            <img src="image/r2.PNG" alt="">
           </div>
           <div class="right">
             <h4>Deluxe Room</h4>
@@ -367,7 +367,7 @@
 
         <div class="box flex">
           <div class="left">
-            <img src="image/r3.png" alt="">
+            <img src="image/r3.PNG" alt="">
           </div>
           <div class="right">
             <h4>Single Deluxe Room</h4>
@@ -389,7 +389,7 @@
 
         <div class="box flex">
           <div class="left">
-            <img src="image/re.png" alt="">
+            <img src="image/re.PNG" alt="">
           </div>
           <div class="right">
             <h4>Function Hall</h4>
