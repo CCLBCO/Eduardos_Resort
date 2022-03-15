@@ -165,7 +165,7 @@
         <url-pattern>/ReservationServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditRecordservlet</servlet-name>
+        <servlet-name>EditRecordsServlet</servlet-name>
         <url-pattern>/EditRecordsServlet</url-pattern>
     </servlet-mapping>
     <session-config>

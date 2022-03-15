@@ -74,7 +74,7 @@
                     </ul>
                 </li>
                 <%
-                if(!session.getAttribute("role").equals("admin")) {%>
+                if(!session.getAttribute("role").equals("handler")) {%>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle font-weight-bold">ACCOUNTS</a>
