@@ -47,8 +47,9 @@
         <li> <a href="#amenities">Amenities</a></li>
         <li> <a href="#room">Accomodations</a></li>
         <li> <a href="#rates">Rates and Promos</a></li>
-        <li> <a href="#restaurant">Event Packages</a></li>
         <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
+        <li> <a href="#restaurant">Event Packages</a></li>
+        <li> <a href="#gallary">Gallery</a></li>
         <li> <a href="reservation.jsp">Reservation</a></li>
         <!--li> <a href="login.jsp">Admin Login</a></li-->
       </ul>

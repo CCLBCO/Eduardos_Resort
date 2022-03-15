@@ -16,12 +16,13 @@
     <nav class="navbar flex1">
 
       <ul class="nav-menu">
-        <li> <a href="#home">Home</a></li>
-        <li> <a href="#room">Accomodations</a></li>
-        <li> <a href="#rates">Rates and Promos</a></li>
-        <li> <a href="#restaurant">Event Packages</a></li>
+        <li> <a href="index.jsp?#home">Home</a></li>
+        <li> <a href="index.jsp?#amenities">Amenities</a></li>
+        <li> <a href="index.jsp?#room">Accomodations</a></li>
+        <li> <a href="index.jsp?#restaurant">Event Packages</a></li>
+        <li> <a href="index.jsp?#gallary">Gallery</a></li>
         <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
-        <li> <a href="reservation.jsp">Reservation</a></li>
+        <!--li> <a href="reservation.jsp">Reservation</a></li-->
         <!--li> <a href="login.jsp">Admin Login</a></li-->
       </ul>
     </nav>
