@@ -105,10 +105,6 @@
         </init-param>
     </servlet>
     <servlet>
-        <servlet-name>EditRecordsServlet</servlet-name>
-        <servlet-class>controller.EditRecordsServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ReservationServlet</servlet-name>
         <servlet-class>controller.ReservationServlet</servlet-class>
         <init-param>
@@ -140,6 +136,10 @@
             <param-value>EduardosResort</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>EditRecordsServlet</servlet-name>
+        <servlet-class>controller.EditRecordsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageRecordsServlet</servlet-name>
         <url-pattern>/ManageRecordsServlet</url-pattern>
@@ -161,12 +161,12 @@
         <url-pattern>/ManageUsersServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditRecordsServlet</servlet-name>
-        <url-pattern>/EditRecordsServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ReservationServlet</servlet-name>
         <url-pattern>/ReservationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditRecordservlet</servlet-name>
+        <url-pattern>/EditRecordsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

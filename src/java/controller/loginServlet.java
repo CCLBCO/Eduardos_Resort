@@ -66,10 +66,11 @@ public class loginServlet extends HttpServlet {
                 System.out.println("Response: " + verify);
   
             // Checks for Blank Username and Password
-//            if (userArg.equals("") && passArg.equals(""))
-//            {
-//                // throw new NullValueException();
-//            }
+            if (userArg.equals("") && passArg.equals(""))
+            {
+                // throw new NullValueException();
+            }
+            
             if (con != null) 
             {            
                 //DB Wrapper Object
@@ -107,14 +108,21 @@ public class loginServlet extends HttpServlet {
                 }
                 else
                 {
+                   if(!verify){
+                       request.setAttribute("msg", "Username is Correct but Incorrect Password!");
+                       // throw new AuthenticationException();
+                   }
+                    
+                   else{
                    // Session Attribute to Destroy Later after Logout
                    session = request.getSession();
                    res = ps.executeQuery();
                    //session.setAttribute("uname", userArg); // no need to show name of who logged in
          
-                        session.setAttribute("sessionUser", userArg);
-                        session.setAttribute("role", r);
-                        response.sendRedirect("bookingManagement");
+                    session.setAttribute("sessionUser", userArg);
+                    session.setAttribute("role", r);
+                    response.sendRedirect("bookingManagement");
+                   }
                 }
             }
         } 

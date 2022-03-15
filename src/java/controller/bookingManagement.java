@@ -36,13 +36,13 @@ public class bookingManagement extends HttpServlet {
 
             // If there is a session object the user is dispatched to their profile which is based on their role
             if(session.getAttribute("sessionUser") != null){
-                if(roleArg.equals("manager")){
+                if(roleArg.equals("owner")){
 //                view = request.getRequestDispatcher("HBMS/manageUsers.jsp");
 //                view.forward(request, response); 
                 response.sendRedirect("HBMS/resortOwner.jsp");
                 }
             
-                else if (roleArg.equals("admin")){
+                else if (roleArg.equals("handler")){
 //                view = request.getRequestDispatcher("HBMS/confirmed.jsp");
 //                view.forward(request, response); 
                 response.sendRedirect("HBMS/bookingHandler.jsp");
