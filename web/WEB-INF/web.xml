@@ -105,10 +105,6 @@
         </init-param>
     </servlet>
     <servlet>
-        <servlet-name>EditRecordsServlet</servlet-name>
-        <servlet-class>controller.EditRecordsServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ReservationServlet</servlet-name>
         <servlet-class>controller.ReservationServlet</servlet-class>
         <init-param>
@@ -159,10 +155,6 @@
     <servlet-mapping>
         <servlet-name>ManageUsersServlet</servlet-name>
         <url-pattern>/ManageUsersServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditRecordsServlet</servlet-name>
-        <url-pattern>/EditRecordsServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ReservationServlet</servlet-name>

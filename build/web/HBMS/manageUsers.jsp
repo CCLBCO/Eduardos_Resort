@@ -8,11 +8,11 @@
         {
            //throw new SessionDestroyedException();
         }
-        
         // If a user that's not an owner logins and tries to access the admin.jsp it will throw an exception
-        if(!session.getAttribute("role").equals("manager")){
+        if(!session.getAttribute("role").equals("owner")){
             //throw new WrongAdminException();
         }
+        
         final int MAX_RECORDS_PER_PAGE = 10;
         int currentPage = 1;    //TEMP VALUES
         String maxPage = "10";  //TEMP VALUES
