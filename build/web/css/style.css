@@ -1005,6 +1005,11 @@ footer .menu li
 {
   list-style-type: none;
 }
+
+footer .menu{
+    display: flex;
+    flex-direction: column;
+}
 footer .social_icon li a
 {
   font-size: 2em;
