@@ -107,15 +107,15 @@
             </nav>
 
             <!-- welcome logo -->
-<!--            <div class="content-body h-100 pt-5">
+            <div class="content-body h-100 pt-5">
                 <div class="container mt-sm-5 mt-lg-2">
                     <div class="row">
                         <div class="w-100">
-                            <img src="image/welcome.png" class="w-100" alt="welcome">
+                            <img src="../image/welcome.png" class="w-100" alt="welcome">
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
 
     </div>
