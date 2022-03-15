@@ -127,7 +127,7 @@ header ul li a{
 header ul li a:after{
   content: "";
   position: absolute;
-  background-color: black;
+  background-color: white;
   height: 2px;
   width: 0;
   left: 0;
@@ -738,7 +738,9 @@ input {
 /*-------------------------------------------------------------------Room--------------------------------------------------------------------*/
 
 .room .grid {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 10vw;
+  margin-right: 10vw;
 }
 
 .room img {

@@ -44,12 +44,12 @@
 
       <ul class="nav-menu">
         <li> <a href="#home">Home</a></li>
-        <li> <a href="#accomodations">Accomodations</a></li>
+        <li> <a href="#room">Accomodations</a></li>
         <li> <a href="#rates">Rates and Promos</a></li>
-        <li> <a href="#event">Event Packages</a></li>
-        <li> <a href="rooms.jsp">Room Bookings</a></li>
+        <li> <a href="#restaurant">Event Packages</a></li>
+        <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
         <li> <a href="reservation.jsp">Reservation</a></li>
-        <li> <a href="login.jsp">Admin Login</a></li>
+        <!--li> <a href="login.jsp">Admin Login</a></li-->
       </ul>
 
       <div class="hamburger">
@@ -89,7 +89,9 @@
       <div class="text">
         <h1>Experience Paradise On Earth!</h1>
         <p>Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera located at Nautical Highway Bayanan II, Calapan City Oriental Mindoro. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</p>
-        <button>Booking Reservations</button>
+        <form action="reservation.jsp">
+            <button>Booking Reservations</button>
+        </form>
       </div>
     </div>
     <div class="image">
@@ -208,7 +210,9 @@
         <h2>Featured Rooms and Suites</h2>
       </div>
       <div class="button">
-        <button class="btn1">BOOK NOW</button>
+          <form action="rooms.jsp">
+              <button class="btn1">BOOK NOW</button>
+          </form>
       </div>
     </div>
 
@@ -229,15 +233,6 @@
         <div class="text">
           <h3>Deluxe Rooms</h3>
           <p> <span>Php </span>2,500.00 <span>/per night</span> </p>
-        </div>
-      </div>
-      <div class="box">
-        <div class="img">
-          <img src="image/r3.PNG" alt="">
-        </div>
-        <div class="text">
-          <h3>Single Deluxe Rooms</h3>
-          <p> <span>Php </span>2,000.00 <span>/per night</span> </p>
         </div>
       </div>
     </div>
@@ -416,58 +411,6 @@
   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d248439.94898724725!2d121.16964320000001!3d13.358097299999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfc0dbcdcb9ffd431!2sEduardo&#39;s%20Resort!5e0!3m2!1sen!2sph!4v1644289999343!5m2!1sen!2sph" width="100%" height="450" style="border:0;"
     allowfullscreen="" loading="lazy"></iframe>
 </section>
-
-<!--Footer>
-<!--footer>
-  <div class="container grid top">
-    <div class="box">
-      <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/48/000000/external-hotel-hotel-services-and-city-elements-flatart-icons-flat-flatarticons-1.png" />
-      <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <p>Accepted payment methods</p>
-      <div class="payment grid">
-        <img src="https://img.icons8.com/color/48/000000/visa.png" />
-        <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
-        <img src="https://img.icons8.com/color-glass/48/000000/paypal.png" />
-        <img src="https://img.icons8.com/fluency/48/000000/amex.png" />
-      </div>
-    </div>
-
-    <div class="box">
-      <h3>Recent News</h3>
-
-      <ul>
-        <li>Our Secret Island Boat Tour Is Just for You</li>
-        <li>Chill and Escape in Our Natural Shelters</li>
-        <li>September in Eduardo's Resort</li>
-        <li>Live Music Concerts at Eduardo's Resort</li>
-      </ul>
-    </div>
-
-    <div class="box">
-      <h3>For Customers</h3>
-      <ul>
-        <li>About Eduardo's Resort</li>
-        <li>Customer Care/Help</li>
-        <li>Corporate Accounts</li>
-        <li>Financial Information</li>
-        <li>Terms & Conditions</li>
-      </ul>
-    </div>
-
-    <div class="box">
-      <h3>Contact Us</h3>
-
-      <ul>
-        <li>Calapan South Rd 5200 Calapan, Philippines</li>
-        <li><i class="far fa-envelope"></i> eduardosresort@gmail.com </li>
-        <li><i class="far fa-phone-alt"></i> +63-912-345-6789</li>
-        <li><i class="far fa-phone-alt"></i> +632-1234-5678</li>
-        <li><i class="far fa-comments"></i> Mr. Adrian Santiago </li>
-      </ul>
-    </div>
-  </div>
-<footer-->
 
   <footer>
     <div class="waves">

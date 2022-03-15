@@ -14,7 +14,6 @@
     {
        //throw new SessionDestroyedException();
     }
-        
 
     final int MAX_RECORDS_PER_PAGE = 10;
     int currentPage = 1;    //TEMP VALUES
@@ -38,6 +37,11 @@
 
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="hbms.css">
+    
+    <!-- Table CSS and JS -->
+    <link rel="stylesheet" href="sortable-table.css">
+    <script type="text/javascript" src="sortable-table.js"></script>
+    
 </head>
 
 <body>
@@ -164,7 +168,7 @@
                                 <!-- Start of Records body -->
                                 <section class="unconfirmed">
                                     <form method="POST" id="edit-unconfirmed" action="<%= request.getContextPath()%>/EditRecordsServlet">
-                                        <table class="table table-responsive" data-toggle="table" data-search="true"
+                                        <table class="table table-responsive sortable" data-toggle="table" data-search="true"
                                             data-filter-control="true" data-show-export="true"
                                             data-click-to-select="true" data-toolbar="#toolbar">
                                             <thead>
