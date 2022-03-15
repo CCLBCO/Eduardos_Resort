@@ -365,7 +365,7 @@
           </div>
         </div>
 
-        <div class="box flex">
+        <!--div class="box flex">
           <div class="left">
             <img src="image/r3.PNG" alt="">
           </div>
@@ -826,5 +826,3 @@
     </div>
   </footer->
 </body>
-
-
