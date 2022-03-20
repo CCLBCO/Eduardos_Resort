@@ -1,3 +1,4 @@
+<%@page import="exceptions.NotOwnerException"%>
 <%@page import="javax.mail.FetchProfile.Item"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Account"%>
@@ -6,11 +7,11 @@
 <%  // Gets session object and throws user-defined SessionDestroyedException when the Session Attribute is not Created 
         if(session.getAttribute("sessionUser") == null)
         {
-           //throw new SessionDestroyedException();
+           throw new SessionDestroyedException();
         }
         // If a user that's not an owner logins and tries to access the admin.jsp it will throw an exception
         if(!session.getAttribute("role").equals("owner")){
-            //throw new WrongAdminException();
+            throw new NotOwnerException();
         }
         
         final int MAX_RECORDS_PER_PAGE = 10;

@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&family=Ubuntu&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;     /* for chrome */
+    -moz-box-sizing: border-box;        /* for mozilla */
+    box-sizing: border-box;
+    text-decoration: none;              /* remove ung underline sa links */
+}
+
+html {
+  scroll-behavior: smooth;              /* di gumagana sa browser ko pero sa iba daw gumagana */
+}
+
+.max-width{
+    max-width: 1300px;
+    padding: 0px 30px;                  
+    margin: auto;
+}
+
+/* Error Navbar */
+.navbar{
+    position: fixed;                    /* para di nagalaw */
+    width: 100%;                         
+    z-index: 999;                       /* in front of elements */
+    padding: 15px 0px;                  /* 15px kung thin or 30px kung thick */
+    background: #111;                 
+    font-family: 'Open Sans', sans-serif;
+    transition: all 0.3s ease;
+}
+.navbar.sticky{
+    padding: 15px 0px;
+    background: #111;
+}
+.navbar .max-width{
+    display: flex;                      /* responsiveness */
+    align-items: center;        
+    justify-content: space-between;     /* dulo-dulo */
+}
+.navbar .logo a{
+    color:#fff;
+    font-family: 'Cinzel', serif;
+    font-size: 35px;
+    font-weight: 600;
+}
+.navbar .logo a span{
+    color: #d6a127; 
+    transition: all 0.3s ease;
+}
+.navbar .sticky .logo a span{       /* di gumagana to di nagpapalit ung span */
+    color: #fff;
+}
+
+
+
+/* Error 404 */
+#notfound {
+  position: relative;
+  height: 94vh;     /* 1oo to dapat soon */
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.notfound .notfound-404 {
+  height: 190px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 146px;
+  font-weight: 700;
+  margin: 0px;
+  color: #232323;
+}
+
+.notfound .notfound-404 h1>span {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  background-image: url('images/emoji.png');
+  background-size: cover;
+  -webkit-transform: scale(1.4);
+      -ms-transform: scale(1.4);
+          transform: scale(1.4);
+  z-index: -1;
+}
+
+.notfound h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  /*font-family: 'Cinzel', serif;
+  font-size: 30px;*/
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  color: #232323;
+}
+
+.notfound p {
+  font-family: 'Montserrat', sans-serif;
+  color: #787878;
+  font-weight: 300;
+}
+
+.notfound a {
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  padding: 12px 30px;
+  font-weight: 700;
+  background-color: #d6a127;
+  color: #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.notfound a:hover {
+  opacity: 0.8;
+}
+
+/* Footer */
+footer{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    text-align: right;
+    color: #fff;
+    background: #111; /* mas malinis ung itim */
+    padding: 20px 23px;
+}
+footer span a{
+    color: #fff;
+    text-decoration: none;
+}
+footer span a:hover{
+    text-decoration: underline;
+}
+
+/* Error Media Query */
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+    height: 115px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 86px;
+  }
+  .notfound .notfound-404 h1>span {
+    width: 86px;
+    height: 86px;
+  }
+}

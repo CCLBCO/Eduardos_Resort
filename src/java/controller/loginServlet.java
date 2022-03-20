@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,7 @@ public class loginServlet extends HttpServlet {
     static String userDB, passDB;                                                       // Username and Password from web.xml
     static String userArg, passArg, query, tempU, tempP, u, p, r, n, decryptedPass;   
     HttpSession session; // userArg & passArg from Input
+    RequestDispatcher rd;
                                       
     public void init(ServletConfig config) throws ServletException 
     {
@@ -66,13 +68,14 @@ public class loginServlet extends HttpServlet {
                 System.out.println("Response: " + verify);
   
             // Checks for Blank Username and Password
-            if (userArg.equals("") && passArg.equals(""))
+            if (userArg.equals("") || passArg.equals(""))
             {
-                // throw new NullValueException();
+                request.setAttribute("error","Username or Password is Blank!");
+                rd = request.getRequestDispatcher("/login.jsp");            
+                rd.include(request, response);
             }
             
-            if (con != null) 
-            {            
+            if (con != null) {            
                 //DB Wrapper Object
                 ps.setString(1, userArg);                                       // puts the inputted username
                 ResultSet res = ps.executeQuery();                              // executes the given query and its arguments
@@ -87,42 +90,44 @@ public class loginServlet extends HttpServlet {
                 
                 decryptedPass = Security.decrypt(p); //decrypted password from database
       
+                if(userArg.equals(u) && passArg.equals(decryptedPass)){
+                    if(!verify){
+                       request.setAttribute("error", "reCaptcha is Mandatory!");
+                       rd = request.getRequestDispatcher("/login.jsp");            
+                       rd.include(request, response);
+                   }
+                    else {
+                        // Session Attribute to Destroy Later after Logout
+                        session = request.getSession();
+                        //session.setAttribute("uname", userArg); // no need to show name of who logged in
+
+                        session.setAttribute("sessionUser", userArg);
+                        session.setAttribute("role", r);
+                        response.sendRedirect("bookingManagement");
+                    }
+                }
+                
                  // Errors 1-3 throws user-defined AuthenticationException
-                if (!userArg.equals(u))                                           
+                else if (userArg.equals(u))                                           
                 {
                     if(passArg.equals(""))
                     {
-                        request.setAttribute("msg", " Username is Incorrect and Password is Blank!");
-                        // throw new AuthenticationException();
+                        request.setAttribute("error","Password is Blank!");
+                        rd = request.getRequestDispatcher("/login.jsp");            
+                        rd.include(request, response);
                     }
                     else if(!passArg.equals(decryptedPass))
                     {
-                        request.setAttribute("msg", "Username and Password are Both Incorrect!");
-                        // throw new AuthenticationException();
+                        request.setAttribute("error", "Incorrect Password!");
+                        rd = request.getRequestDispatcher("/login.jsp");            
+                        rd.include(request, response);
                     }
                 }
-                else if (userArg.equals(u) && !passArg.equals(decryptedPass))
-                {
-                    request.setAttribute("msg", "Username is Correct but Incorrect Password!");
-                    // throw new AuthenticationException();
-                }
-                else
-                {
-                   if(!verify){
-                       request.setAttribute("msg", "Username is Correct but Incorrect Password!");
-                       // throw new AuthenticationException();
-                   }
-                    
-                   else{
-                   // Session Attribute to Destroy Later after Logout
-                   session = request.getSession();
-                   res = ps.executeQuery();
-                   //session.setAttribute("uname", userArg); // no need to show name of who logged in
-         
-                    session.setAttribute("sessionUser", userArg);
-                    session.setAttribute("role", r);
-                    response.sendRedirect("bookingManagement");
-                   }
+                
+                else {
+                    request.setAttribute("error", "Username does not exist!");
+                    rd = request.getRequestDispatcher("/login.jsp");            
+                    rd.include(request, response);
                 }
             }
         } 

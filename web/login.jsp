@@ -44,7 +44,7 @@
                    </div>
                 </div>
                 <a href="#">Forgot Password?</a>
-                
+                <br>
                 <!-- reCAPTCHA -->
                 <div class="g-recaptcha"
                      data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">
@@ -53,6 +53,11 @@
                 <input type="submit" class="btn" value="Login">
                 
             </form>
+            <%
+                String login_msg=(String)request.getAttribute("error");  
+                if(login_msg!=null)
+                out.println("<font color=red size=4px>"+login_msg+"</font>");
+            %>
         </div>
     </div>
 

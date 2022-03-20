@@ -1,3 +1,4 @@
+<%@page import="exceptions.SessionDestroyedException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.sql.Date"%>
@@ -11,7 +12,7 @@
 <%  // Gets session object and throws user-defined SessionDestroyedException when the Session Attribute is not Created 
         if(session.getAttribute("sessionUser") == null)
         {
-           //throw new SessionDestroyedException();
+           throw new SessionDestroyedException();
         }
         
         // If a user that's not an admin logins and tries to access the admin.jsp it will throw an exception

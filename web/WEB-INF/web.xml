@@ -201,7 +201,25 @@
             30
         </session-timeout>
     </session-config>
+    
+    <!-- Exceptions and Errors -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error_pages/error404.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>exceptions.NotOwnerException</exception-type>
+        <location>/error_pages/errorAdmin.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>exceptions.SessionDestroyedException</exception-type>
+        <location>/error_pages/errorSession.jsp</location>
+    </error-page>
+  
+    
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
