@@ -126,10 +126,10 @@ public class AccessRecords {
     }
 
     //Update queries
-    
-    public void moveSingleRecord(int bookingID, String status){
+    public void moveRecords(int[] bookingIDs, String status){
         
         String statusToBeSwitchedTo = "";
+        System.out.print("inside moveRecords() function");
         switch(status){
             //if it was an unconfirmed record, it will be updated to confirmed
             case "unconfirmed": statusToBeSwitchedTo = "1";       //1 means confirmed
@@ -138,24 +138,49 @@ public class AccessRecords {
             case "confirmed": statusToBeSwitchedTo = "0";         //0 means unconfirmed
                 break;
         }
+        System.out.print("Status to be switched to is: " + statusToBeSwitchedTo);
         
-        String updatequery = "UPDATE ITEM SET STATUS_ID = ? WHERE BOOKING_ID = ?";
+        String updatequery = "UPDATE BOOKING_INFO SET STATUS_ID = ? WHERE BOOKING_ID = ?";
        
         try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){
+            for(int i = 0; bookingIDs.length > i; i++){
+                System.out.print("the bookingID being updated right now is: " + bookingIDs[i]);
+                updateRecordStmt.setInt(1, Integer.parseInt(statusToBeSwitchedTo));
+                updateRecordStmt.setInt(2, bookingIDs[i]);
 
-            updateRecordStmt.setString(1, statusToBeSwitchedTo);
-            updateRecordStmt.setString(2, ((Integer)bookingID).toString());
-            
-            int updated = updateRecordStmt.executeUpdate();
-            con.commit();
+                int updated = updateRecordStmt.executeUpdate();
+                con.commit();
+                System.out.println("Number of records updated are: " + updated);
+            }
             
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
     
+    public void deleteRecords(int[] bookingIDs){
+        
+        String updatequery = "UPDATE BOOKING_INFO SET STATUS_ID = ? WHERE BOOKING_ID = ?";
+       
+        try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){
+            for(int i = 0; bookingIDs.length > i; i++){
+                updateRecordStmt.setInt(1, 2);                                      //2 in status means "cancelled"
+                updateRecordStmt.setInt(2, bookingIDs[i]);
 
-    public void deleteSingleRecord(int[] recordsToBeDeleted){
+                int updated = updateRecordStmt.executeUpdate();
+                con.commit();
+                System.out.println("Number of records updated are: " + updated);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+        
+        
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">    
+    // 
+    /* public void deleteRecord(int[] recordsToBeDeleted){
         String query = "DELETE FROM ITEM WHERE ITEM_ID IN"; 
         StringBuilder sb = new StringBuilder(query);
         
@@ -180,6 +205,6 @@ public class AccessRecords {
             System.out.print("NUMBER OF ROWS AFFECTED BY DELETION ["+result+"]");
         } catch (SQLException ex) 
         {ex.printStackTrace();}
-    }
-    
+    }*/ 
+    //</editor-fold>
 }

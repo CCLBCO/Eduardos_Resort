@@ -146,7 +146,7 @@
                             </div>
                            <div class="row justify-content-between mt-3 w-100 ml-0">
                                 <div class="row col-sm-12 col-lg-7 pt-2">
-                                    <form method="POST" action="" class="w-100">
+                                    <form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100">
                                             <button
                                             class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">Filter</button>
                                             <button id="editButton" 
@@ -175,7 +175,7 @@
 
                                 <form method="POST" id="fetchItem"></form>
                                 <section class="confirmed">
-                                    <form method="POST" id="edit-confirmed" action="<%=request.getContextPath()%>/EditRecordsServlet">
+                                    <!--form method="POST" id="edit-confirmed" action="<%=request.getContextPath()%>/EditRecordsServlet"-->
                                         <table class="table table-responsive" data-toggle="table" data-search="true"
                                             data-filter-control="true" data-show-export="true"
                                             data-click-to-select="true" data-toolbar="#toolbar">
@@ -228,7 +228,7 @@
                                                             System.out.println("this is the name: " + name);
                                                 %>
                                                 <tr class="details">
-                                                    <td><input type="checkbox" name="bookingID" id="checkBox" value="<%=id%>"></td>
+                                                    <td><input type="checkbox" name="bookingID" id="checkBox" value="<%=id%>" form="EditRecordsServlet"></td>
                                                     <!--td class="item-id"><%=id%></td-->
                                                     <td><%=date_booked%></td>
                                                     <td><%=name%></td>
@@ -247,7 +247,7 @@
                                                 }%>
                                             </tbody>
                                         </table>
-                                    </form>
+                                    <!--/form-->
                                 <!-- End of Records Body -->
                             </div>
                         </div>

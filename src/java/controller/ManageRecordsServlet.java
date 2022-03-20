@@ -68,7 +68,15 @@ public class ManageRecordsServlet extends HttpServlet {
                     AccessRecords record = new AccessRecords(con);
                     session = request.getSession();
                     
-                    String statusRecords = request.getParameter("status");
+                    String statusRecords = "";
+                    if(request.getParameter("status") != null) {
+                        //means from homepage of owner/handler or other record pages
+                        statusRecords = request.getParameter("status");                 
+                    } else {
+                        //means a record was edited and the page just needs to be reloaded
+                        statusRecords = (String)session.getAttribute("statusFromEdit"); 
+                    }
+                    
                     System.out.println("the status of the records you're trying to get is: " + statusRecords);
                     
                     ResultSet rs = record.showRecords(statusRecords);
@@ -126,9 +134,9 @@ public class ManageRecordsServlet extends HttpServlet {
                     session.setAttribute("sortView", sort);*/
                     session.setAttribute("viewCurrentPageNumber", currentPage + "");
                     session.setAttribute("viewMaxPageNumber", maxPage + "");
-
+                        
                     //redirect based on status records
-                    if(((String)request.getParameter("status")).equalsIgnoreCase("unconfirmed")){
+                    if(statusRecords.equalsIgnoreCase("unconfirmed")){
                         path = request.getContextPath() + "/HBMS/unconfirmed.jsp";
                     } else{
                         path = request.getContextPath() + "/HBMS/confirmed.jsp";

@@ -34,7 +34,6 @@ public class EditRecordsServlet extends HttpServlet {
     
     private ArrayList<BookingRecord> brList;
     private HttpSession session;
-    private String path;
     
     @Override
     public void init(ServletConfig config) throws ServletException 
@@ -76,60 +75,33 @@ public class EditRecordsServlet extends HttpServlet {
                     System.out.println("the edit type you're trying to do is: " + editButtonType);
                     System.out.println("the status of the records you're trying to get is: " + statusRecords);
                     
-                    String bookingIDs[] = request.getParameterValues("bookingID"); //array of booking IDs that had their boxes checked
+                    String bookIDs[] = request.getParameterValues("bookingID"); //array of booking IDs that had their boxes checked
+                    System.out.println("the number of records that have been checked: "+ bookIDs.length);
+                    int[] bookingIDs = new int[bookIDs.length];
+                    
+                    for(int i = 0; bookIDs.length > i; i++){
+                        System.out.println("inside loop");
+                        System.out.println("the number of IDs being converted: "+ (i + 1));
+                        bookingIDs[i] = Integer.parseInt(bookIDs[i]);
+                    }
                     
                     if(bookingIDs.length == 0) {
-                        
-                    } else if(bookingIDs.length == 1) {
+                        //pop alert something in front end
+                        System.out.println("there is no record that has been checked");
+                    } else if(bookingIDs.length >= 1) {
+                        System.out.println("bookingIDs length is greater than or equal to one!");
                         switch(editButtonType){
-                            case "delete": //record.deleteSingleRecord(bookingIDs[0], status);
+                            case "delete": record.deleteRecords(bookingIDs);
                                 break;
-                            case "edit":  //record.moveSingleRecord(bookingIDs[0], statusRecords);
-                                break;
-                        }
-                    } else {
-                        switch(editButtonType){
-                            case "delete": //call deleteRecords(bookingIDs) 
-                                break;
-                            case "edit":  //call moveRecords(bookingIDs, status)
+                            case "move":  record.moveRecords(bookingIDs, statusRecords);
                                 break;
                         }
                     }
                     
-                    
-//                    ResultSet rs = record.showRecords(statusRecords);
-//                    brList = new ArrayList<>();
-//                    String status_type = "";
-//                    int numberOfRecords = 0;
-//                    while(rs.next()){
-//                        switch(rs.getInt("status_id")) 
-//                        {
-//                            case 0: status_type = "unconfirmed";
-//                                    break;                         
-//                            case 1: status_type = "confirmed";
-//                                    break;    
-//                            case 2: status_type = "cancelled";
-//                                    break;  
-//                        }
-//                        
-//                        numberOfRecords++;
-//                        System.out.println("the name of this record is " + rs.getString("name"));
-//                    }
-//
-//                    session.setAttribute("brList", brList);
-//
-//                    System.out.println(numberOfRecords);
-
-                    
-
-                    
-                    
-
+                    session.setAttribute("statusFromEdit", statusRecords);
+                    response.sendRedirect("ManageRecordsServlet");
                     //allRecordsFromDB.close();
                     //record.close();  
-
-                    response.sendRedirect(path);
-
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
