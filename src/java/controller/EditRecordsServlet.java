@@ -76,11 +76,27 @@ public class EditRecordsServlet extends HttpServlet {
                     System.out.println("the edit type you're trying to do is: " + editButtonType);
                     System.out.println("the status of the records you're trying to get is: " + statusRecords);
                     
-                    String bookingIDs[] = request.getParameterValues("bookingID");
+                    String bookingIDs[] = request.getParameterValues("bookingID"); //array of booking IDs that had their boxes checked
                     
                     if(bookingIDs.length == 0) {
                         
+                    } else if(bookingIDs.length == 1) {
+                        switch(editButtonType){
+                            case "delete": //record.deleteSingleRecord(bookingIDs[0], status);
+                                break;
+                            case "edit":  //record.moveSingleRecord(bookingIDs[0], statusRecords);
+                                break;
+                        }
+                    } else {
+                        switch(editButtonType){
+                            case "delete": //call deleteRecords(bookingIDs) 
+                                break;
+                            case "edit":  //call moveRecords(bookingIDs, status)
+                                break;
+                        }
                     }
+                    
+                    
 //                    ResultSet rs = record.showRecords(statusRecords);
 //                    brList = new ArrayList<>();
 //                    String status_type = "";

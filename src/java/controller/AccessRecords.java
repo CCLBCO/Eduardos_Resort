@@ -125,49 +125,44 @@ public class AccessRecords {
         return true;
     }
 
-    //DML queries
+    //Update queries
     
-    public void editStatus(BookingRecord recordStatusToBeUpdated){
-
+    public void moveSingleRecord(int bookingID, String status){
+        
+        String statusToBeSwitchedTo = "";
+        switch(status){
+            //if it was an unconfirmed record, it will be updated to confirmed
+            case "unconfirmed": statusToBeSwitchedTo = "1";       //1 means confirmed
+                break;
+            //if it was an confirmed record, it will be updated to unconfirmed, probably means that the handler made a mistake in confirming
+            case "confirmed": statusToBeSwitchedTo = "0";         //0 means unconfirmed
+                break;
+        }
+        
         String updatequery = "UPDATE ITEM SET STATUS_ID = ? WHERE BOOKING_ID = ?";
        
         try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){
-            
-            /*switch(rs.getInt("room_id"))
-            {
-                case 1: room_type = "deluxe";
-                        break;                         
-                case 2: room_type = "family";
-                        break;    
-            }
-            switch(rs.getInt("status_id")) 
-            {
-                case 0: status_type = "unconfirmed";
-                        break;                         
-                case 1: status_type = "confirmed";
-                        break;    
-                case 2: status_type = "cancelled";
-                        break;  
-            }*/
-            updateRecordStmt.setString(1, recordStatusToBeUpdated.getStatus());
-            
+
+            updateRecordStmt.setString(1, statusToBeSwitchedTo);
+            updateRecordStmt.setString(2, ((Integer)bookingID).toString());
             
             int updated = updateRecordStmt.executeUpdate();
             con.commit();
             
-        } catch (SQLException ex) 
-        {ex.printStackTrace();}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
-    // delete function - done
-    public void deleteItems(int[] itemsToBeDeleted){
+
+    public void deleteSingleRecord(int[] recordsToBeDeleted){
         String query = "DELETE FROM ITEM WHERE ITEM_ID IN"; 
         StringBuilder sb = new StringBuilder(query);
         
         // makes placing the "?" dynamic in query depending on items to be deleted
         sb.append("(");
-        for(int i = 0; i < itemsToBeDeleted.length; i++){
-            if(i+1 != itemsToBeDeleted.length)
+        for(int i = 0; i < recordsToBeDeleted.length; i++){
+            if(i+1 != recordsToBeDeleted.length)
                 sb.append("?, ");
             else
                 sb.append("?");   
@@ -177,8 +172,8 @@ public class AccessRecords {
         query = sb.toString();
         
         try(PreparedStatement ps = con.prepareStatement(query)){
-            for(int i = 0; i < itemsToBeDeleted.length; i++){
-                int id = itemsToBeDeleted[i];
+            for(int i = 0; i < recordsToBeDeleted.length; i++){
+                int id = recordsToBeDeleted[i];
                 ps.setInt(i+1, id);
             }
             int result = ps.executeUpdate();
@@ -187,11 +182,4 @@ public class AccessRecords {
         {ex.printStackTrace();}
     }
     
-    public void addStock(int stockAdded){
-    
-    }
-    
-    public void reduceStock(int stockReduced){
-    
-    }
 }
