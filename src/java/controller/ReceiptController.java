@@ -54,7 +54,7 @@ public class ReceiptController extends HttpServlet {
     Timestamp currentDate;
     HttpSession session; // userArg & passArg from Input
     RequestDispatcher rd;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
                                       
     public void init(ServletConfig config) throws ServletException 
     {
