@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +37,7 @@ public class ReservationServlet extends HttpServlet {
     Date convPckDate, convDropDate;
     Timestamp currentDate;
     HttpSession session; // userArg & passArg from Input
+    RequestDispatcher rd;
                                       
     public void init(ServletConfig config) throws ServletException 
     {
@@ -126,8 +128,12 @@ public class ReservationServlet extends HttpServlet {
                 ps.setInt(12, status_id);
                 ps.executeUpdate();
                 con.commit();
+                
+                session = request.getSession();
+                session.setAttribute("code", randomizedCode);
+                response.sendRedirect("ReceiptController");
                 ps.close();
-
+                
             }
         } 
         catch (SQLException sqle){ }

@@ -1,3 +1,4 @@
+<%@page import="exceptions.SessionDestroyedException"%>
 <%@page import="exceptions.NotOwnerException"%>
 <%@page import="javax.mail.FetchProfile.Item"%>
 <%@page import="java.util.ArrayList"%>

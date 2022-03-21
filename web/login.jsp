@@ -56,7 +56,7 @@
             <%
                 String login_msg=(String)request.getAttribute("error");  
                 if(login_msg!=null)
-                out.println("<font color=red size=4px>"+login_msg+"</font>");
+                out.println("<font color=red size=3px>"+login_msg+"</font>");
             %>
         </div>
     </div>

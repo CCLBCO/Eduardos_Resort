@@ -24,12 +24,11 @@ public class bookingManagement extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            // Validates the session object so we can separate the users and admins and organize session management
+
             
             HttpSession session = request.getSession(false);
             // We set the session to false to stop further the creation of session objects
             
-            RequestDispatcher view;
             String roleArg = (String)session.getAttribute("role");
             
             System.out.println("Role: " + roleArg);

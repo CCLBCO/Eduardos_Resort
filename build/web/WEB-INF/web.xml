@@ -168,6 +168,38 @@
             <param-value>EduardosResort</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>ReceiptController</servlet-name>
+        <servlet-class>controller.ReceiptController</servlet-class>
+        <init-param>
+            <param-name>jdbcClassName</param-name>
+            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbUserName</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPassword</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbcDriverURL</param-name>
+            <param-value>jdbc:derby</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbHostName</param-name>
+            <param-value>localhost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPort</param-name>
+            <param-value>1527</param-value>
+        </init-param>
+        <init-param>
+            <param-name>databaseName</param-name>
+            <param-value>EduardosResort</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageRecordsServlet</servlet-name>
         <url-pattern>/ManageRecordsServlet</url-pattern>
@@ -196,29 +228,28 @@
         <servlet-name>EditRecordsServlet</servlet-name>
         <url-pattern>/EditRecordsServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReceiptController</servlet-name>
+        <url-pattern>/ReceiptController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <!-- Exceptions and Errors -->
     <error-page>
         <error-code>404</error-code>
         <location>/error_pages/error404.jsp</location>
     </error-page>
-    
     <error-page>
         <exception-type>exceptions.NotOwnerException</exception-type>
         <location>/error_pages/errorAdmin.jsp</location>
     </error-page>
-    
     <error-page>
         <exception-type>exceptions.SessionDestroyedException</exception-type>
         <location>/error_pages/errorSession.jsp</location>
     </error-page>
-  
-    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

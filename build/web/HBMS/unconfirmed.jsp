@@ -1,3 +1,4 @@
+<%@page import="exceptions.SessionDestroyedException"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.sql.Date"%>
 <%@page import="javax.mail.FetchProfile.Item"%>
