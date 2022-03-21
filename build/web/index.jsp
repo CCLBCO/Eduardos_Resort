@@ -44,9 +44,9 @@
 
       <ul class="nav-menu">
         <li> <a href="#home">Home</a></li>
-        <li> <a href="#amenities">Amenities</a></li>
+        <li> <a href="#amenities-anchor">Amenities</a></li>
         <li> <a href="#room">Accomodations</a></li>
-        <li> <a href="#rates">Rates and Promos</a></li>
+        <li> <a href="rates.jsp">Rates and Promos</a></li>
         <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
         <li> <a href="#restaurant">Event Packages</a></li>
         <li> <a href="#gallary">Gallery</a></li>
@@ -67,6 +67,7 @@
   </div>
 </header>
 
+<!--Header Script-->
 <script>
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
@@ -92,7 +93,7 @@
         <h1>Experience Paradise On Earth!</h1>
         <p>Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera located at Nautical Highway Bayanan II, Calapan City Oriental Mindoro. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</p>
         <form action="reservation.jsp">
-            <button>Booking Reservations</button>
+            <button>RESERVE NOW</button>
         </form>
       </div>
     </div>
@@ -108,7 +109,7 @@
   </div>
 </section>
 
-<!--Home Page JS-->
+<!--Home Page Script-->
 <script>
   function img(anything) {
     document.querySelector('.slide').src = anything;
@@ -119,35 +120,6 @@
     line.style.background = change;
   }
 </script>
-
-<!--Bookings>
-<section-- class="book">
-  <div class="container flex">
-    <div class="input grid">
-      <div class="box">
-        <label>Check-in:</label>
-        <input type="date" placeholder="Check-in-Date">
-      </div>
-      <div class="box">
-        <label>Check-out:</label>
-        <input type="date" placeholder="Check-out-Date">
-      </div>
-      <div class="box">
-        <label>Adults:</label> <br>
-        <input type="number" placeholder="0">
-      </div>
-      <div class="box">
-        <label>Children:</label> <br>
-        <input type="number" placeholder="0">
-      </div>
-    </div>
-
-    <div class="search">
-      <input type="submit" value="SEARCH">
-    </div>
-    
-  </div>
-</section-->
 
 <!--About-->
 <section class="about top anchor" id="about">
@@ -166,10 +138,14 @@
         <p>To provide excellent training, state-of-the-art competition, facility and other athletic support to members and beneficiaries of the foundation;</p>
         <p>To extend pool access and swimming lesson for individuals who are eager and passionate to learn the sport of swimming; to create programs, incentives and scholarships opportunities for competitive swimmers, coaches and officials;</p>
         <p>To establish strong partnership and linkage with local, national and international both private and government which can provide opportunities for the members and beneficiaries of the foundation.</p>
-        <button class="btn1">READ MORE</button>
+        <button class="btn1">DOWNLOAD BROCHURE</button>
       </div>
     </div>
   </div>
+</section>
+
+<!--Anchor Amenities-->
+<section id="amenities-anchor">
 </section>
 
 <!--Amenities-->
@@ -184,18 +160,43 @@
           <i class="fa-solid fa-water-ladder"></i>
           <span>Olympic-Sized Swimming Pool</span>
         </div>
+          
+        <div class="box flex">
+          <i class="fa-solid fa-water"></i>
+          <span>Swimming Club</span>
+        </div>
+          
         <div class="box flex">
           <i class="fa-solid fa-person-swimming"></i>
           <span>Kiddie Pools</span>
         </div>
+          
         <div class="box flex">
           <i class="fa-solid fa-utensils"></i>
           <span>Bar & Restaurant</span>
         </div>
+          
+        <div class="box flex">
+          <i class="fa-solid fa-guitar"></i>
+          <span>Live Acoustic Performance</span>
+        </div>
+          
         <div class="box flex">
           <i class="fa-solid fa-headset"></i>
           <span>Conference Room</span>
         </div>
+        
+        <div class="box flex">
+          <i class="fa-solid fa-house-chimney-window"></i>
+          <span>Cottages</span>
+        </div>
+        
+        <div class="box flex">
+          <i class="fa-solid fa-wind"></i>
+          <span>Air-Conditioned Room</span>
+        </div>
+          
+          
       </div>
       
     </div>
@@ -225,7 +226,8 @@
         </div>
         <div class="text">
           <h3>Family Rooms</h3>
-          <p> <span>Php </span>3,500.00 <span>/per night</span> </p>
+          <h3> <span>Php </span>3,500.00 <span>/per night</span> </h3>
+          <p>This room is able to accomodate at least 4 persons, accompanied with complimentary breakfast.</p>
         </div>
       </div>
       <div class="box">
@@ -234,12 +236,14 @@
         </div>
         <div class="text">
           <h3>Deluxe Rooms</h3>
-          <p> <span>Php </span>2,500.00 <span>/per night</span> </p>
+          <h3> <span>Php </span>2,500.00 <span>/per night</span> </h3>
+          <p>This room is able to accomodate at least 3 persons, accompanied with complimentary breakfast.</p>
+
         </div>
       </div>
     </div>
   </div>
-</section>
+</section-->
 
 <!--Testimonials>
 <section-- class="wrapper wrapper2 top">
@@ -275,7 +279,7 @@
     </div>
     <div class="right">
       <div class="text">
-        <h2>Our Event Packages</h2>
+        <h2>Event Packages</h2>
         <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
       </div>
       <div class="accordionWrapper">
@@ -319,7 +323,7 @@
   </div>
 </section>
 
-<!--Accordion JS-->
+<!--Accordion Script-->
 <script>
   var accItem = document.getElementsByClassName('accordionItem');
   var accHD = document.getElementsByClassName('accordionIHeading');
@@ -429,15 +433,15 @@
       <li><a href='#'><ion-icon name="logo-instagram"></ion-icon></a></li>
     </ul>
     <ul class="menu">
-        <li><p>Message us at eduardosreseort@gmail.com</p></li>
-        <li><p>Call us at (043) 288-7153</p></li>
-        <p>@2022 Eduardo's Resort | All Rights Reserved</p>
+        <li><p>Message us at eduardosresort@gmail.com</p></li>
+         <li><p>Call us at <strong>(043) 288-7153</strong> or <strong>09183227201</strong></p></li>
     </ul>
   </footer>
 
   <!--Wave Animation-->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
 <!--Typing Animation-->
 <script>
   !function(a){"use strict";a.fn.typer=function(b){function c(a,b){k<b.length?(g=b[k].split(""),h=g.length,setTimeout(function(){a.append(g[j]),j++,j<h?c(a,b):(j=0,k++,setTimeout(function(){e(a,function(){c(a,b)})},i.backspaceDelay))},i.typeSpeed)):i.repeat&&d(a,b)}function d(a,b){k=0,setTimeout(function(){c(a,b)},i.repeatDelay)}function e(a,b){setTimeout(function(){a.text(a.text().slice(0,-1)),0<a.text().length?e(a,b):"function"==typeof b&&b()},i.backspaceSpeed)}function f(a){setInterval(function(){a.fadeOut(400).fadeIn(400)},900)}var g,h,i=a.extend({typeSpeed:60,backspaceSpeed:20,backspaceDelay:800,repeatDelay:1e3,repeat:!0,autoStart:!0,startDelay:100,useCursor:!0,strings:["Typer.js plugin"]},b),j=0,k=0;return this.each(function(){var b,d,e=a(this);i.autoStart&&(e.append('<span class="typed"></span>'),i.useCursor&&(e.append('<span class="typed_cursor">&#x7c;</span>'),d=e.children(".typed_cursor"),f(d)),b=e.children(".typed"),setTimeout(function(){c(b,i.strings)},i.startDelay))})}}(jQuery);
@@ -459,7 +463,7 @@
       });
 
       var typed = new Typed('.animate-3', {
-      strings: ["LET THE JOURNEY BEGIN", "A WORLD OF ADVENTURES", "RELAXATION", "MEMORIES AWAIT!"],
+      strings: ["LET THE JOURNEY BEGIN", "A WORLD OF ADVENTURE", "RELAXATION", "MEMORIES AWAIT!"],
       typeSpeed: 100,
       backSpeed: 60,
       loop: true

@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 
 *{
   padding: 0;
@@ -20,7 +22,7 @@
 
 body{
   scroll-behavior: smooth;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Poppins', sans-serif;
   min-width: 100%;
 }
 
@@ -336,22 +338,19 @@ header .sticky ul li a{
 
 button{ 
   display: inline-block;
-  background: none;
+  background: #234294ff;
   outline: none;
-  color: #3EA4DBff;
-  font-size: 18px;
+  color: white;
+  font-size: 1.1em;
+  letter-spacing: 2px;
   padding: 12px 36px;
   margin-top: 20px;
   border-radius: 50px;
-  border: 2px solid #3EA4DBff;
+  border: 2px solid #234294ff;
   transition: all 0.3s ease;
 }
 
 button:hover{   
-  color: white;
-  background: #234294ff;
-  border-radius: 50px;
-  border: 2px solid #234294ff;
   transform: scale(1.1);      /* enlarges text upon hover */
 }
 
@@ -542,6 +541,8 @@ input {
   outline: none;
   color: #F17F23ff;
   font-size: 20px;
+  font-size: 1.1em;
+  letter-spacing: 2px;
   padding: 12px 36px;
   margin: 50px 0 20px 50px;
   border-radius: 50px;
@@ -661,7 +662,7 @@ input {
 .wrapper .content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 10vh;
+  grid-row-gap: 5vh;
   grid-column-gap: 2vh;
   font-size: 30px;
 }
@@ -772,14 +773,13 @@ input {
   font-weight: 400;
   margin-bottom: 10px;
 }
-
-.room p span {
+.room h3 span {
   font-size: 12px;
   color: grey;
 }
 
 .room p {
-  font-size: 20px;
+  font-size: 1.1em;
 }
 
 .room .btn1{ 
@@ -788,6 +788,8 @@ input {
   outline: none;
   color: #F17F23ff;
   font-size: 20px;
+  font-size: 1.1em;
+  letter-spacing: 2px;
   padding: 12px 36px;
   margin: 50px 0 20px 50px;
   border-radius: 50px;
@@ -954,7 +956,8 @@ input {
   background: none;
   outline: none;
   color: #F17F23ff;
-  font-size: 20px;
+  font-size: 1.1em;
+  letter-spacing: 2px;
   padding: 12px 36px;
   margin: 50px 0 20px 50px;
   border-radius: 50px;
@@ -978,7 +981,7 @@ input {
 }
 
 .map{
-  margin-bottom: 3vh;
+  margin-bottom: 10vh;
 }
 
 /*--------------------------------------------------------------------Map--------------------------------------------------------------------*/
@@ -1009,7 +1012,7 @@ footer .menu
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
+  margin: 10px;
   flex-wrap: wrap;
 }
 footer .social_icon li,
