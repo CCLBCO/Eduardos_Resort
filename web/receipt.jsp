@@ -14,24 +14,24 @@
 </head>
 <body>
     
-<!-- header section starts  -->
+    <header class="header">
+    <div class="container1">
+    <nav class="navbar flex1">
 
-<!--header>
-
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>food</a>
-
-    <div id="menu-bar" class="fas fa-bars"></div>
-
-    <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#speciality">speciality</a>
-        <a href="#popular">popular</a>
-        <a href="#gallery">gallery</a>
-        <a href="#review">review</a>
-        <a href="#order">order</a>
+      <ul class="nav-menu">
+        <li> <a href="index.jsp?#home">Home</a></li>
+        <li> <a href="index.jsp?#amenities">Amenities</a></li>
+        <li> <a href="index.jsp?#room">Accomodations</a></li>
+        <li> <a href="index.jsp?#restaurant">Event Packages</a></li>
+        <li> <a href="index.jsp?#gallary">Gallery</a></li>
+        <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
+        <!--li> <a href="reservation.jsp">Reservation</a></li-->
+        <!--li> <a href="login.jsp">Admin Login</a></li-->
+      </ul>
     </nav>
-
-</header-->
+    </div>
+    </header>
+    
 <section class="order" id="order">
     <%
         String room = (String)request.getAttribute("room");
@@ -110,17 +110,26 @@
 
 <!-- footer section  -->
 
-<section class="footer">
-
-    <div class="share">
-        <a href="#" class="btn">facebook</a>
-        <a href="#" class="btn">twitter</a>
-        <a href="#" class="btn">instagram</a>
-        <a href="#" class="btn">pinterest</a>
-        <a href="#" class="btn">linkedin</a>
+<footer>
+    <div class="waves">
+    <div class="wave" id="wave1"></div>
+    
+    <div class="wave" id="wave2"></div>
+    <div class="wave" id="wave3"></div>
+    <div class="wave" id="wave4"></div>
     </div>
-
-</section>
+    <ul class="social_icon">
+      <li><a href='#'><ion-icon name="logo-facebook"></ion-icon></a></li>
+      <li><a href='#'><ion-icon name="logo-twitter"></ion-icon></a></li>
+      <li><a href='#'><ion-icon name="logo-linkedin"></ion-icon></a></li>
+      <li><a href='#'><ion-icon name="logo-instagram"></ion-icon></a></li>
+    </ul>
+    <ul class="menu">
+        <li><p>Message us at eduardosreseort@gmail.com</p></li>
+        <li><p>Call us at (043) 288-7153</p></li>
+        <p>@2022 Eduardo's Resort | All Rights Reserved</p>
+    </ul>
+  </footer>
 
 <!-- scroll top button  -->
 <a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
