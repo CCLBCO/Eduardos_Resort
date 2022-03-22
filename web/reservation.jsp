@@ -34,14 +34,27 @@
         <div class="book">
             <div class="description">
               <h1><strong>Book</strong> reservations</h1>
-
+              <img src="image/acoustic.jpg">
             </div>
             
             <div class="form">
+                
+              <div class="popup" id="popup-1">
+                  <div class="overlay"></div>
+                  <div class="content">
+                      <div class="close-btn" onclick="togglePopup()">&times;</div>
+                      <h1>Enter Booking Code</h1>
+                      <form class="inputcode" method="post" action="">
+                          <input class="cancelbooking" type="text" placeholder="XXXXXXX" name="code" required>
+                      </form>
+                  </div>
+              </div>
+                
+              <button class="bk" onclick="togglePopup()">Cancel Booking</button>
+                
               <form method="post" action="ReservationServlet">
                 <div class="inpbox full">
                   <!--span class="flaticon-taxi"></span-->
-
                   <select id="rooms" name="rooms" required>
                     <option value="">Select Room Type</option>
                     <option value="1">Family Room</option>
@@ -87,21 +100,17 @@
     <div class="wave" id="wave2"></div>
     <div class="wave" id="wave3"></div>
     <div class="wave" id="wave4"></div>
-    </div>
-    <ul class="social_icon">
-      <li><a href='#'><ion-icon name="logo-facebook"></ion-icon></a></li>
-      <li><a href='#'><ion-icon name="logo-twitter"></ion-icon></a></li>
-      <li><a href='#'><ion-icon name="logo-linkedin"></ion-icon></a></li>
-      <li><a href='#'><ion-icon name="logo-instagram"></ion-icon></a></li>
-    </ul>
-    <ul class="menu">
-        <li><p>Message us at eduardosresort@gmail.com</p></li>
-         <li><p>Call us at <strong>(043) 288-7153</strong> or <strong>09183227201</strong></p></li>
-    </ul>
 </footer>
 
 <!--Wave Animation-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<!--Pop-up Animation -->
+<script>
+    function togglePopup(){
+        document.getElementById("popup-1").classList.toggle("active");
+    }
+</script>
 
 </html>

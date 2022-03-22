@@ -9,15 +9,27 @@
 }
 
 .anchor{
-    display:block;
-    padding-top:100px;
-    margin-top:-100px;
+    display: block;
+    padding-top: 100px;
+    margin-top: -100px;
 }
 
-.anchor2{
-    display:block;
-    padding-top:100px;
-    margin-top:-100px;
+.anchor-room{
+    display: block;
+    padding-top: 100px;
+    margin-top: -100px;
+}
+
+.anchor-gallary{
+    display: block;
+    padding-top: 100px;
+    margin-top: -100px;
+}
+
+.anchor-restaurant{
+    display: block;
+    padding-top: 100px;
+    margin-top: -100px;
 }
 
 body{
@@ -191,121 +203,6 @@ header .sticky ul li a{
   color: white;
 }
 
-@media only screen and (max-width:768px){
-  /*------Head-------*/
-  .nav-menu{
-    display: flex;
-    align-items: center;
-  }
-
-  .address{
-    display: none;
-  }
-
-  .social{
-    display: none;
-  }
-
-  .logo{
-    display: flex;
-    justify-content: center;
-  }
-
-  .logo img{
-    height: 100px;
-  }
-
-  .header .head_contact{
-    display: none;
-  }
-
-  .head{
-    background: rgba(2, 117, 188, 0.5);
-  }
-
-  /*------Header-------*/
-  header ul{
-    padding: 0 0 0 0;
-  }
-
-  .header .container1{
-  max-width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: right;
-  }
-
-  .header.sticky{
-    height: 13vh;
-  }
-
-  .sticky .container1{
-    margin: 0 0 0 25px;
-  }
-
-  .header.sticky .nav-menu{
-    background: #234294ff;
-  }
-
-  .navbar{
-    height: 5vh;
-    padding: 2vh;
-    justify-content: flex-end;
-  }
-
-  .nav-menu{
-    position: fixed;
-    right: -100%;
-    top: 8rem;
-    bottom: 0;
-    flex-direction: column;
-    background: rgba(2, 117, 188, 0.5);
-    width: 100%;
-    text-align: center;
-    transition: 0.5s;
-    z-index: 99;
-  }
-
-  .header.sticky .nav-menu{
-    top: 5rem;
-    bottom: 0rem;
-  }
-
-  .header ul li a{
-    color: white;
-  }
-
-  .nav-menu.active{
-    width: 40%;
-    right: 0;
-    bottom: 0;
-    top: 127px;
-    border-radius: 0 0 0 50%;
-    transition: 0.5s;
-  }
-
-  header li{
-    margin: 1rem 0;
-  }
-
-  .hamburger{
-    display: block;
-    cursor: pointer;
-  }
-
-  .hamburger.active .bar:nth-child(2){
-    opacity: 0;
-  }
-
-  .hamburger.active .bar:nth-child(1){
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .hamburger.active .bar:nth-child(3){
-    transform: translateY(-8px) rotate(-45deg);
-  }
-}
-
 /*-------------------------------------------------------------------Home--------------------------------------------------------------------*/
 .home .image img {
   position: absolute;
@@ -317,10 +214,26 @@ header .sticky ul li a{
   filter: brightness(60%)
 }
 
+.home .image_item {
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .home .image_item img {
+    width: 140px;
+    height: 94px;
+    margin: 10px;
+    transition: 0.5s;
+  }
+
 .home .text {
   max-width: 50%;
   color: white;
-  margin: 86px 0 0 40px;
+  margin: 100px 0 0 40px;
 }
 
 .home h1 {
@@ -328,12 +241,15 @@ header .sticky ul li a{
   font-weight: 400;
 }
 
-.home p {
+.home .short_text{
+    display: none;
+}
+
+.home .full_text {
   font-weight: 400;
   line-height: 25px;
   font-family: sans-serif;
   font-size: 19px;
-  margin: 50px 0 0 0;
 }
 
 button{ 
@@ -352,63 +268,6 @@ button{
 
 button:hover{   
   transform: scale(1.1);      /* enlarges text upon hover */
-}
-
-@media only screen and (max-width:768px) {
-  .home .image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    filter: brightness(60%)
-  }
-
-  .home .text {
-    max-width: 50%;
-    color: white;
-    margin: 60px 0 0 35px;
-  }
-
-  .home h1 {
-    font-size: 65px;
-    font-weight: 400;
-  }
-
-  .home p {
-    font-weight: 400;
-    line-height: 25px;
-    font-family: sans-serif;
-    font-size: 19px;
-    margin: 50px 0 0 50px;
-  }
-}
-
-/* Booking Reservation Button */
-.home .image_item {
-  position: absolute;
-  top: 25%;
-  right: 20%;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.home .image_item img {
-  width: 140px;
-  height: 94px;
-  margin: 10px;
-  transition: 0.5s;
-}
-
-.home .box .text::after {
-  position: absolute;
-  content: 'E';
-  font-size: 500px;
-  top: -120%;
-  font-weight: bold;
-  opacity: 0.25;
 }
 
 /*-------------------------------------------------------------------Home--------------------------------------------------------------------*/
@@ -558,83 +417,6 @@ input {
   transform: scale(1.1);      /* enlarges text upon hover */
 }
 
-@media only screen and (max-width:768px) {
-  .mtop {
-    margin-top: 5%;
-  }
-  
-  .left, .right {
-    width: 100%;
-  }
-  
-  .about {
-    margin-bottom: 50px;
-    margin-top: 17vh;
-  }
-  
-  .about .img {
-    position: relative;
-  }
-  
-  .about .image1 {
-    width: 40%;
-    height: 100%;
-  }
-  
-  .about .image2 {
-    width: 60%;
-    height: 100%;
-    z-index: 2;
-    right: 1%;
-    top: 15vh;
-  }
-  
-  .heading {
-    position: relative;
-    top: 4vh;
-  }
-  
-  .heading::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-    width: 100px;
-    height: 4px;
-    background: #E54E25ff;
-  }
-  
-  .heading h5 {
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 2px;
-    padding-top: 20px;
-    color: #5f5f5f;
-  }
-  
-  .heading h2 {
-    font-size: 30px;
-    font-weight: 400;
-    margin: 20px 0 40px 0;
-    color: #222222;
-  }
-  
-  .heading p {
-    font-size: 17px;
-    margin-bottom: 20px;
-    line-height: 25px;
-    color: #5f5f5f;
-    margin: 0 0 20px 50px;
-  }
-
-  .heading .btn1:hover{   
-    color: white;
-    background: #E54E25ff;
-    border-radius: 50px;
-    border: 2px solid #E54E25ff;
-    transform: scale(1.1);      /* enlarges text upon hover */
-  }
-}
 /*-------------------------------------------------------------------About-------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------Wrapper------------------------------------------------------------------*/
@@ -692,60 +474,7 @@ input {
   margin: 0px -30px 0 0;
 }
 
-@media only screen and (max-width:768px) {
-  .wrapper {
-  background-image: url("../image/w1.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 480px;
-  position: relative;
-  top: 10vh;
-}
 
-  .wrapper .text {
-    background: #0275BCff;
-    padding: 50px;
-    width: 40%;
-    height: 600px;
-    position: absolute;
-    top: -13%;
-    right: 10%;
-    padding-top: 4%;
-    color: white;
-  }
-
-  .wrapper .content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 30px;
-  }
-
-  .wrapper h2 {
-    font-weight: 400;
-    font-size: 30px;
-    font-weight: 400;
-    margin: 20px;
-  }
-
-  .wrapper p {
-    margin: 20px;
-    line-height: 30px;
-    font-size: 17px;
-    margin-bottom: 20px;
-    margin: 0 0 20px 50px;
-  }
-
-  .wrapper span {
-    margin: 20px;
-    font-size: 16px;
-    margin: 0 0 20px 50px;
-  }
-
-  .wrapper i {
-    margin: 5px 20px 0 0;
-  }
-}
 /*------------------------------------------------------------------Wrapper------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------Room--------------------------------------------------------------------*/
@@ -805,12 +534,7 @@ input {
   transform: scale(1.1);      /* enlarges text upon hover */
 }
 
-@media only screen and (max-width:768px){
-  .room img{
-    width: 90vw;
-    height: 65vh;
-  }
-}
+
 /*-------------------------------------------------------------------Room--------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------Wrapper2-----------------------------------------------------------------*/
@@ -912,10 +636,6 @@ input {
   transition: transform 0.4s ease;
   box-sizing: border-box;
   box-shadow: 0 13px 43px 0 rgb(37 46 89 / 10%);
-}
-
-@media only screen and (max-width:768px) {
-
 }
 
 /*-----------------------------------------------------------------Restaurant----------------------------------------------------------------*/
@@ -1123,28 +843,226 @@ footer .wave#wave4
 
 /*-----------------------------------------------------------------Media Query---------------------------------------------------------------*/
 
-@media only screen and (max-width:768px) {
-  .home .box .text::after,
-  .home .image_item {
+@media only screen and (max-width:768px){
+  /*-------------------------------------------------------------------------Anchor----------------------------------------------------------*/
+  .anchor{
+    display:block;
+    padding-top:100px;
+    margin-top:-100px;
+  }
+  
+  .anchor-restaurant{
+      display: block;
+      padding-top: 100px;
+  }
+  
+  .anchor-room{
+    display: block;
+    padding-top: 1px;
+    margin-top: 60px;
+  }
+  
+  .anchor-gallary{
+    display: block;
+    padding-top: 1px;
+  }
+  
+  .amenities-anchor{
+    display: block;
+    padding-top: 1px;
+    margin-top: 1px;
+  }
+  /*--------------------------------------------------------------------------Head-----------------------------------------------------------*/
+  .nav-menu{
+    display: flex;
+    align-items: center;
+  }
+
+  .address{
     display: none;
   }
-S
-  .restaurant .container,
-  .about .container,
-  .book .container {
+
+  .social{
+    display: none;
+  }
+
+  .logo{
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo img{
+    height: 100px;
+  }
+
+  .header .head_contact{
+    display: none;
+  }
+
+  .head{
+    background: rgba(2, 117, 188, 0.5);
+  }
+
+  /*-------------------------------------------------------------------------Header-----------------------------------------------------------------*/
+  header ul{
+    padding: 0 0 0 0;
+  }
+
+  .header .container1{
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: right;
+  }
+
+  .header.sticky{
+    height: 13vh;
+  }
+
+  .sticky .container1{
+    margin: 0 0 0 25px;
+  }
+
+  .header.sticky .nav-menu{
+    background: #234294ff;
+  }
+
+  .navbar{
+    height: 5vh;
+    padding: 2vh;
+    justify-content: flex-end;
+  }
+
+  .nav-menu{
+    position: fixed;
+    right: -100%;
+    top: 8rem;
+    bottom: 0;
     flex-direction: column;
+    background: rgba(2, 117, 188, 0.5);
+    width: 100%;
+    text-align: center;
+    transition: 0.5s;
+    z-index: 99;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .header.sticky .nav-menu{
+    top: 5rem;
+    bottom: 0rem;
   }
 
+  .header ul li a{
+    color: white;
+  }
+
+  .nav-menu.active{
+    width: 40%;
+    right: 0;
+    bottom: 0;
+    top: 128px;
+    border-radius: 0 0 0 50%;
+    transition: 0.5s;
+  }
+
+  header li{
+    margin: 1rem 0;
+  }
+
+  .hamburger{
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger.active .bar:nth-child(2){
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  /*--------------------------------------------------------------------------Home-------------------------------------------------------------------*/
+  .home .box .text::after,
+  .home .image_item img {
+    display: none;
+  }
+  
+  .home h1 {
+    font-size: 40px;
+  }
+  
+  .home .full_text{
+    display: none;
+  }
+    
+  .home .short_text{
+    display: inline-block;
+  }
+    
+  .home .image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    filter: brightness(60%)
+  }
+
+  .home .text {
+    max-width: 50%;
+    color: white;
+    margin: 60px 0 0 35px;
+  }
+
+  .home h1 {
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+  .home .short_text {
+    font-weight: 400;
+    line-height: 25px;
+    font-family: sans-serif;
+    font-size: 19px;
+    margin: 50px 0 0 0;
+  }
+  
+  /*------------------------------------------------------------- Booking Reservation Button --------------------------------------------------------*/
+  .home .image_item {
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .home .image_item img {
+    width: 140px;
+    height: 94px;
+    margin: 10px;
+    transition: 0.5s;
+  }
+
+  .home .box .text::after {
+    position: absolute;
+    content: 'E';
+    font-size: 500px;
+    top: -120%;
+    font-weight: bold;
+    opacity: 0.25;
+  }
+  /*--------------------------------------------------------------------------Book-------------------------------------------------------------------*/
   .book {
     margin-top: 3.8%;
     height: auto;
     width: 100%;
   }
-
+  
   .book .search {
     width: 100%;
   }
@@ -1153,47 +1071,154 @@ S
     margin-top: 0;
   }
 
-  .left, .right {
-    width: 100%;
-  }
-
-  .wrapper .text {
-    width: 80%;
-  }
-
-  .room .grid {
-    grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
-  }
-
-  .restaurant .right {
-    padding: 0;
-  }
-
-  footer .payment {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media only screen and (max-width:768px){
-  .grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .home h1 {
-    font-size: 40px;
-  }
-
+  /*--------------------------------------------------------------------------About-----------------------------------------------------------------*/
   .about p,
   .home p {
     margin: 50px 0 0 0;
   }
+  
+  .about {
+    margin-bottom: 50px;
+    margin-top: 10vh;
+  }
+  
+  .about .img {
+    position: relative;
+  }
+  
+  .about .image1 {
+    width: 40%;
+    height: 100%;
+  }
+  
+  .about .image2 {
+    width: 60%;
+    height: 100%;
+    z-index: 2;
+    right: 1%;
+    top: 15vh;
+  }
+  
+  .heading {
+    position: relative;
+    top: 4vh;
+  }
+  
+  .heading::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100px;
+    height: 4px;
+    background: #E54E25ff;
+  }
+  
+  .heading h5 {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    padding-top: 20px;
+    color: #5f5f5f;
+  }
+  
+  .heading h2 {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 20px 0 40px 0;
+    color: #222222;
+  }
+  
+  .heading p {
+    font-size: 17px;
+    margin-bottom: 20px;
+    line-height: 25px;
+    color: #5f5f5f;
+    margin: 0 0 20px 50px;
+  }
 
+  .heading .btn1:hover{   
+    color: white;
+    background: #E54E25ff;
+    border-radius: 50px;
+    border: 2px solid #E54E25ff;
+    transform: scale(1.1);      /* enlarges text upon hover */
+  }
+  
+  /*-------------------------------------------------------------------------Wrapper----------------------------------------------------------------*/
   .wrapper .text {
+    width: 80%;
     padding: 10px;
     height: 600px;
   }
+  
+  .wrapper {
+    background-image: url("../image/w1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height:480px;
+    position: relative;
+    top: 10vh;
+  }
 
+  .wrapper .text {
+    background: #0275BCff;
+    padding: 50px;
+    width: 40%;
+    height: 600px;
+    position: absolute;
+    top: -13%;
+    right: 10%;
+    padding-top: 4%;
+    color: white;
+  }
+
+  .wrapper .content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 20px;
+  }
+
+  .wrapper h2 {
+    font-size: 21px;
+    font-weight: 400;
+    margin: 20px;
+    text-align: center;
+  }
+
+  .wrapper p {
+    margin: 20px;
+    line-height: 30px;
+    font-size: 17px;
+    margin-bottom: 20px;
+    margin: 0 0 20px 50px;
+  }
+
+  .wrapper span {
+    margin: 20px;
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .wrapper i {
+    margin: 5px 20px 0 0;
+  }
+  
+  .wrapper .container .text p{
+      display: none;
+  }
+  /*----------------------------------------------------------------------------Room----------------------------------------------------------------*/
+  .room .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .heading_top {
     margin-top: 130px;
   }
@@ -1201,10 +1226,78 @@ S
   .heading_top button {
     display: none;
   }
-
-  .restaurant .flex {
-    flex-direction: column-reverse;
+  
+  .room img{
+    width: 90vw;
+    height: 65vh;
   }
+  /*---------------------------------------------------------------------------Resturant-----------------------------------------------------------*/
+  .restaurant .container,
+  .about .container,
+  .book .container {
+    flex-direction: column;
+  }
+  
+  .restaurant .right {
+    padding: 0;
+  }
+  
+  .left, .right {
+    width: 100%;
+  }
+  
+  .restaurant .left{
+      display: none;
+  }
+  /*--------------------------------------------------------------------------Gallery-------------------------------------------------------------*/
+  .mtop {
+    margin-top: -10%;
+  }
+  /*-------------------------------------------------------------------------Footer---------------------------------------------------------------*/
+  footer .payment {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (max-width:525px) {
+    .anchor{
+        display: block;
+        padding-top: 100px;
+        margin-top: -100px;
+    }
+    
+    .anchor-room{
+        display: block;
+        padding-top: 1px;
+        margin-top: 60px;
+    }
+    
+    .home .image img{
+        width: 100%;
+        height: 95%;
+    }
+    .home .full_text{
+        display: none;
+    }
+    
+    .home .short_text{
+        display: none;
+    }
+    
+    .home .text{
+        max-width: 50%;
+        color: white;
+        margin: 110px 0 0 35px;
+    }
+    
+    .home h1{
+        margin-bottom: 100px;
+    }
+    
+    .about{
+        margin-bottom: 50px;
+        margin-top: 20vh;
+    }
 }
 /*-----------------------------------------------------------------Media Query---------------------------------------------------------------*/
 

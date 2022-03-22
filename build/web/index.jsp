@@ -91,7 +91,8 @@
     <div class="box">
       <div class="text">
         <h1>Experience Paradise On Earth!</h1>
-        <p>Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera located at Nautical Highway Bayanan II, Calapan City Oriental Mindoro. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</p>
+        <span class="full_text">Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera located at Nautical Highway Bayanan II, Calapan City Oriental Mindoro. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</span>
+        <span class="short_text">Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</span>
         <form action="reservation.jsp">
             <button>RESERVE NOW</button>
         </form>
@@ -145,11 +146,11 @@
 </section>
 
 <!--Anchor Amenities-->
-<section id="amenities-anchor">
+<section id="amenities-anchor" class="amenities-anchor">
 </section>
 
 <!--Amenities-->
-<section class="wrapper top anchor2" id="amenities">
+<section class="wrapper top" id="amenities">
   <div class="container">
     <div class="text">
       <h2>Our Amenities</h2>
@@ -205,7 +206,7 @@
 
 <!--Featured Rooms-->
 
-<section class="room top anchor" id="room">
+<section class="room top anchor-room" id="room">
   <div class="container2">
     <div class="heading_top flex1">
       <div class="heading">
@@ -243,7 +244,7 @@
       </div>
     </div>
   </div>
-</section-->
+</section>
 
 <!--Testimonials>
 <section-- class="wrapper wrapper2 top">
@@ -272,7 +273,7 @@
 </section-->
 
 <!--Event Packages-->
-<section class="restaurant top anchor" id="restaurant">
+<section class="restaurant top anchor-restaurant" id="restaurant">
   <div class="container flex">
     <div class="left">
       <img src="image/re.PNG" alt="">
@@ -344,7 +345,7 @@
 </script>
 
 <!--Gallery-->
-<section class="gallary mtop anchor " id="gallary">
+<section class="gallary mtop anchor-gallary" id="gallary">
   <div class="container">
     <div class="heading_top flex1">
       <div class="heading">
