@@ -149,7 +149,7 @@ body{
     transform: translate(-50%, -50%) scale(1);
 }
 
-button.bk{
+button.bk, button.bksubmit{
   padding: 5px 13px;
   border-radius: 50px;
   font-family: 'Poppins', sans-serif;
@@ -159,11 +159,25 @@ button.bk{
   text-transform: uppercase;
   border: 0;
   margin-bottom: 10px;
-  margin-left: 194px;
 }
 
-button.bk:hover{   
+button.bk:hover, button.bksubmit{   
   transform: scale(1.1);      /* enlarges text upon hover */
+}
+
+.container .form .popup .inputcode{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container .form .popup .inputcode .cancelbooking{
+    text-align: center;
+    margin-bottom: 30px;
 }
 /*Cancel Booking */
 

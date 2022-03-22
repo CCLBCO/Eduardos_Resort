@@ -46,6 +46,7 @@
                       <h1>Enter Booking Code</h1>
                       <form class="inputcode" method="post" action="">
                           <input class="cancelbooking" type="text" placeholder="XXXXXXX" name="code" required>
+                          <button class="bksubmit">Submit</button>
                       </form>
                   </div>
               </div>
