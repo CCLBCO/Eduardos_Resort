@@ -54,7 +54,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><span class="text-danger">Eduardo's</span><span class="text-warning"> Resort</span></h3>
+                <img src="../image/ER_logo_noBG.png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -129,18 +129,13 @@
                                     <option value="opel">Opel</option>
                                     <option value="audi">Audi</option>
                                 </select>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Check-In Date</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Check-Out Date</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                
+                                <span class="flaticon-calendar"></span> <!--Check in date-->
+                                <input class="inpbox" type="date" placeholder="Check-in Date" name="checkindate" required>
+                                
+                                <span class="flaticon-calendar"></span> <!--Check out date-->
+                                <input class="inpbox" type="date" placeholder="Check-out Date" name="checkoutdate" required>
+                                
                                 <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select">
                                     <option selected>Room</option>
                                     <option value="saab">Saab</option>

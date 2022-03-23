@@ -50,7 +50,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3 class="text-center"><span class="text-danger">Eduardo's</span><span class="text-warning"> Resort</span></h3>
+                <img src="../image/ER_logo_noBG.png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
