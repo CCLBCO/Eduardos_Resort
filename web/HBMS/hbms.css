@@ -11,7 +11,7 @@ body {
 }
 
 p {
-    font-family: Garamond, serif;
+    font-family: sans-serif;
     font-size: 1.2em;
     font-weight: 300;
     line-height: 1.7em;
@@ -94,7 +94,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     font-weight: 200;
-    font-family: Garamond, serif;
+    font-family: sans-serif;
     padding: 14px;
     background: #f6e4d4;
 }
@@ -122,7 +122,7 @@ a:focus {
 
 .submenu {
     color: black;
-    font-family: 'Times New Roman', serif;
+    font-family: sans-serif;
     padding: 20px;
     border: 0px;
     background-color: transparent;
@@ -237,3 +237,78 @@ a[data-toggle="collapse"] {
     padding-left: 5px;
 }
 
+.display-flex{
+    display: flex;
+}
+.filter-button{
+    margin-right: 10px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    color: #77afdf;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s
+}
+
+.dropbtn{
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    color: #77afdf;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s
+}
+
+.dropdown-edit{
+    position: relative;
+    display: inline-block;
+    
+}
+
+.dropdown-edit-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-edit-content li{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-edit-content li:hover{
+    background-color: #f1f1f1;
+}
+
+.dropdown-edit:hover .dropdown-edit-content{
+    display: block;
+}
+
+.dropdown-edit:hover .dropbtn{
+    background-color: #f1f1f1;
+}
