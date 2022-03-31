@@ -52,7 +52,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><span class="text-danger">Eduardo's</span><span class="text-warning"> Resort</span></h3>
+                <img src="../image/ER_logo_noBG.png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -127,18 +127,13 @@
                                     <option value="opel">Opel</option>
                                     <option value="audi">Audi</option>
                                 </select>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Check-In Date</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Check-Out Date</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                
+                                <span class="flaticon-calendar"></span> <!--Check in date-->
+                                <input class="inpbox" type="date" placeholder="Pickup Date" name="pckupDate" required>
+                                
+                                <span class="flaticon-calendar"></span> <!--Check out date-->
+                                <input class="inpbox" type="date" placeholder="Pickup Date" name="pckupDate" required>
+                                
                                 <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select">
                                     <option selected>Room</option>
                                     <option value="saab">Saab</option>
@@ -148,16 +143,16 @@
                             </div>
                            <div class="row justify-content-between mt-3 w-100 ml-0">
                                 <div class="row col-sm-12 col-lg-7 pt-2">
-                                    <form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100">
-                                            <button
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">Filter</button>
-                                            <button id="editButton" 
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Edit</button>
-                                            <button id="deleteButton" name="editType" value="delete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
-                                            <button id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Unconfirmed</button>
-                                            <input type="hidden" name="status" value="confirmed">
+                                    <form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
+                                        <button class="filter-button">Filter</button>
+                                        
+                                        <div class="dropdown-edit">
+                                            <button class="dropbtn" type="button" data-toggle="dropdown">Edit</button>
+                                            <ul class="dropdown-edit-content">
+                                                <li><a href="#">Delete</a></li>
+                                                <li><a href="#">Move to Unconfirmed</a></li>
+                                            </ul>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">

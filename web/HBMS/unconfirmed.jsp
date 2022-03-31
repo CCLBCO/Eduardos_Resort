@@ -45,8 +45,7 @@
     
     <!-- Table CSS and JS -->
     <link rel="stylesheet" href="sortable-table.css">
-    <script type="text/javascript" src="sortable-table.js"></script>
-    
+    <script type="text/javascript" src="sortable-table.js"></script>  
 </head>
 
 <body>
@@ -54,7 +53,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><span class="text-danger">Eduardo's</span><span class="text-warning"> Resort</span></h3>
+                <img src="../image/ER_logo_noBG.png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -129,18 +128,13 @@
                                     <option value="opel">Opel</option>
                                     <option value="audi">Audi</option>
                                 </select>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Check-In Date</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Check-Out Date</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                
+                                <span class="flaticon-calendar"></span> <!--Check in date-->
+                                <input class="inpbox" type="date" placeholder="Check-in Date" name="checkindate" required>
+                                
+                                <span class="flaticon-calendar"></span> <!--Check out date-->
+                                <input class="inpbox" type="date" placeholder="Check-out Date" name="checkoutdate" required>
+                                
                                 <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select">
                                     <option selected>Room</option>
                                     <option value="saab">Saab</option>
@@ -150,16 +144,16 @@
                             </div>
                             <div class="row justify-content-between mt-3 w-100 ml-0">
                                 <div class="row col-sm-12 col-lg-7 pt-2">
-                                    <form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100">
-                                        <button
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">Filter</button>
-                                        <button id="editButton" style=""
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Edit</button>
-                                        <button type="submit" id="deleteButton" name="editType" value="delete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
-                                        <button type="submit" id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Confirmed</button>
-                                        <input type="hidden" name="status" value="unconfirmed">
+                                    <form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
+                                        <button class="filter-button">Filter</button>
+                                        
+                                        <div class="dropdown-edit">
+                                            <button class="dropbtn" type="button" data-toggle="dropdown">Edit</button>
+                                            <ul class="dropdown-edit-content">
+                                                <li><a href="#">Delete</a></li>
+                                                <li><a href="#">Move to Confirmed</a></li>
+                                            </ul>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
