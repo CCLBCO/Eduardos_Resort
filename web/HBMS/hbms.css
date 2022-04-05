@@ -312,3 +312,7 @@ a[data-toggle="collapse"] {
 .dropdown-edit:hover .dropbtn{
     background-color: #f1f1f1;
 }
+
+.edit-btn {
+    display: none;
+}

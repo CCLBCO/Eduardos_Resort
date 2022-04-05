@@ -116,34 +116,46 @@
                         <div class="w-100">
                             <div class="row ml-0">
                                 <p class="h2 text-light font-weight-bold align-text-bottom">CONFIRMED RECORDS</p>
-                                <form method="POST" action="">
-                                    <button class="btn btn-base ml-1 ml-lg-3">Generate Excel</button>
+                                <form>
+                                    <button id="generateExcel" class="btn btn-base ml-1 ml-lg-3">Generate Excel</button>
                                 </form>
                             </div>
                             <div class="row mt-2 w-100 ml-0">
                                 <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
                                     <option selected>Date Recorded</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                    <option type="date"></option>
                                 </select>
                                 
                                 <span class="flaticon-calendar"></span> <!--Check in date-->
-                                <input class="inpbox" type="date" placeholder="Pickup Date" name="pckupDate" required>
+                                <input class="inpbox" type="date" placeholder="Check In Date" name="checkIn" required>
                                 
                                 <span class="flaticon-calendar"></span> <!--Check out date-->
-                                <input class="inpbox" type="date" placeholder="Pickup Date" name="pckupDate" required>
+                                <label for="bday">Check Out:</label>
+                                <input class="inpbox" type="date" placeholder="Check Out Date" name="checkOut" required>
                                 
                                 <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select">
                                     <option selected>Room</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                    <option name="roomType" value="deluxe">Deluxe</option>
+                                    <option name="roomType" value="family">Family</option>
                                 </select> 
                             </div>
                            <div class="row justify-content-between mt-3 w-100 ml-0">
                                 <div class="row col-sm-12 col-lg-7 pt-2">
-                                    <form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
+                                    <form class="w-100" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
+                                        <button class="btn btn-base ml-1 ml-lg-3">Filter</button>
+                                        <button class="btn btn-base ml-1 ml-lg-3">Reset</button>
+                                    </form>
+                                    <form class="w-100" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
+                                        <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
+                                        <button type="submit" id="deleteButton" name="editType" value="delete"
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
+                                        <button type="submit" id="moveButton" name="editType" value="move" 
+                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Unconfirmed</button>
+                                        <input type="hidden" name="status" value="confirmed" form="EditRecordsServlet">
+                                    </form>
+                                        
+                                        
+                                    <!--form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
                                         <button class="filter-button">Filter</button>
                                         
                                         <div class="dropdown-edit">
@@ -153,14 +165,14 @@
                                                 <li><a href="#">Move to Unconfirmed</a></li>
                                             </ul>
                                         </div>
-                                    </form>
+                                    </form-->
                                 </div>
-                                <div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
+                                <!--div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
                                     <form method="POST" action="" class="w-100 d-flex justify-content-end">
                                         <button class="col-sm-12 col-lg-5 btn btn-actions ml-0">Reset Filter</button>
                                         <button class="col-sm-12 col-lg-5 btn btn-actions ml-0 ml-md-3 mt-sm-2 mt-lg-0">Reset Order</button>
                                     </form>
-                                </div>
+                                </div-->
                             </div>
                             
                             <!--
@@ -173,12 +185,12 @@
                                 <form method="POST" id="fetchItem"></form>
                                 <section class="confirmed">
                                     <!--form method="POST" id="edit-confirmed" action="<%=request.getContextPath()%>/EditRecordsServlet"-->
-                                        <table class="table table-responsive" data-toggle="table" data-search="true"
+                                        <table id="confirmed-records" class="table table-responsive" data-toggle="table" data-search="true"
                                             data-filter-control="true" data-show-export="true"
                                             data-click-to-select="true" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
-                                                    <th></th><!-- will make the true or false a variable that toggle visibility when EDIT button is pressed-->
+                                                    <th id="checkBox"></th><!-- will make the true or false a variable that toggle visibility when EDIT button is pressed-->
                                                     <!--th class="booking-id">ID</th-->
                                                     <th>Date Booked</th>
                                                     <th>Name</th>
@@ -190,7 +202,6 @@
                                                     <th>Check Out</th>
                                                     <th>Cost</th>
                                                     <th>Booking Code</th>
-                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -263,6 +274,9 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+    <!-- Table2Excel JS -->
+    <script src="table2excel.js"></script>
+    
     <!-- JQuery script for sidebar toggle -->
     <script type="text/javascript">
         (function () {
@@ -271,37 +285,45 @@
             });
 
             document.getElementById("unconfirmed").addEventListener("click", function () {
+                console.log("YOU PRESSED UNCONFIRMED RECORDS");
                 document.forms["unconfirmedForm"].submit();
             });
 
             document.getElementById("confirmed").addEventListener("click", function () {
+                console.log("YOU PRESSED CONFIRMED RECORDS");
                 document.forms["confirmedForm"].submit();
             });
 
             document.getElementById("manageUsers").addEventListener("click", function () {
                 document.forms["manageUsersForm"].submit();
             });
+            
+            document.getElementById("generateExcel").addEventListener("click", function () {
+                console.log("YOU ARE INSIDE GENERATE EXCEL");
+                var table2excel = new Table2Excel();
+                table2excel.export(document.querySelectorAll("#confirmed-records"), "EduardosResort-Confirmed-Bookings");
+            });
         })();
-       
+                
         
-
-        function toggleEdit() {
-            var delete = document.getElementById('deleteButton');
-            var move = document.getElementById('moveButton');
-            var checkBox = document.getElementById('checkBox');
-            if(delete.style.visibility === 'visible') {
-                delete.style.visibility = 'hidden';
-                move.style.visibility = 'hidden';
-                checkBox.style.visibility = 'hidden';
-            } else {
-                delete.style.visibility = 'visible';
-                move.style.visibility = 'visible';
-                checkBox.style.visibility = 'visible';
-            }
-//            document.getELementById("deleteButton").style.visibility = "visible";
-//            document.getELementById("moveButton").style.visibility = "visible";
-//            document.getELementById("checkBox").style.visibility = "visible";
-        }
+        
+//        var a;
+//        function show_hide() {
+//            if(a === 1) 
+//            {
+//                document.getElementById("deleteButton").style.display = "inline !important";
+//                document.getElementById("moveButton").style.display = "inline !important";
+//                document.getElementById("checkBox").style.display = "inline !important";
+//                return a = 0;
+//            }
+//            else 
+//            {
+//                document.getElementById("deleteButton").style.display = "none";
+//                document.getElementById("moveButton").style.display = "none";
+//                document.getElementById("checkBox").style.display = "none";
+//                return a = 1;
+//            }
+//        }
     </script>
 </body>
 
