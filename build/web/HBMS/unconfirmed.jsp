@@ -119,38 +119,47 @@
                                 </form>
                             </div>
                             <div class="row mt-2 w-100 ml-0">
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
+                                <!--select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
                                     <option selected>Date Recorded</option>
                                     <option value="saab">Saab</option>
                                     <option value="opel">Opel</option>
                                     <option value="audi">Audi</option>
-                                </select>
+                                </select-->
                                 
-                                <span class="flaticon-calendar"></span> <!--Check in date-->
-                                <input class="inpbox" type="date" placeholder="Check-in Date" name="checkindate" required>
+                                <label for="bday">From Date Recorded:</label>
+                                <span class="flaticon-calendar"></span> <!--Date Recorded onwards-->
+                                <input class="inpbox" type="date" placeholder="Date Recorded" name="dateRecorded" form="FilterRecordsServlet">
                                 
-                                <span class="flaticon-calendar"></span> <!--Check out date-->
-                                <input class="inpbox" type="date" placeholder="Check-out Date" name="checkoutdate" required>
+<!--                                <label for="bday">Check In:</label>
+                                <span class="flaticon-calendar"></span> 
+                                <input class="inpbox" type="date" placeholder="Check In Date" name="checkIn" form="FilterRecordsServlet">
                                 
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select">
-                                    <option selected>Room</option>
-                                    <option name="roomType" value="deluxe">Deluxe</option>
-                                    <option name="roomType" value="family">Family</option>
-                                </select>
+                                
+                                <label for="bday">Check Out:</label>
+                                <span class="flaticon-calendar"></span> 
+                                <input class="inpbox" type="date" placeholder="Check Out Date" name="checkOut" form="FilterRecordsServlet">
+-->
+                                
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select" name="roomType" form="FilterRecordsServlet">
+                                    <option selected form="FilterRecordsServlet">Room</option>
+                                    <option value="deluxe" form="FilterRecordsServlet">Deluxe</option>
+                                    <option value="family" form="FilterRecordsServlet">Family</option>
+                                </select> 
                             </div>
                             <div class="row justify-content-between mt-3 w-100 ml-0">
                                 <div class="row col-sm-12 col-lg-7 pt-2">
                                     <form class="w-100" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
                                         <button class="btn btn-base ml-1 ml-lg-3">Filter</button>
                                         <button class="btn btn-base ml-1 ml-lg-3">Reset</button>
+                                        <input type="hidden" name="status" value="unconfirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
                                     </form>
                                     <form class="w-100" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
                                         <button type="submit" id="deleteButton" name="editType" value="delete"
                                             class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
                                         <button type="submit" id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Unconfirmed</button>
-                                        <input type="hidden" name="status" value="confirmed" form="EditRecordsServlet">
+                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Confirmed</button>
+                                        <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
                                     </form>
                                     <!--form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
                                         <button class="filter-button">Filter</button>

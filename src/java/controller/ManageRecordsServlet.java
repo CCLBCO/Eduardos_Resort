@@ -31,9 +31,7 @@ public class ManageRecordsServlet extends HttpServlet {
     private ArrayList<BookingRecord> brList;
     private HttpSession session;
     private String path;
-
-    private int currentPage;
-    private int MAX_RECORDS_PER_PAGE = 10;
+    private boolean filtered;
     
     public void init(ServletConfig config) throws ServletException 
     {
@@ -71,15 +69,29 @@ public class ManageRecordsServlet extends HttpServlet {
                     String statusRecords = "";
                     if(request.getParameter("status") != null) {
                         //means from homepage of owner/handler or other record pages
-                        statusRecords = request.getParameter("status");                 
-                    } else {
-                        //means a record was edited and the page just needs to be reloaded
+                        statusRecords = request.getParameter("status");    
+                        filtered = false;
+                    } else if ((String)session.getAttribute("statusFromEdit") != null){
+                        //means a record was edited(move or delete) and the page just needs to be reloaded
                         statusRecords = (String)session.getAttribute("statusFromEdit"); 
+                        filtered = false;
+                    } else {
+                        //mean the filter button was used
+                        statusRecords = (String)session.getAttribute("statusFromFilter"); 
+                        filtered = true;
                     }
                     
                     System.out.println("the status of the records you're trying to get is: " + statusRecords);
                     
-                    ResultSet rs = record.showRecords(statusRecords);
+                    ResultSet rs;
+                    if(!filtered) {
+                        rs = record.showRecords(statusRecords);
+                    } else {
+                        System.out.println("THE OUTPUT YOU'RE TRYING TO GET IS FILTERED");
+                        rs = (ResultSet)session.getAttribute("rsFromFilter");
+                        System.out.println("after rs was called");
+                    }
+                                            
                     brList = new ArrayList<>();
                     String room_type = "";
                     String status_type = "";
@@ -123,18 +135,8 @@ public class ManageRecordsServlet extends HttpServlet {
 
                     session.setAttribute("brList", brList);
 
-                    System.out.println(numberOfRecords);
+                    System.out.println("The number of records: " + numberOfRecords);
 
-                    int maxPage = (int) Math.ceil(numberOfRecords / Double.valueOf(MAX_RECORDS_PER_PAGE));
-                    session.setAttribute("brList", brList);
-
-                    // Overwrites the search, filter, and sort parameters.
-                    /*session.setAttribute("searchView", search);
-                    session.setAttribute("filterView", filter);
-                    session.setAttribute("sortView", sort);*/
-                    session.setAttribute("viewCurrentPageNumber", currentPage + "");
-                    session.setAttribute("viewMaxPageNumber", maxPage + "");
-                        
                     //redirect based on status records
                     if(statusRecords.equalsIgnoreCase("unconfirmed")){
                         path = request.getContextPath() + "/HBMS/unconfirmed.jsp";

@@ -7,9 +7,12 @@ package controller;
 
 import model.BookingRecord;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 
 public class AccessRecords {
@@ -177,7 +180,65 @@ public class AccessRecords {
         }
     }
         
+    public ResultSet filterRecords(String status, Timestamp drFilter, String rtFilter) { 
+        String filterquery = "";
+        String statusToBeFiltered = "";
+        int rtNum = 0;
+        Timestamp tsNone = Timestamp.valueOf("2022-01-01 00:00:00.00");
+        int tsCompare = tsNone.compareTo(drFilter);
         
+        System.out.println("YOU'RE INSIDE filterRecords()!");
+        switch(status){
+            //if it was an unconfirmed record, it will be updated to confirmed
+            case "unconfirmed": statusToBeFiltered = "0";       //1 means confirmed
+                break;
+            //if it was an confirmed record, it will be updated to unconfirmed, probably means that the handler made a mistake in confirming
+            case "confirmed": statusToBeFiltered = "1";         //0 means unconfirmed
+                break;
+        }
+        switch(rtFilter){
+            case "deluxe": rtNum = 1;                            //1 means deluxe
+                break;
+            case "family": rtNum = 2;                            //2 means family
+                break;
+        }
+        
+        if(rtFilter.equals("")) {
+            System.out.println("FILTER HAS NO ROOM TYPE INPUT");
+            filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND DATE_BOOKED >= ?";
+            try {
+                PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
+                filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
+                filterRecordStmt.setTimestamp(2, drFilter);
+                ResultSet filtered = filterRecordStmt.executeQuery();
+                return filtered;
+            } catch (SQLException ex) {}
+        } else if (tsCompare == 0) {
+            System.out.println("FILTER HAS NO DATE RECORDED INPUT");
+            filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND ROOM_ID = ?";
+            try {
+                PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
+                filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));  
+                filterRecordStmt.setInt(2, rtNum);
+                ResultSet filtered = filterRecordStmt.executeQuery();
+                return filtered;
+            } catch (SQLException ex) {}
+        } else {
+            System.out.println("FILTER HAS BOTH FILTER INPUTS");
+            filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND DATE_BOOKED >= ? AND ROOM_ID = ?";
+            try {
+                PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
+                filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
+                filterRecordStmt.setTimestamp(2, drFilter);
+                filterRecordStmt.setInt(2, rtNum);
+                ResultSet filtered = filterRecordStmt.executeQuery();
+                return filtered;
+            } catch (SQLException ex) {}
+        }
+        
+        return null;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">    
     // 
     /* public void deleteRecord(int[] recordsToBeDeleted){
