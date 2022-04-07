@@ -343,6 +343,10 @@ a[data-toggle="collapse"] {
     display: none;
 }
 
+.samplewidth{
+    width: 100% !important;
+}
+
 @media (max-width: 990px) {
     .filterflex{
         flex-direction: column;

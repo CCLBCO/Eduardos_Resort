@@ -94,11 +94,11 @@
             </div>
             
             <div class="logout-action">
-                   <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
-                        class="font-weight-light text-center">
+                <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
+                    class="font-weight-light text-center">
                         <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
-                    </form>
-                </div>
+                </form>
+            </div>
         </nav>
 
         <!-- Page Content  -->
