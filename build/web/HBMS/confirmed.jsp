@@ -45,6 +45,10 @@
 
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="hbms.css">
+    
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/2237df38d7.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -164,9 +168,6 @@
                                         <button type="submit" id="moveButton" name="editType" value="move" 
                                             class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Move to Unconfirmed</button>
                                         <input type="hidden" name="status" value="confirmed" form="EditRecordsServlet">
-                                        <div class="topnav">
-                                            <input type="text" placeholder="Search">
-                                        </div>
                                     </form>
                                         
                                         
@@ -181,6 +182,15 @@
                                             </ul>
                                         </div>
                                     </form-->
+                                </div>
+                                        
+                                <div class="topnav">
+                                    <div class="search-container">
+                                        <form action="/action_page.php">
+                                            <input type="text" placeholder="Search" name="search">
+                                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <!--div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
                                     <form method="POST" action="" class="w-100 d-flex justify-content-end">

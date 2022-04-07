@@ -92,17 +92,36 @@ a:focus {
     margin-right: 7.5px;
 }
 
+.topnav{
+    display: flex;
+    align-items: center;
+}
+
+.topnav .search-container{
+    float: right;
+}
+
 .topnav input[type=text] {
     padding: 6px;
     border: none;
     font-size: 17px;
-
+    margin-top: 8px;
 }
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
 .text-center {
     text-align: center!important;
 }
-
-
 
 #sidebar {
     min-width: 250px;
