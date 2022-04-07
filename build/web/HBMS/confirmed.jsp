@@ -52,7 +52,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../image/ER_logo_noBG.png">
+                <img src="../image/ER_logo_noBG(cropped).png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -93,7 +93,7 @@
                  <%  }%>
                 <li class="logout-action">
                     <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
-                        class="pl-5 font-weight-light">
+                        class="font-weight-light text-center">
                             <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
                     </form>
                 </li>
@@ -127,7 +127,7 @@
                                 </select-->
                                 
                                 
-                                <label for="bday">From Date Recorded:</label>
+                                <label for="bday" class="paddingtopbday">From Date Recorded:</label>
                                 <span class="flaticon-calendar"></span> <!--Date Recorded onwards-->
                                 <input class="inpbox" type="date" placeholder="Date Recorded" name="dateRecorded" form="FilterRecordsServlet">
                                 
@@ -140,27 +140,32 @@
                                 <span class="flaticon-calendar"></span> 
                                 <input class="inpbox" type="date" placeholder="Check Out Date" name="checkOut" form="FilterRecordsServlet">
 -->
-                                
+                            </div>
+                            <div class="row mt-2 w-100 ml-0">
+                                <label for="room" class="paddingtoproom">Room: </label>
                                 <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select" name="roomType" form="FilterRecordsServlet">
-                                    <option selected form="FilterRecordsServlet">Room</option>
+                                    <option selected form="FilterRecordsServlet">Select Room Type</option>
                                     <option value="deluxe" form="FilterRecordsServlet">Deluxe</option>
                                     <option value="family" form="FilterRecordsServlet">Family</option>
-                                </select> 
+                                </select>
                             </div>
                            <div class="row justify-content-between mt-3 w-100 ml-0">
-                                <div class="row col-sm-12 col-lg-7 pt-2">
-                                    <form class="w-100" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
-                                        <button class="btn btn-base ml-1 ml-lg-3">Filter</button>
-                                        <button class="btn btn-base ml-1 ml-lg-3">Reset</button>
+                                <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
+                                    <form class="w-100 filterflex" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
+                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft">Filter</button>
+                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft">Reset</button>
                                         <input type="hidden" name="status" value="confirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
                                     </form>
-                                    <form class="w-100" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
+                                    <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
                                         <button type="submit" id="deleteButton" name="editType" value="delete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Delete</button>
                                         <button type="submit" id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Unconfirmed</button>
+                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Move to Unconfirmed</button>
                                         <input type="hidden" name="status" value="confirmed" form="EditRecordsServlet">
+                                        <div class="topnav">
+                                            <input type="text" placeholder="Search">
+                                        </div>
                                     </form>
                                         
                                         
