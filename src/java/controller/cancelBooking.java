@@ -5,12 +5,16 @@
  */
 package controller;
 
+import static controller.loginServlet.u;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -27,7 +31,7 @@ public class cancelBooking extends HttpServlet {
     Connection con;
     static StringBuffer url;
     static String userDB, passDB;                                                       // Username and Password from web.xml
-    static String query, dtbsCode, inputCode, updateQuery;
+    static String query, dtbsCode, inputCode, updateQuery, getEmail, email;
     RequestDispatcher rd;
     
     public void init(ServletConfig config) throws ServletException 
@@ -60,7 +64,7 @@ public class cancelBooking extends HttpServlet {
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, MessagingException {
 
         try {
         if (con != null) {
@@ -70,8 +74,9 @@ public class cancelBooking extends HttpServlet {
                 
                 query = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = 0 AND BOOKING_CODE = ? ";    
                 updateQuery = "UPDATE BOOKING_INFO SET STATUS_ID = 2 WHERE BOOKING_CODE = ? AND STATUS_ID = 0";
+                getEmail = "SELECT EMAIL FROM BOOKING_INFO WHERE BOOKING_CODE = ?";
                 
-                PreparedStatement ps, uc;
+                PreparedStatement ps, uc, ge;
                 ps = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);   
                 
                 ps.setString(1, inputCode); 
@@ -84,15 +89,40 @@ public class cancelBooking extends HttpServlet {
                     request.setAttribute("error", "Your booking has already been cancelled or Booking Code no longer exists!");
                     rd = request.getRequestDispatcher("/reservation.jsp");            
                     rd.include(request, response);
+                    res.close();
                 }
                 
                 else{
+                    
                     System.out.println("Booking Code: " + inputCode + " exists!!");
                     uc = con.prepareStatement(updateQuery);
                     uc.setString(1, inputCode);
                     uc.executeUpdate();
                     
                     System.out.println("Booking Cancelled");
+                    
+                    ge = con.prepareStatement(getEmail);
+                    ge.setString(1, inputCode);
+                    res = ge.executeQuery();
+                    
+                    while(res.next())                                              
+                    {
+                        email = res.getString("EMAIL");
+                    }
+                    
+                    System.out.println(email);
+                    String forHandler = "<html> Dear Handler, <br> <br>"
+                    + "The following customer's , ___ , issue for cancellation has been processed. <br> <br>";
+                    emailNotif("shiryou16@gmail.com", forHandler); // For test only
+                    // emailNotif(email, forHandler); // This is for deployment
+                    
+                    String forCustomer = "<html> Hi Gil, <br> <br>"
+                    + "We are sorry to hear from you about your booking cancellation. <br> <br>"
+                    + "May you soon considder us again for all your resort needs. <br><br>"
+                    + "Best Wishes, Eduardo's Resort "
+                    + "</html>";
+                    emailNotif("xoulx16@gmail.com", forCustomer);
+                    
                     rd = request.getRequestDispatcher("/receipt.jsp");            
                     rd.include(request, response);
                 }
@@ -114,7 +144,11 @@ public class cancelBooking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(cancelBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -128,7 +162,11 @@ public class cancelBooking extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(cancelBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -140,5 +178,9 @@ public class cancelBooking extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public void emailNotif(String email, String ctnt) throws MessagingException {
+        EmailCancellationUtil.sendMail(email, ctnt);
+    }
 
 }
