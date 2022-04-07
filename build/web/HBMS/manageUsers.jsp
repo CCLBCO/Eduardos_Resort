@@ -109,18 +109,18 @@
                                 <p class="h2 text-light font-weight-bold align-text-bottom">MANAGE USERS</p>
                             </div>
 
-                            <div class="row justify-content-between mt-3 w-100 ml-0">
+                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                 <div class="row col-sm-12 col-lg-10 pt-2 filterflex">
                                     <form method="POST" action="" class="w-100 filterflex">
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Remove
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
                                             Account</button>
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Change
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change
                                             Password</button>
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Add
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
                                             Account</button>
                                     </form>
                                 </div>
