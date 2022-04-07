@@ -303,9 +303,9 @@
                 document.forms["confirmedForm"].submit();
             });
 
-            document.getElementById("manageUsers").addEventListener("click", function () {
-                document.forms["manageUsersForm"].submit();
-            });
+//            document.getElementById("manageUsers").addEventListener("click", function () {
+//                document.forms["manageUsersForm"].submit();
+//            });
             
             document.getElementById("generateExcel").addEventListener("click", function () {
                 console.log("YOU ARE INSIDE GENERATE EXCEL");

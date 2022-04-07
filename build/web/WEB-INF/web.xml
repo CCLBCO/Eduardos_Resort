@@ -31,7 +31,8 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet><!-- ManageRecordsServlet -->
+    </servlet>
+    <!-- ManageRecordsServlet -->
     <servlet>
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>controller.loginServlet</servlet-class>
@@ -63,15 +64,18 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet><!-- loginServlet -->
-    <servlet><!-- logoutServlet -->
+    </servlet>
+    <!-- loginServlet -->
+    <servlet>
+        <!-- logoutServlet -->
         <servlet-name>logoutServlet</servlet-name>
         <servlet-class>controller.logoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>bookingManagement</servlet-name>
         <servlet-class>controller.bookingManagement</servlet-class>
-    </servlet><!-- bookingManagement -->
+    </servlet>
+    <!-- bookingManagement -->
     <servlet>
         <servlet-name>ManageUsersServlet</servlet-name>
         <servlet-class>controller.ManageUsersServlet</servlet-class>
@@ -103,8 +107,9 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet><!-- ManageUsersServlet -->
-    <servlet> 
+    </servlet>
+    <!-- ManageUsersServlet -->
+    <servlet>
         <servlet-name>ReservationServlet</servlet-name>
         <servlet-class>controller.ReservationServlet</servlet-class>
         <init-param>
@@ -135,8 +140,9 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet> <!-- ReservationServlet -->
-    <servlet> 
+    </servlet>
+    <!-- ReservationServlet -->
+    <servlet>
         <servlet-name>EditRecordsServlet</servlet-name>
         <servlet-class>controller.EditRecordsServlet</servlet-class>
         <init-param>
@@ -167,8 +173,9 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet> <!-- EditRecordsServlet -->
-    <servlet> 
+    </servlet>
+    <!-- EditRecordsServlet -->
+    <servlet>
         <servlet-name>ReceiptController</servlet-name>
         <servlet-class>controller.ReceiptController</servlet-class>
         <init-param>
@@ -199,8 +206,9 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet> <!-- ReceiptController -->
-    <servlet> 
+    </servlet>
+    <!-- ReceiptController -->
+    <servlet>
         <servlet-name>FilterRecordsServlet</servlet-name>
         <servlet-class>controller.FilterRecordsServlet</servlet-class>
         <init-param>
@@ -231,9 +239,40 @@
             <param-name>databaseName</param-name>
             <param-value>EduardosResort</param-value>
         </init-param>
-    </servlet> <!-- FilterRecordsServlet -->
-    
-    
+    </servlet>
+    <!-- FilterRecordsServlet -->
+    <servlet>
+        <servlet-name>cancelBooking</servlet-name>
+        <servlet-class>controller.cancelBooking</servlet-class>
+        <init-param>
+            <param-name>jdbcClassName</param-name>
+            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbUserName</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPassword</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbcDriverURL</param-name>
+            <param-value>jdbc:derby</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbHostName</param-name>
+            <param-value>localhost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPort</param-name>
+            <param-value>1527</param-value>
+        </init-param>
+        <init-param>
+            <param-name>databaseName</param-name>
+            <param-value>EduardosResort</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageRecordsServlet</servlet-name>
         <url-pattern>/ManageRecordsServlet</url-pattern>
@@ -269,6 +308,10 @@
     <servlet-mapping>
         <servlet-name>FilterRecordsServlet</servlet-name>
         <url-pattern>/FilterRecordsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cancelBooking</servlet-name>
+        <url-pattern>/cancelBooking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

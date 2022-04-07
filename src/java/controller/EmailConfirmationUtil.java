@@ -88,7 +88,7 @@ public class EmailConfirmationUtil {
 
             // creates image part
             messageBodyPart = new MimeBodyPart();
-            DataSource fds = new FileDataSource("C:\\Users\\User\\Documents\\NetBeansProjects\\Eduardos_Resort\\web\\image\\ER-whitelogo.png");
+            DataSource fds = new FileDataSource("C:\\Users\\User\\Documents\\NetBeansProjects\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
             messageBodyPart.setDataHandler(new DataHandler(fds));
             messageBodyPart.setHeader("Content-ID", "<image>");
              
@@ -99,7 +99,8 @@ public class EmailConfirmationUtil {
             messageBodyPart = new MimeBodyPart();
             String htmlBody2 = "<html> Hi Gil, <br> <br>"
                     + "We would like inform you that your reservation has been sent! <br> <br>"
-                    + "We're happy to hopefully see you once our handlers confirm your reservation. "
+                    + "We're happy to hopefully see you once our handlers confirm your reservation. <br>"
+                    + "Best Wishes, Eduardo's Resort "
                     + "</html>";
             messageBodyPart.setContent(htmlBody2, "text/html");
             multipart.addBodyPart(messageBodyPart);
