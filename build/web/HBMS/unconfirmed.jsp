@@ -146,9 +146,9 @@
                                 <input class="inpbox" type="date" placeholder="Check Out Date" name="checkOut" form="FilterRecordsServlet">
 -->
                             </div>
-                            <div class="row mt-2 w-100 ml-0">
+                            <div class="row mt-2 w-100 ml-0 samplewidth">
                                 <label for="room" class="paddingtoproom">Room: </label>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select samplewidth" name="roomType" form="FilterRecordsServlet">
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select margintop" name="roomType" form="FilterRecordsServlet">
                                     <option selected form="FilterRecordsServlet">Select Room Type</option>
                                     <option value="deluxe" form="FilterRecordsServlet">Deluxe</option>
                                     <option value="family" form="FilterRecordsServlet">Family</option>
