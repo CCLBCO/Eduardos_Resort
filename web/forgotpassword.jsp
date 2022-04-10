@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Forgot Password</title>
-        
+        <link rel="stylesheet" type="text/css" href="css/forgotpassword.css" />
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -21,21 +21,24 @@
                   <h3><i class="fa fa-lock fa-4x"></i></h3>
                   <h2 class="text-center">Forgot Password?</h2>
                   <p>You can reset your password here.</p>
+                  <%
+                    String login_msg=(String)request.getAttribute("error");  
+                    if(login_msg!=null)
+                    out.println("<font color=red size=3px>"+login_msg+"</font>");
+                  %>
                   <div class="panel-body">
     
-                    <form id="register-form" role="form" autocomplete="off" class="form" method="post">
-    
+                    <form id="register-form" role="form" autocomplete="off" class="form" method="post" action="ForgotPasswordServlet">
                       <div class="form-group">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="email" name="email" placeholder="Email Address" class="form-control"  type="email">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-green"></i></span>
+                          <input id="email" name="email" placeholder="Email Address" class="form-control"  type="email" required>
                         </div>
                       </div>
                       <div class="form-group">
-                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
+                        <input name="recover-submit" class="changecolor btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
                       </div>
-                      
-                      <input type="hidden" class="hide" name="token" id="token" value=""> 
+          
                     </form>
     
                   </div>

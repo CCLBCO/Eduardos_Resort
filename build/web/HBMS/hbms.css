@@ -78,50 +78,6 @@ a:focus {
 
 .wrapper .sidebar-header img{
     width: 100%;
-    padding-bottom: 8px;
-    padding-top: 9px;
-}
-
-.paddingtopbday{
-    padding-top: 6px;
-    margin-right: 5px;
-}
-
-.paddingtoproom{
-    padding-top: 6px;
-    margin-right: 7.5px;
-}
-
-.topnav{
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 19px;
-}
-
-.topnav .search-container{
-    float: right;
-}
-
-.topnav input[type=text] {
-    padding: 6px;
-    border: none;
-    font-size: 17px;
-    margin-top: 8px;
-}
-
-.topnav .search-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-.text-center {
-    text-align: center!important;
 }
 
 #sidebar {
@@ -177,16 +133,6 @@ a:focus {
     cursor: pointer;
 }
 
-.filterflex{
-    display: flex;
-    justify-content: flex-start !important;
-    margin-bottom: 10px;
-}
-
-.marginleft{
-    margin-left: 0px !important;
-    margin-right: 5px !important;
-}
 /*.submenu {
     outline:none !important;
     font-size: 20px;
@@ -231,12 +177,20 @@ a[data-toggle="collapse"] {
 }
 
 .content-block {
-    height: 345px;
+    height: 400px;
     overflow-y: scroll;
 }
 
-.p-5{
-    margin: 3rem !important;
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
 }
 
 .logout {
@@ -252,7 +206,7 @@ a[data-toggle="collapse"] {
 
 .logout-action {
     margin-left: 11%;
-    margin-top: 140%;
+    margin-top: 110%;
 }
 
 .logout-action1 {
@@ -266,7 +220,7 @@ a[data-toggle="collapse"] {
 }
 
 .table-responsive{
-    min-height: 345px !important;
+    min-height: 400px !important;
 }
 
 .table{
@@ -360,6 +314,7 @@ a[data-toggle="collapse"] {
 
 .edit-btn {
     display: none;
+  
 }
 
 .samplewidth{
