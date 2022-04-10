@@ -94,7 +94,8 @@ a:focus {
 
 .topnav{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    margin-bottom: 19px;
 }
 
 .topnav .search-container{
@@ -363,7 +364,7 @@ a[data-toggle="collapse"] {
 }
 
 .samplewidth{
-    width: 100% !important;
+    width: 110% !important;
 }
 
 @media (max-width: 990px) {
@@ -379,9 +380,15 @@ a[data-toggle="collapse"] {
     }
     
     .samplewidth{
+        display: flex;
+        flex-wrap: nowrap;
         width: 34% !important;
         margin-top: 0px !important;
-        flex: initial;
+    }
+    
+    .paddingtoproom{
+        padding-top: 15px;
+        margin-right: 7.5px;
     }
     
     .marginbottom{
@@ -392,10 +399,20 @@ a[data-toggle="collapse"] {
     .samplewidth1{
         width: 26% !important;
     }
-    
-    .topnav input[type=text]{
-        margin-top: 10px;
+
+    .topnav .search-container{
+        float: none;
+    }
+    .topnav a, .topnav input[type=text], .topnav .search-container button{
+        float: none;
+        display: block;
+        text-align: left;
         width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .topnav input[type=text]{
+        border: 1px solid #ccc;  
     }
 }
 
@@ -448,13 +465,17 @@ a[data-toggle="collapse"] {
     }
     
     .samplewidth{
-        width: 63% !important;
+        width: 60% !important;
         margin-top: 0px !important;
         flex: initial;
     }
     
     .samplewidth1{
         width: 38% !important;
+    }
+    
+    .margintop{
+        margin-top: 7px;
     }
 }
 
