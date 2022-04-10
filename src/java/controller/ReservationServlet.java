@@ -12,6 +12,9 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -68,7 +71,7 @@ public class ReservationServlet extends HttpServlet {
         catch (ClassNotFoundException nfe){ }
     }
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException
     {
         try 
         {     
@@ -134,6 +137,9 @@ public class ReservationServlet extends HttpServlet {
                 response.sendRedirect("ReceiptController");
                 ps.close();
                 
+                // confirmNotif(email); // For Deployment
+                confirmNotif("xoulx16@gmail.com");
+                
             }
         } 
         catch (SQLException sqle){ }
@@ -149,7 +155,11 @@ public class ReservationServlet extends HttpServlet {
 @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(ReservationServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public Date convertToDateViaSqlDate(LocalDate dateToConvert) {
@@ -164,6 +174,10 @@ public class ReservationServlet extends HttpServlet {
                     convCost = days * 3500;
                 }
     return convCost;
+    }
+    
+    public void confirmNotif(String email) throws MessagingException{
+        EmailConfirmationUtil.sendMail(email);
     }
     
     public int getDaysInBetween(LocalDate pPD, LocalDate dDD) {  
