@@ -1,35 +1,38 @@
 <%@page import="exceptions.SessionDestroyedException"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.sql.Date"%>
 <%@page import="javax.mail.FetchProfile.Item"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BookingRecord"%>
 <%@page import="java.text.DecimalFormat"%>
+
 <!DOCTYPE html>
-<%
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // New HTTP
-    response.setHeader("Pragma", "no-cache"); // Older HTTP
-    response.setHeader("Expires", "0"); // Proxy Servers
 
-    if(session.getAttribute("sessionUser") == null){
-       throw new SessionDestroyedException();
-    }
-    // If a user that's not an admin logins and tries to access the admin.jsp it will throw an exception
-    if(!session.getAttribute("role").equals("handler") && !session.getAttribute("role").equals("owner")){
-        //throw new WrongAdminException();
-     }
+<%  // Gets session object and throws user-defined SessionDestroyedException when the Session Attribute is not Created 
+        System.out.println("user: "+session.getAttribute("sessionUser"));
+        System.out.println("role: "+session.getAttribute("role"));
+           
+        if(session.getAttribute("sessionUser") == null){
+            throw new SessionDestroyedException();
+        }
         
-
-    final int MAX_RECORDS_PER_PAGE = 10;
-    int currentPage = 1;    //TEMP VALUES
-    String maxPage = "10";  //TEMP VALUES
-
-    // Maintaining the search parameter.
-    //String searchParameter = (String) session.getAttribute("searchView");
-    //if (searchParameter == null) searchParameter = "";
+        // If a user that's not an admin logins and tries to access the admin.jsp it will throw an exception
+        if(!session.getAttribute("role").equals("handler") && !session.getAttribute("role").equals("owner")){
+            //throw new WrongAdminException();
+         }
+        
+        final int MAX_RECORDS_PER_PAGE = 10;
+        
+        int currentPage = 1;    //TEMP VALUES
+        String maxPage = "10";  //TEMP VALUES
+        
+        // Needed to Disable Back-tracking without Session
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Expires", "0");
 %>
-<html>
 
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,6 +45,9 @@
 
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="hbms.css">
+
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/2237df38d7.js" crossorigin="anonymous"></script>
     
 </head>
 
@@ -50,10 +56,11 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../image/ER_logo_noBG.png">
+                <img src="../image/ER_logo_noBG(cropped).png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
+            <div>
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true"
@@ -95,13 +102,15 @@
                     </ul>
                 </li>
                 <%  }%>
-                <li class="logout-action">
-                   <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
-                        class="font-weight-light text-center">
-                        <button class="btn btn-base logout text-center" id="logout">LOGOUT</button>
-                    </form>
-                </li>
             </ul>
+            </div>
+            
+            <div class="logout-action">
+                <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
+                    class="font-weight-light text-center">
+                        <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
+                </form>
+            </div>
         </nav>
 
         <!-- Page Content  -->
@@ -118,53 +127,19 @@
                 <div class="container mt-sm-5 mt-lg-2">
                     <div class="row p-5">
                         <div class="w-100">
-                            <div class="row ml-0">
-                                <p class="h2 text-light font-weight-bold align-text-bottom">UNCONFIRMED RECORDS</p>
-                                <form>
-                                    <button id="generateExcel" class="btn btn-base ml-1 ml-lg-3">Generate Excel</button>
-                                </form>
+                            <div class="row ml-0 centeritems">
+                                <p class="h2 text-light font-weight-bold align-text-bottom">CANCELLED BOOKINGS</p>
                             </div>
-                            <div class="row mt-2 w-100 ml-0">
-                                <!--select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select mr-sm-0 mr-lg-1">
-                                    <option selected>Date Recorded</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                </select-->
-                                
-                                <label for="bday">From Date Recorded:</label>
-                                <span class="flaticon-calendar"></span> <!--Date Recorded onwards-->
-                                <input class="inpbox" type="date" placeholder="Date Recorded" name="dateRecorded" form="FilterRecordsServlet">
-                                
-<!--                                <label for="bday">Check In:</label>
-                                <span class="flaticon-calendar"></span> 
-                                <input class="inpbox" type="date" placeholder="Check In Date" name="checkIn" form="FilterRecordsServlet">
-                                
-                                
-                                <label for="bday">Check Out:</label>
-                                <span class="flaticon-calendar"></span> 
-                                <input class="inpbox" type="date" placeholder="Check Out Date" name="checkOut" form="FilterRecordsServlet">
--->
-                                
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select" name="roomType" form="FilterRecordsServlet">
-                                    <option selected form="FilterRecordsServlet">Room</option>
-                                    <option value="deluxe" form="FilterRecordsServlet">Deluxe</option>
-                                    <option value="family" form="FilterRecordsServlet">Family</option>
-                                </select> 
-                            </div>
-                            <div class="row justify-content-between mt-3 w-100 ml-0">
-                                <div class="row col-sm-12 col-lg-7 pt-2">
-                                    <form class="w-100" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
-                                        <button class="btn btn-base ml-1 ml-lg-3">Filter</button>
-                                        <button class="btn btn-base ml-1 ml-lg-3">Reset</button>
-                                        <input type="hidden" name="status" value="unconfirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
-                                    </form>
-                                    <form class="w-100" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
+                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
+                                <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
+                                    <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
                                         <button type="submit" id="deleteButton" name="editType" value="delete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Delete</button>
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Restore</button>
+                                        <button type="submit" id="deleteButton" name="editType" value="delete"
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
                                         <button type="submit" id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Move to Confirmed</button>
+                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete All</button>
                                         <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
                                     </form>
                                     <!--form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
@@ -178,6 +153,15 @@
                                             </ul>
                                         </div>
                                     </form-->
+                                </div>
+                                        
+                                <div class="topnav">
+                                    <div class="search-container">
+                                        <form action="/action_page.php">
+                                            <input type="text" placeholder="Search" name="search">
+                                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <!--div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
                                     <form method="POST" action="" class="w-100 d-flex justify-content-end">
@@ -310,5 +294,4 @@
         })();
     </script>
 </body>
-
 </html>

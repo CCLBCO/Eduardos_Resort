@@ -74,6 +74,12 @@
                                 <button class="submenu" id="confirmed" name="status" value="confirmed">Confirmed Records</button>
                             </form>
                         </li>
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
+                                class="pl-5 font-weight-light submenu-form" id="cancelledbookings">
+                                  <button class="submenu" id="cancelled" name="status" value="confirmed">Cancelled Records</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <%
