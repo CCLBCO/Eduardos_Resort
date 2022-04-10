@@ -92,17 +92,36 @@ a:focus {
     margin-right: 7.5px;
 }
 
+.topnav{
+    display: flex;
+    align-items: center;
+}
+
+.topnav .search-container{
+    float: right;
+}
+
 .topnav input[type=text] {
     padding: 6px;
     border: none;
     font-size: 17px;
-
+    margin-top: 8px;
 }
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
 .text-center {
     text-align: center!important;
 }
-
-
 
 #sidebar {
     min-width: 250px;
@@ -215,16 +234,8 @@ a[data-toggle="collapse"] {
     overflow-y: scroll;
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
+.p-5{
+    margin: 3rem !important;
 }
 
 .logout {
@@ -349,4 +360,106 @@ a[data-toggle="collapse"] {
 
 .edit-btn {
     display: none;
+}
+
+.samplewidth{
+    width: 100% !important;
+}
+
+@media (max-width: 990px) {
+    .filterflex{
+        flex-direction: column;
+        height: 100% !important;
+    }
+    
+    .centeritems{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+    
+    .samplewidth{
+        width: 34% !important;
+        margin-top: 0px !important;
+        flex: initial;
+    }
+    
+    .marginbottom{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .samplewidth1{
+        width: 26% !important;
+    }
+    
+    .topnav input[type=text]{
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+    
+    .filterflex{
+        flex-direction: column;
+        height: 100% !important;
+    }
+    
+    .centeritems{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+    
+    .samplewidth{
+        width: 50% !important;
+        margin-top: 0px !important;
+        flex: initial;
+    }
+    
+    .samplewidth1{
+        width: 38% !important;
+    }
+    
+    .marginbottom{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .topnav input[type=text]{
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px){
+    .marginbottom1{
+        margin-bottom: 10px;
+    }
+    
+    .samplewidth{
+        width: 63% !important;
+        margin-top: 0px !important;
+        flex: initial;
+    }
+    
+    .samplewidth1{
+        width: 38% !important;
+    }
+}
+
+@media (max-width: 457px){
+    .p-5{
+        margin: 0 !important;
+    }
 }

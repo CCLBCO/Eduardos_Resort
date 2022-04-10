@@ -43,6 +43,9 @@
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="hbms.css">
     
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/2237df38d7.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -54,6 +57,7 @@
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
+            <div>
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true"
@@ -89,13 +93,15 @@
                     </ul>
                 </li>
                 <%  }%>
-                <li class="logout-action">
-                   <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
-                        class="font-weight-light text-center">
-                        <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
-                    </form>
-                </li>
             </ul>
+            </div>
+            
+            <div class="logout-action">
+                <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
+                    class="font-weight-light text-center">
+                        <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
+                </form>
+            </div>
         </nav>
 
         <!-- Page Content  -->
@@ -112,7 +118,7 @@
                 <div class="container mt-sm-5 mt-lg-2">
                     <div class="row p-5">
                         <div class="w-100">
-                            <div class="row ml-0">
+                            <div class="row ml-0 centeritems">
                                 <p class="h2 text-light font-weight-bold align-text-bottom">UNCONFIRMED RECORDS</p>
                                 <form>
                                     <button id="generateExcel" class="btn btn-base ml-1 ml-lg-3">Generate Excel</button>
@@ -128,7 +134,7 @@
                                 
                                 <label for="bday" class="paddingtopbday">From Date Recorded:</label>
                                 <span class="flaticon-calendar"></span> <!--Date Recorded onwards-->
-                                <input class="inpbox" type="date" placeholder="Date Recorded" name="dateRecorded" form="FilterRecordsServlet">
+                                <input class="inpbox samplewidth1" type="date" placeholder="Date Recorded" name="dateRecorded" form="FilterRecordsServlet">
                                 
 <!--                                <label for="bday">Check In:</label>
                                 <span class="flaticon-calendar"></span> 
@@ -142,29 +148,26 @@
                             </div>
                             <div class="row mt-2 w-100 ml-0">
                                 <label for="room" class="paddingtoproom">Room: </label>
-                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select" name="roomType" form="FilterRecordsServlet">
+                                <select class="col-sm-12 mt-sm-2 mt-lg-0 col-lg-2 custom-select samplewidth" name="roomType" form="FilterRecordsServlet">
                                     <option selected form="FilterRecordsServlet">Select Room Type</option>
                                     <option value="deluxe" form="FilterRecordsServlet">Deluxe</option>
                                     <option value="family" form="FilterRecordsServlet">Family</option>
                                 </select>
                             </div>
-                            <div class="row justify-content-between mt-3 w-100 ml-0">
+                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                 <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
                                     <form class="w-100 filterflex" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
-                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft">Filter</button>
-                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft">Reset</button>
+                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom">Filter</button>
+                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom">Reset</button>
                                         <input type="hidden" name="status" value="unconfirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
                                     </form>
                                     <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
                                         <button type="submit" id="deleteButton" name="editType" value="delete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Delete</button>
+                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
                                         <button type="submit" id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft">Move to Confirmed</button>
+                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Move to Confirmed</button>
                                         <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
-                                        <div class="topnav">
-                                            <input type="text" placeholder="Search">
-                                        </div>
                                     </form>
                                     <!--form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
                                         <button class="filter-button">Filter</button>
@@ -177,6 +180,15 @@
                                             </ul>
                                         </div>
                                     </form-->
+                                </div>
+                                        
+                                <div class="topnav">
+                                    <div class="search-container">
+                                        <form action="/action_page.php">
+                                            <input type="text" placeholder="Search" name="search">
+                                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <!--div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
                                     <form method="POST" action="" class="w-100 d-flex justify-content-end">
