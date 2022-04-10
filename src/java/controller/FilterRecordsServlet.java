@@ -64,19 +64,30 @@ public class FilterRecordsServlet extends HttpServlet {
                 try {
                     AccessRecords record = new AccessRecords(con);
                     session = request.getSession();
-                    Timestamp dateRecordedFilter;
+                    String dateRecordedFilter = "";
                     String roomTypeFilter = "";
                     System.out.println("the date recorded from getParameter: " + request.getParameter("dateRecorded"));
+//                    try {
+//                        dateRecordedFilter = request.getParameter("dateRecorded").concat(" 00:00:00.00");
+//                    } catch (IllegalArgumentException e) {
+//                        e.printStackTrace();
+//                        dateRecordedFilter = null;
+//                        //dateRecordedFilter = "2022-01-01 00:00:00.00";
+//                    }
+                    
+                    
                     try {
-                        dateRecordedFilter = Timestamp.valueOf(request.getParameter("dateRecorded").concat(" 00:00:00.00"));
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                        dateRecordedFilter = Timestamp.valueOf("2022-01-01 00:00:00.00");
+                        if(request.getParameter("dateRecorded").equals(null)) {
+                            dateRecordedFilter = "";
+                        } else {
+                            dateRecordedFilter = request.getParameter("dateRecorded").concat(" 00:00:00.00");
+                        }
+                    } catch (NullPointerException npe) {
+                        dateRecordedFilter = "";
                     }
                     System.out.println("dateRecordedFilter: " + dateRecordedFilter);
                     
-                    //Date checkInFilter = Date.valueOf(request.getParameter("checkIn"));
-                    //Date checkOutFilter = Date.valueOf(request.getParameter("checkOut"));
+                    
                     try {
                         if(request.getParameter("roomType").equals(null)) {
                             roomTypeFilter = "";
@@ -86,8 +97,6 @@ public class FilterRecordsServlet extends HttpServlet {
                     } catch (NullPointerException npe) {
                         roomTypeFilter = "";
                     }
-                     
-                    
                     String statusRecords = request.getParameter("status");
                     
                     System.out.println("date recorded: " + dateRecordedFilter);
