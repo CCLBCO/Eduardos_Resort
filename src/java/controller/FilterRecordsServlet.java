@@ -77,9 +77,11 @@ public class FilterRecordsServlet extends HttpServlet {
                     
                     
                     try {
-                        if(request.getParameter("dateRecorded").equals(null)) {
+                        if(request.getParameter("dateRecorded").equals("")) {
+                            System.out.println("dateRecorded is null");
                             dateRecordedFilter = "";
                         } else {
+                            System.out.println("dateRecorded is not null");
                             dateRecordedFilter = request.getParameter("dateRecorded").concat(" 00:00:00.00");
                         }
                     } catch (NullPointerException npe) {

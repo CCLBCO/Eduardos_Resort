@@ -140,7 +140,7 @@ public class ManageRecordsServlet extends HttpServlet {
                     //redirect based on status records
                     if(statusRecords.equalsIgnoreCase("unconfirmed")){
                         path = request.getContextPath() + "/HBMS/unconfirmed.jsp";
-                    } else{
+                    } else {
                         path = request.getContextPath() + "/HBMS/confirmed.jsp";
                     }
 
