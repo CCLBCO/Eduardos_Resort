@@ -277,7 +277,6 @@ a[data-toggle="collapse"] {
     border: 0;
     border-radius: 3px;
     width: 15%;
-    color: var(--font-light);
     outline: none;
     margin-right: 5px;
     padding-left: 5px;
@@ -407,10 +406,11 @@ a[data-toggle="collapse"] {
         float: none;
         display: block;
         text-align: left;
-        width: 100%;
+        width: 205%;
         margin: 0;
         padding: 14px;
     }
+    
     .topnav input[type=text]{
         border: 1px solid #ccc;  
     }
@@ -453,9 +453,17 @@ a[data-toggle="collapse"] {
         width: 100%;
     }
     
+    .topnav a, .topnav input[type=text], .topnav .search-container button{
+        float: none;
+        display: block;
+        text-align: left;
+        width: 131%;
+        margin: 0;
+        padding: 14px;
+    }
+    
     .topnav input[type=text]{
-        margin-top: 10px;
-        width: 100%;
+        border: 1px solid #ccc;  
     }
 }
 
@@ -482,5 +490,33 @@ a[data-toggle="collapse"] {
 @media (max-width: 457px){
     .p-5{
         margin: 0 !important;
+    }
+    
+    .topnav a, .topnav input[type=text], .topnav .search-container button{
+        float: none;
+        display: block;
+        text-align: left;
+        width: 134%;
+        margin: 0;
+        padding: 14px;
+    }
+    
+    .topnav input[type=text]{
+        border: 1px solid #ccc;  
+    }
+}
+
+@media (max-width: 375px){
+    .topnav a, .topnav input[type=text], .topnav .search-container button{
+        float: none;
+        display: block;
+        text-align: left;
+        width: 103%;
+        margin: 0;
+        padding: 14px;
+    }
+    
+    .topnav input[type=text]{
+        border: 1px solid #ccc;  
     }
 }
