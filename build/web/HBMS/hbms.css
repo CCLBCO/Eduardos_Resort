@@ -78,50 +78,6 @@ a:focus {
 
 .wrapper .sidebar-header img{
     width: 100%;
-    padding-bottom: 8px;
-    padding-top: 9px;
-}
-
-.paddingtopbday{
-    padding-top: 6px;
-    margin-right: 5px;
-}
-
-.paddingtoproom{
-    padding-top: 6px;
-    margin-right: 7.5px;
-}
-
-.topnav{
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 19px;
-}
-
-.topnav .search-container{
-    float: right;
-}
-
-.topnav input[type=text] {
-    padding: 6px;
-    border: none;
-    font-size: 17px;
-    margin-top: 8px;
-}
-
-.topnav .search-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-.text-center {
-    text-align: center!important;
 }
 
 #sidebar {
@@ -177,16 +133,6 @@ a:focus {
     cursor: pointer;
 }
 
-.filterflex{
-    display: flex;
-    justify-content: flex-start !important;
-    margin-bottom: 10px;
-}
-
-.marginleft{
-    margin-left: 0px !important;
-    margin-right: 5px !important;
-}
 /*.submenu {
     outline:none !important;
     font-size: 20px;
@@ -231,12 +177,20 @@ a[data-toggle="collapse"] {
 }
 
 .content-block {
-    height: 345px;
+    height: 400px;
     overflow-y: scroll;
 }
 
-.p-5{
-    margin: 3rem !important;
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
 }
 
 .logout {
@@ -252,7 +206,7 @@ a[data-toggle="collapse"] {
 
 .logout-action {
     margin-left: 11%;
-    margin-top: 140%;
+    margin-top: 110%;
 }
 
 .logout-action1 {
@@ -266,7 +220,7 @@ a[data-toggle="collapse"] {
 }
 
 .table-responsive{
-    min-height: 345px !important;
+    min-height: 400px !important;
 }
 
 .table{
@@ -361,126 +315,4 @@ a[data-toggle="collapse"] {
 
 .edit-btn {
     display: none;
-}
-
-.samplewidth{
-    width: 110% !important;
-}
-
-@media (max-width: 990px) {
-    .filterflex{
-        flex-direction: column;
-        height: 100% !important;
-    }
-    
-    .centeritems{
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-    }
-    
-    .samplewidth{
-        display: flex;
-        flex-wrap: nowrap;
-        width: 34% !important;
-        margin-top: 0px !important;
-    }
-    
-    .paddingtoproom{
-        padding-top: 15px;
-        margin-right: 7.5px;
-    }
-    
-    .marginbottom{
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    
-    .samplewidth1{
-        width: 26% !important;
-    }
-
-    .topnav .search-container{
-        float: none;
-    }
-    .topnav a, .topnav input[type=text], .topnav .search-container button{
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-    .topnav input[type=text]{
-        border: 1px solid #ccc;  
-    }
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
-    
-    .filterflex{
-        flex-direction: column;
-        height: 100% !important;
-    }
-    
-    .centeritems{
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-    }
-    
-    .samplewidth{
-        width: 50% !important;
-        margin-top: 0px !important;
-        flex: initial;
-    }
-    
-    .samplewidth1{
-        width: 38% !important;
-    }
-    
-    .marginbottom{
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    
-    .topnav input[type=text]{
-        margin-top: 10px;
-        width: 100%;
-    }
-}
-
-@media (max-width: 576px){
-    .marginbottom1{
-        margin-bottom: 10px;
-    }
-    
-    .samplewidth{
-        width: 60% !important;
-        margin-top: 0px !important;
-        flex: initial;
-    }
-    
-    .samplewidth1{
-        width: 38% !important;
-    }
-    
-    .margintop{
-        margin-top: 7px;
-    }
-}
-
-@media (max-width: 457px){
-    .p-5{
-        margin: 0 !important;
-    }
 }

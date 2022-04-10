@@ -43,7 +43,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../image/ER_logo_noBG(cropped).png">
+                <img src="../image/ER_logo_noBG.png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -109,18 +109,18 @@
                                 <p class="h2 text-light font-weight-bold align-text-bottom">MANAGE USERS</p>
                             </div>
 
-                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
-                                <div class="row col-sm-12 col-lg-10 pt-2 filterflex">
-                                    <form method="POST" action="" class="w-100 filterflex">
+                            <div class="row justify-content-between mt-3 w-100 ml-0">
+                                <div class="row col-sm-12 col-lg-10 pt-2">
+                                    <form method="POST" action="" class="w-100">
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Remove
                                             Account</button>
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Change
                                             Password</button>
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Add
                                             Account</button>
                                     </form>
                                 </div>
