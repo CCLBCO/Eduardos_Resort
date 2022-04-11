@@ -67,14 +67,17 @@ public class ManageRecordsServlet extends HttpServlet {
                     session = request.getSession();
                     
                     String statusRecords = "";
+                    
+                    
+                    
                     if(request.getParameter("status") != null) {
                         //means from homepage of owner/handler or other record pages
                         statusRecords = request.getParameter("status");    
                         filtered = false;
-                    } else if ((String)session.getAttribute("statusFromEdit") != null){
-                        //means a record was edited(move or delete) and the page just needs to be reloaded
-                        statusRecords = (String)session.getAttribute("statusFromEdit"); 
-                        filtered = false;
+//                    } else if ((String)session.getAttribute("statusFromEdit") != null){
+//                        //means a record was edited(move or delete) and the page just needs to be reloaded
+//                        statusRecords = (String)session.getAttribute("statusFromEdit"); 
+//                        filtered = false;
                     } else {
                         //mean the filter button was used
                         statusRecords = (String)session.getAttribute("statusFromFilter"); 
@@ -89,7 +92,6 @@ public class ManageRecordsServlet extends HttpServlet {
                     } else {
                         System.out.println("THE OUTPUT YOU'RE TRYING TO GET IS FILTERED");
                         rs = (ResultSet)session.getAttribute("rsFromFilter");
-                        System.out.println("after rs was called");
                     }
                                             
                     brList = new ArrayList<>();
@@ -140,8 +142,10 @@ public class ManageRecordsServlet extends HttpServlet {
                     //redirect based on status records
                     if(statusRecords.equalsIgnoreCase("unconfirmed")){
                         path = request.getContextPath() + "/HBMS/unconfirmed.jsp";
-                    } else {
+                    } else if (statusRecords.equalsIgnoreCase("confirmed")) {
                         path = request.getContextPath() + "/HBMS/confirmed.jsp";
+                    } else {
+                        path = request.getContextPath() + "/HBMS/cancelled.jsp";
                     }
 
                     //allRecordsFromDB.close();
