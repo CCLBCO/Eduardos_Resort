@@ -36,7 +36,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <input name="recover-submit" class="changecolor btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
+                        <input name="recover-submit" class="action-button btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
                       </div>
           
                     </form>

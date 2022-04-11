@@ -24,7 +24,7 @@
         <label for="psw">Confirm Password</label>
         <input type="password" id="psw" name="passConf" title="Must match with the given password above." required>
 
-        <input type="submit" value="Submit">
+        <input type="submit" class="action-button" value="Submit">
       </form>
       </div>
     </div>
