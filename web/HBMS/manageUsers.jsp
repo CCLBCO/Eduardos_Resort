@@ -43,7 +43,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../image/ER_logo_noBG.png">
+                <img src="../image/ER_logo_noBG(cropped).png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -63,6 +63,12 @@
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
                                 class="pl-5 font-weight-light submenu-form sub-active" id="confirmedForm">
                                 <button class="submenu" id="confirmed" name="status" value="confirmed">Confirmed Records</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
+                                class="pl-5 font-weight-light submenu-form" id="cancelledbookings">
+                                  <button class="submenu" id="cancelled" name="status" value="confirmed">Cancelled Records</button>
                             </form>
                         </li>
                     </ul>
@@ -109,18 +115,18 @@
                                 <p class="h2 text-light font-weight-bold align-text-bottom">MANAGE USERS</p>
                             </div>
 
-                            <div class="row justify-content-between mt-3 w-100 ml-0">
-                                <div class="row col-sm-12 col-lg-10 pt-2">
-                                    <form method="POST" action="" class="w-100">
+                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
+                                <div class="row col-sm-12 col-lg-10 pt-2 filterflex">
+                                    <form method="POST" action="" class="w-100 filterflex">
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Remove
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
                                             Account</button>
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Change
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change
                                             Password</button>
                                         <button
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2">Add
+                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
                                             Account</button>
                                     </form>
                                 </div>

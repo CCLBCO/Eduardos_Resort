@@ -51,7 +51,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../image/ER_logo_noBG.png">
+                <img src="../image/ER_logo_noBG(cropped).png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>

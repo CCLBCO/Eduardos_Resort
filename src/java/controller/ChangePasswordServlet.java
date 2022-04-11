@@ -64,12 +64,12 @@ public class ChangePasswordServlet extends HttpServlet {
                    session = request.getSession();
                    
                    email = (String) session.getAttribute("email");
-                   
+                   System.out.println("email is: " + email);
                    PreparedStatement ps;
                    
                    // For Updating Password
                    updatePassQuery = "UPDATE ACCOUNTS SET PASSWORD = ? WHERE EMAIL = ?";
-
+                   
                    // if new password and confirm password does not match
                    if(!passConfArg.equals(passArg)){
                        request.setAttribute("error", "Password Does not Match!!");
@@ -79,11 +79,11 @@ public class ChangePasswordServlet extends HttpServlet {
                    else{
                       
                        encryptPass = Security.encrypt(passArg);
-                       System.out.println("Password has been updated with: " + passArg);
                        ps = con.prepareStatement(updatePassQuery);
                        ps.setString(1, encryptPass);
                        ps.setString(2, email);
                        ps.executeUpdate();
+                       System.out.println("Password has been updated with: " + passArg);
                        session.removeAttribute("email");
                        session.removeAttribute("otpvalue");
                        session.invalidate();

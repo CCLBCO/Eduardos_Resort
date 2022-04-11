@@ -51,7 +51,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../image/ER_logo_noBG.png">
+                <img src="../image/ER_logo_noBG(cropped).png">
             </div>
 
             <p class="h4 font-weight-bold dashboard">DASHBOARD</p>
@@ -71,6 +71,12 @@
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
                                 class="pl-5 font-weight-light submenu-form" id="confirmedForm">
                                   <button class="submenu" id="confirmed" name="status" value="confirmed">Confirmed Records</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
+                                class="pl-5 font-weight-light submenu-form" id="cancelledbookings">
+                                  <button class="submenu" id="cancelled" name="status" value="confirmed">Cancelled Records</button>
                             </form>
                         </li>
                     </ul>
