@@ -32,6 +32,7 @@ public class EditRecordsServlet extends HttpServlet {
     static String userDB, passDB;                                               // Username and Password from web.xml
     static String userArg, passArg, query;        
     
+    private String path;
     private ArrayList<BookingRecord> brList;
     private HttpSession session;
     
@@ -65,7 +66,7 @@ public class EditRecordsServlet extends HttpServlet {
             session = request.getSession();
         
             if(con != null){
-                try{
+                try {
                     AccessRecords record = new AccessRecords(con);
                     session = request.getSession();
                     
@@ -98,11 +99,75 @@ public class EditRecordsServlet extends HttpServlet {
                         }
                     }
                     
-                    session.setAttribute("statusFromEdit", statusRecords);
-                    response.sendRedirect("ManageRecordsServlet");
+                    //session.setAttribute("statusFromEdit", statusRecords);
+                    //response.sendRedirect("ManageRecordsServlet");  
+                    
+                    System.out.println("the status of the records you're trying to get that has been edited: " + statusRecords);
+                    
+                    ResultSet rs = record.showRecords(statusRecords);
+                    
+                    brList = new ArrayList<>();
+                    String room_type = "";
+                    String status_type = "";
+                    int numberOfRecords = 0;
+                    while(rs.next()){
+                        switch(rs.getInt("room_id"))
+                        {
+                            case 1: room_type = "deluxe";
+                                    break;                         
+                            case 2: room_type = "family";
+                                    break;    
+                        }
+                        switch(rs.getInt("status_id")) 
+                        {
+                            case 0: status_type = "unconfirmed";
+                                    break;                         
+                            case 1: status_type = "confirmed";
+                                    break;    
+                            case 2: status_type = "cancelled";
+                                    break;  
+                        }
+                        brList.add(
+                            new BookingRecord(
+                            rs.getInt("booking_id"),         
+                            rs.getTimestamp("date_booked"),                   
+                            rs.getString("name"),             
+                            rs.getString("email"),              
+                            rs.getString("phone_number"),              
+                            rs.getString("country"),                  
+                            room_type,
+                            rs.getDate("start_booking"),
+                            rs.getDate("end_booking"),
+                            rs.getInt("number_of_days"),
+                            rs.getDouble("cost"),
+                            rs.getString("booking_code"),
+                            status_type)
+                        );
+                        numberOfRecords++;
+                        System.out.println("the name of this record is " + rs.getString("name"));
+                    }
+
+                    session.setAttribute("brList", brList);
+
+                    System.out.println("The number of records: " + numberOfRecords);
+
+                    //redirect based on status records
+                    if(statusRecords.equalsIgnoreCase("unconfirmed")){
+                        path = request.getContextPath() + "/HBMS/unconfirmed.jsp";
+                    } else if (statusRecords.equalsIgnoreCase("confirmed")) {
+                        path = request.getContextPath() + "/HBMS/confirmed.jsp";
+                    } else {
+                        path = request.getContextPath() + "/HBMS/cancelled.jsp";
+                    }
+
                     //allRecordsFromDB.close();
                     //record.close();  
-                } catch(IOException e) {
+
+                    response.sendRedirect(path);
+                    
+                    //allRecordsFromDB.close();
+                    //record.close();  
+                } catch(SQLException e) {
                     e.printStackTrace();
                 }
             }

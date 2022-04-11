@@ -180,12 +180,12 @@ public class AccessRecords {
         }
     }
         
-    public ResultSet filterRecords(String status, Timestamp drFilter, String rtFilter) { 
+    public ResultSet filterRecords(String status, String drFilter, String rtFilter) { 
         String filterquery = "";
         String statusToBeFiltered = "";
         int rtNum = 0;
-        Timestamp tsNone = Timestamp.valueOf("2022-01-01 00:00:00.00");
-        int tsCompare = tsNone.compareTo(drFilter);
+        //Timestamp tsNone = Timestamp.valueOf("2022-01-01 00:00:00.00");
+        //int tsCompare = tsNone.compareTo(drFilter);
         
         System.out.println("YOU'RE INSIDE filterRecords()!");
         switch(status){
@@ -203,17 +203,26 @@ public class AccessRecords {
                 break;
         }
         
-        if(rtFilter.equals("")) {
+        if(rtFilter.equals("Select Room Type")) {
             System.out.println("FILTER HAS NO ROOM TYPE INPUT");
+            //previous:
+            //filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND DATE_BOOKED >= (TIMESTAMP(?) as timestamp)";
+            
+            //new:
             filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND DATE_BOOKED >= ?";
             try {
                 PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
                 filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
-                filterRecordStmt.setTimestamp(2, drFilter);
+                //previous (didn't work): 
+                //filterRecordStmt.setTimestamp(2, drFilter);
+                
+                //new:
+                filterRecordStmt.setString(2, drFilter);
+                
                 ResultSet filtered = filterRecordStmt.executeQuery();
                 return filtered;
             } catch (SQLException ex) {}
-        } else if (tsCompare == 0) {
+        } else if (drFilter.equals("")) {
             System.out.println("FILTER HAS NO DATE RECORDED INPUT");
             filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND ROOM_ID = ?";
             try {
@@ -229,8 +238,13 @@ public class AccessRecords {
             try {
                 PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
                 filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
-                filterRecordStmt.setTimestamp(2, drFilter);
-                filterRecordStmt.setInt(2, rtNum);
+                //previous (didn't work):
+                //filterRecordStmt.setTimestamp(2, drFilter);
+                
+                //new:
+                filterRecordStmt.setString(2, drFilter);
+                
+                filterRecordStmt.setInt(3, rtNum);
                 ResultSet filtered = filterRecordStmt.executeQuery();
                 return filtered;
             } catch (SQLException ex) {}
