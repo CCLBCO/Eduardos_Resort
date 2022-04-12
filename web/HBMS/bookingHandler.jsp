@@ -74,7 +74,7 @@
                         </li>
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
-                                class="pl-5 font-weight-light submenu-form" id="cancelledbookings">
+                                class="pl-5 font-weight-light submenu-form" id="cancelledForm">
                                   <button class="submenu" id="cancelled" name="status" value="cancelled">Cancelled Records</button>
                             </form>
                         </li>

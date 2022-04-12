@@ -60,22 +60,18 @@ public class FilterRecordsServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(con != null){
+        
+        session = request.getSession();
+        String statusRecords = request.getParameter("status");
+                    
+        if(request.getParameter("filterType").equals("filter")) {
+            if(con != null){
                 try {
                     AccessRecords record = new AccessRecords(con);
-                    session = request.getSession();
                     String dateRecordedFilter = "";
                     String roomTypeFilter = "";
-                    System.out.println("the date recorded from getParameter: " + request.getParameter("dateRecorded"));
-//                    try {
-//                        dateRecordedFilter = request.getParameter("dateRecorded").concat(" 00:00:00.00");
-//                    } catch (IllegalArgumentException e) {
-//                        e.printStackTrace();
-//                        dateRecordedFilter = null;
-//                        //dateRecordedFilter = "2022-01-01 00:00:00.00";
-//                    }
                     
-                    
+                    //getting the dateRecorded value if there is input
                     try {
                         if(request.getParameter("dateRecorded").equals("")) {
                             System.out.println("dateRecorded is null");
@@ -89,7 +85,7 @@ public class FilterRecordsServlet extends HttpServlet {
                     }
                     System.out.println("dateRecordedFilter: " + dateRecordedFilter);
                     
-                    
+                    //getting the roomType value if there is input
                     try {
                         if(request.getParameter("roomType").equals(null)) {
                             roomTypeFilter = "";
@@ -99,27 +95,64 @@ public class FilterRecordsServlet extends HttpServlet {
                     } catch (NullPointerException npe) {
                         roomTypeFilter = "";
                     }
-                    String statusRecords = request.getParameter("status");
                     
                     System.out.println("date recorded: " + dateRecordedFilter);
-                    //System.out.println("check-in: " + checkInFilter);
-                    //System.out.println("check-out: " + checkOutFilter);
                     System.out.println("room type: " + roomTypeFilter);
                     System.out.println("the status of the records you're trying to get is: " + statusRecords);
                     
                     
                     ResultSet rsFromFilter = record.filterRecords(statusRecords, dateRecordedFilter, roomTypeFilter);
 
+                    session.setAttribute("filterType", "filter");
                     session.setAttribute("rsFromFilter", rsFromFilter);
                     session.setAttribute("statusFromFilter", statusRecords);
                     response.sendRedirect("ManageRecordsServlet");
                     //allRecordsFromDB.close();
                     //record.close();  
+                    
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
             }
+        } else if(request.getParameter("filterType").equals("search")) { 
+            if(con != null){
+                try {
+                    AccessRecords record = new AccessRecords(con);
+                    String searchedValue = "";
+                   
+                    try {
+                        if(request.getParameter("searchValue").equals(null)) {
+                            searchedValue = "";
+                        } else {
+                            searchedValue = request.getParameter("searchValue");
+                        }
+                    } catch (NullPointerException npe) {
+                        searchedValue = "";
+                    }
+                    
+                    System.out.println("searchedValue: " + searchedValue);
+                    System.out.println("the status of the records you're trying to get is: " + statusRecords);
+                    
+                    
+                    ResultSet rsFromFilter = record.searchRecords(statusRecords, searchedValue);
+
+                    session.setAttribute("filterType", "search");
+                    session.setAttribute("rsFromFilter", rsFromFilter);
+                    session.setAttribute("statusFromFilter", statusRecords);
+                    response.sendRedirect("ManageRecordsServlet");
+                    //allRecordsFromDB.close();
+                    //record.close();  
+                    
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            session.setAttribute("filterType", "reset");
+            session.setAttribute("statusFromFilter", statusRecords);
+            response.sendRedirect("ManageRecordsServlet");
         }
+    }
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

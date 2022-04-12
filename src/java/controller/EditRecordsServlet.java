@@ -64,7 +64,7 @@ public class EditRecordsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             session = request.getSession();
-        
+            boolean checkboxesNull = false;
             if(con != null){
                 try {
                     AccessRecords record = new AccessRecords(con);
@@ -77,31 +77,43 @@ public class EditRecordsServlet extends HttpServlet {
                     System.out.println("the status of the records you're trying to get is: " + statusRecords);
                     
                     String bookIDs[] = request.getParameterValues("bookingID"); //array of booking IDs that had their boxes checked
-                    System.out.println("the number of records that have been checked: "+ bookIDs.length);
-                    int[] bookingIDs = new int[bookIDs.length];
+                    int[] bookingIDs = null;
                     
-                    for(int i = 0; bookIDs.length > i; i++){
-                        System.out.println("inside loop");
-                        System.out.println("the number of IDs being converted: "+ (i + 1));
-                        bookingIDs[i] = Integer.parseInt(bookIDs[i]);
+                    try {
+                        System.out.println("the number of records that have been checked: "+ bookIDs.length);
+                        bookingIDs = new int[bookIDs.length];
+                    
+                        for(int i = 0; bookIDs.length > i; i++){
+                            System.out.println("inside loop");
+                            System.out.println("the number of IDs being converted: "+ (i + 1));
+                            bookingIDs[i] = Integer.parseInt(bookIDs[i]);
+                        }
+                    } catch (NullPointerException npe) {
+                        System.out.println("the delete all function must have been pressed so no checkboxes are required to be checked");
+                        record.finalDeleteAllRecords();
+                        checkboxesNull = true;
                     }
                     
-                    if(bookingIDs.length == 0) {
+                    //if the above did not catch NullPointerException, the following code will continue to run since there were checkboxes clicked
+                    //and even if there were checkboxes clicked and the DELETE ALL button was pressed, there is still a switch case for that
+                    if(!checkboxesNull && bookingIDs.length == 0) {
                         //pop alert something in front end
                         System.out.println("there is no record that has been checked");
-                    } else if(bookingIDs.length >= 1) {
+                    } else if(!checkboxesNull && bookingIDs.length >= 1) {
                         System.out.println("bookingIDs length is greater than or equal to one!");
                         switch(editButtonType){
                             case "delete": record.deleteRecords(bookingIDs);
                                 break;
                             case "move":  record.moveRecords(bookingIDs, statusRecords);
                                 break;
+                            case "trueDelete":  record.finalDeleteRecords(bookingIDs);
+                                break;
+                            case "trueDeleteAll":  record.finalDeleteAllRecords();
+                                break;
                         }
                     }
                     
-                    //session.setAttribute("statusFromEdit", statusRecords);
-                    //response.sendRedirect("ManageRecordsServlet");  
-                    
+                    //The following code is to reload the page with the (probably) updated set of records
                     System.out.println("the status of the records you're trying to get that has been edited: " + statusRecords);
                     
                     ResultSet rs = record.showRecords(statusRecords);

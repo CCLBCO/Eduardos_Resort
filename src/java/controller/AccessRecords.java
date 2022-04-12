@@ -43,6 +43,8 @@ public class AccessRecords {
                                 break;
             case "confirmed": query = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = 1";
                                 break;
+            case "cancelled": query = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = 2";
+                                break;
         }
         try{
             PreparedStatement ps = con.prepareStatement(query);
@@ -104,29 +106,29 @@ public class AccessRecords {
         return null;
     }
 
-    private static boolean isInteger(String str) {
-        if (str == null) {
-            return false;
-        }
-        int length = str.length();
-        if (length == 0) {
-            return false;
-        }
-        int i = 0;
-        if (str.charAt(0) == '-') {
-            if (length == 1) {
-                return false;
-            }
-            i = 1;
-        }
-        for (; i < length; i++) {
-            char c = str.charAt(i);
-            if (c < '0' || c > '9') {
-                return false;
-            }
-        }
-        return true;
-    }
+//    private static boolean isInteger(String str) {
+//        if (str == null) {
+//            return false;
+//        }
+//        int length = str.length();
+//        if (length == 0) {
+//            return false;
+//        }
+//        int i = 0;
+//        if (str.charAt(0) == '-') {
+//            if (length == 1) {
+//                return false;
+//            }
+//            i = 1;
+//        }
+//        for (; i < length; i++) {
+//            char c = str.charAt(i);
+//            if (c < '0' || c > '9') {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     //Update queries
     public void moveRecords(int[] bookingIDs, String status){
@@ -139,6 +141,8 @@ public class AccessRecords {
                 break;
             //if it was an confirmed record, it will be updated to unconfirmed, probably means that the handler made a mistake in confirming
             case "confirmed": statusToBeSwitchedTo = "0";         //0 means unconfirmed
+                break;
+            case "cancelled": statusToBeSwitchedTo = "0";         //0 means unconfirmed
                 break;
         }
         System.out.print("Status to be switched to is: " + statusToBeSwitchedTo);
@@ -161,8 +165,8 @@ public class AccessRecords {
         }
     }
     
+    //changing status to 'cancelled'
     public void deleteRecords(int[] bookingIDs){
-        
         String updatequery = "UPDATE BOOKING_INFO SET STATUS_ID = ? WHERE BOOKING_ID = ?";
        
         try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){
@@ -179,21 +183,98 @@ public class AccessRecords {
             ex.printStackTrace();
         }
     }
+    
+    //truly deleting the 'cancelled' recordsrecords
+    public void finalDeleteRecords(int[] bookingIDs){
+        String deletequery = "DELETE FROM BOOKING_INFO WHERE STATUS_ID = ? AND BOOKING_ID = ?";
+       
+        try(PreparedStatement deleteRecordStmt = con.prepareStatement(deletequery)){
+            for(int i = 0; bookingIDs.length > i; i++){
+                deleteRecordStmt.setInt(1, 2);                                      //2 in status means "cancelled"
+                deleteRecordStmt.setInt(2, bookingIDs[i]);
+
+                int deleted = deleteRecordStmt.executeUpdate();
+                con.commit();
+                System.out.println("Number of records deleted are: " + deleted);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    //truly deleting all the 'cancelled' records
+    public void finalDeleteAllRecords() {
+        String deletequery = "DELETE FROM BOOKING_INFO WHERE STATUS_ID = ?";
+       
+        try(PreparedStatement deleteRecordStmt = con.prepareStatement(deletequery)) {
+            deleteRecordStmt.setInt(1, 2);                                      //2 in status means "cancelled"
+
+            int deleted = deleteRecordStmt.executeUpdate();
+            con.commit();
+            System.out.println("Number of records deleted are: " + deleted);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public ResultSet searchRecords(String status, String searchValue) {
+        String searchquery = "";
+        String statusToBeFiltered = "";
+        int rtNum = 0;
         
+        System.out.println("YOU'RE INSIDE searchRecords()!");
+        System.out.println("status passed inside searchRecords() is " + status);
+        
+        switch(status){
+            case "unconfirmed": statusToBeFiltered = "0";       //0 means unconfirmed
+                break;
+            case "confirmed": statusToBeFiltered = "1";         //1 means confirmed
+                break;
+            case "cancelled": statusToBeFiltered = "2";         //2 means cancelled
+                break;
+        }
+        
+        if(searchValue.equals("")) {
+            System.out.println("SEARCH HAS NO INPUT");
+            searchquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ?";
+            
+            try {
+                PreparedStatement searchRecordStmt = con.prepareStatement(searchquery);
+                searchRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
+                
+                ResultSet searched = searchRecordStmt.executeQuery();
+                return searched;
+            } catch (SQLException ex) {}
+        } else {
+            System.out.println("SEARCH HAS INPUT");
+            searchquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND (NAME = ? OR EMAIL = ? OR PHONE_NUMBER = ? OR BOOKING_CODE = ?)";
+            
+            try {
+                PreparedStatement searchRecordStmt = con.prepareStatement(searchquery);
+                searchRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
+                searchRecordStmt.setString(2, searchValue);
+                searchRecordStmt.setString(3, searchValue);
+                searchRecordStmt.setString(4, searchValue);
+                searchRecordStmt.setString(5, searchValue);
+                ResultSet searched = searchRecordStmt.executeQuery();
+                return searched;
+            } catch (SQLException ex) {}
+        }
+        return null;
+    }
+    
     public ResultSet filterRecords(String status, String drFilter, String rtFilter) { 
         String filterquery = "";
         String statusToBeFiltered = "";
         int rtNum = 0;
-        //Timestamp tsNone = Timestamp.valueOf("2022-01-01 00:00:00.00");
-        //int tsCompare = tsNone.compareTo(drFilter);
         
         System.out.println("YOU'RE INSIDE filterRecords()!");
         switch(status){
-            //if it was an unconfirmed record, it will be updated to confirmed
-            case "unconfirmed": statusToBeFiltered = "0";       //1 means confirmed
+            case "unconfirmed": statusToBeFiltered = "0";       //0 means unconfirmed
                 break;
-            //if it was an confirmed record, it will be updated to unconfirmed, probably means that the handler made a mistake in confirming
-            case "confirmed": statusToBeFiltered = "1";         //0 means unconfirmed
+            case "confirmed": statusToBeFiltered = "1";         //1 means confirmed
                 break;
         }
         switch(rtFilter){
@@ -203,20 +284,22 @@ public class AccessRecords {
                 break;
         }
         
-        if(rtFilter.equals("Select Room Type")) {
+        if(rtFilter.equals("Select Room Type") && drFilter.equals("")) {
+            System.out.println("FILTER HAS NO INPUT");
+            filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ?";
+            try {
+                PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
+                filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
+                
+                ResultSet filtered = filterRecordStmt.executeQuery();
+                return filtered;
+            } catch (SQLException ex) {}
+        } else if(rtFilter.equals("Select Room Type")) {
             System.out.println("FILTER HAS NO ROOM TYPE INPUT");
-            //previous:
-            //filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND DATE_BOOKED >= (TIMESTAMP(?) as timestamp)";
-            
-            //new:
             filterquery = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = ? AND DATE_BOOKED >= ?";
             try {
                 PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
                 filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
-                //previous (didn't work): 
-                //filterRecordStmt.setTimestamp(2, drFilter);
-                
-                //new:
                 filterRecordStmt.setString(2, drFilter);
                 
                 ResultSet filtered = filterRecordStmt.executeQuery();
@@ -238,12 +321,7 @@ public class AccessRecords {
             try {
                 PreparedStatement filterRecordStmt = con.prepareStatement(filterquery);
                 filterRecordStmt.setInt(1, Integer.parseInt(statusToBeFiltered));   
-                //previous (didn't work):
-                //filterRecordStmt.setTimestamp(2, drFilter);
-                
-                //new:
                 filterRecordStmt.setString(2, drFilter);
-                
                 filterRecordStmt.setInt(3, rtNum);
                 ResultSet filtered = filterRecordStmt.executeQuery();
                 return filtered;

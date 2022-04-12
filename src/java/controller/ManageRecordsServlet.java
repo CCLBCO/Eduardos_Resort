@@ -74,12 +74,11 @@ public class ManageRecordsServlet extends HttpServlet {
                         //means from homepage of owner/handler or other record pages
                         statusRecords = request.getParameter("status");    
                         filtered = false;
-//                    } else if ((String)session.getAttribute("statusFromEdit") != null){
-//                        //means a record was edited(move or delete) and the page just needs to be reloaded
-//                        statusRecords = (String)session.getAttribute("statusFromEdit"); 
-//                        filtered = false;
+                    } else if(session.getAttribute("filterType").equals("reset")) {
+                        statusRecords = (String)session.getAttribute("statusFromFilter"); 
+                        filtered = false;
                     } else {
-                        //mean the filter button was used
+                        //means the filter button was used
                         statusRecords = (String)session.getAttribute("statusFromFilter"); 
                         filtered = true;
                     }

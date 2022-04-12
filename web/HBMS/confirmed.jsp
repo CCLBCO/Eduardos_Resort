@@ -142,7 +142,7 @@
                                 <span class="flaticon-calendar"></span> <!--Date Recorded onwards-->
                                 <input class="inpbox samplewidth1" type="date" placeholder="Date Recorded" name="dateRecorded" form="FilterRecordsServlet">
                                 
-<!--                                <label for="bday">Check In:</label>
+<!--                            <label for="bday">Check In:</label>
                                 <span class="flaticon-calendar"></span> 
                                 <input class="inpbox" type="date" placeholder="Check In Date" name="checkIn" form="FilterRecordsServlet">
                                 
@@ -163,8 +163,8 @@
                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                 <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
                                     <form class="w-100 filterflex" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
-                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom">Filter</button>
-                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom">Reset</button>
+                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom" name="filterType" value="filter">Filter</button>
+                                        <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom" name="filterType" value="reset">Reset</button>
                                         <input type="hidden" name="status" value="confirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
                                     </form>
                                     <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
@@ -175,41 +175,19 @@
                                             class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Move to Unconfirmed</button>
                                         <input type="hidden" name="status" value="confirmed" form="EditRecordsServlet">
                                     </form>
-                                        
-                                        
-                                    <!--form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
-                                        <button class="filter-button">Filter</button>
-                                        
-                                        <div class="dropdown-edit">
-                                            <button class="dropbtn" type="button" data-toggle="dropdown">Edit</button>
-                                            <ul class="dropdown-edit-content">
-                                                <li><a href="#">Delete</a></li>
-                                                <li><a href="#">Move to Unconfirmed</a></li>
-                                            </ul>
-                                        </div>
-                                    </form-->
                                 </div>
                                         
                                 <div class="topnav">
                                     <div class="search-container">
-                                        <form action="/action_page.php">
-                                            <input type="text" placeholder="Search" name="search">
-                                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        <form method="POST" action="<%= request.getContextPath()%>/FilterRecordsServlet">
+                                            <input type="text" placeholder="Search" name="searchValue">
+                                            <input type="hidden" name="status" value="confirmed">
+                                            <button type="submit" name="filterType" value="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                         </form>
                                     </div>
                                 </div>
-                                <!--div class="row col-sm-12 col-lg-5 pt-2 justify-content-end">
-                                    <form method="POST" action="" class="w-100 d-flex justify-content-end">
-                                        <button class="col-sm-12 col-lg-5 btn btn-actions ml-0">Reset Filter</button>
-                                        <button class="col-sm-12 col-lg-5 btn btn-actions ml-0 ml-md-3 mt-sm-2 mt-lg-0">Reset Order</button>
-                                    </form>
-                                </div-->
                             </div>
                             
-                            <!--
-                                instead of <div> class look into using <container> to make the box 
-                                vertically scrollable and fit the records content
-                            -->
                             <div class="content-block bg-light min-vh-100 w-100 mt-4">
                                 <!-- Start of Records body -->
 

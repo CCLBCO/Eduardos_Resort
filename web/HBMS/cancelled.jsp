@@ -134,32 +134,22 @@
                                 <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
                                     <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
-                                        <button type="submit" id="deleteButton" name="editType" value="delete"
+                                        <button type="submit" id="deleteButton" name="editType" value="move"
                                             class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Restore</button>
-                                        <button type="submit" id="deleteButton" name="editType" value="delete"
+                                        <button type="submit" id="deleteButton" name="editType" value="trueDelete"
                                             class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
-                                        <button type="submit" id="moveButton" name="editType" value="move" 
+                                        <button type="submit" id="moveButton" name="editType" value="trueDeleteAll" 
                                             class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete All</button>
-                                        <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
+                                        <input type="hidden" name="status" value="cancelled" form="EditRecordsServlet">
                                     </form>
-                                    <!--form method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet" class="w-100 display-flex">
-                                        <button class="filter-button">Filter</button>
-                                        
-                                        <div class="dropdown-edit">
-                                            <button class="dropbtn" type="button" data-toggle="dropdown">Edit</button>
-                                            <ul class="dropdown-edit-content">
-                                                <li><a href="#">Delete</a></li>
-                                                <li><a href="#">Move to Confirmed</a></li>
-                                            </ul>
-                                        </div>
-                                    </form-->
                                 </div>
                                         
                                 <div class="topnav">
                                     <div class="search-container">
-                                        <form action="/action_page.php">
-                                            <input type="text" placeholder="Search" name="search">
-                                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        <form method="POST" action="<%= request.getContextPath()%>/FilterRecordsServlet">
+                                            <input type="text" placeholder="Search" name="searchValue">
+                                            <input type="hidden" name="status" value="cancelled">
+                                            <button type="submit" name="filterType" value="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                         </form>
                                     </div>
                                 </div>
