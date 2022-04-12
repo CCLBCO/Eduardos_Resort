@@ -117,15 +117,15 @@
 
                             <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                 <div class="row col-sm-12 col-lg-10 pt-2 filterflex">
-                                    <form method="POST" action="" class="w-100 filterflex">
+                                    <form method="POST" id="EditAccountsServlet" action="<%= request.getContextPath()%>/EditAccountsServlet" class="w-100 filterflex">
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
-                                        <button
+                                        <button name="editAccountType" value="remove"
                                             class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
                                             Account</button>
-                                        <button
+                                        <button name="editAccountType" value="changePassword"
                                             class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change
                                             Password</button>
-                                        <button
+                                        <button name="editAccountType" value="addAccount"
                                             class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
                                             Account</button>
                                     </form>
@@ -134,10 +134,8 @@
 
                             <div class="content-block bg-light min-vh-100 w-100 mt-4">
                                 <!-- Start of Accounts body -->
-
-                                <form method="POST" id="fetchItem"></form>
                                 <section class="confirmed">
-                                    <form method="POST" id="item-form" action="ManageUsersServlet">
+                                    <form method="POST" id="item-form" action="<%= request.getContextPath()%>/ManageUsersServlet">
                                         <table class="table table-responsive" data-toggle="table" data-search="true"
                                             data-filter-control="true" data-show-export="true"
                                             data-click-to-select="true" data-toolbar="#toolbar">
@@ -172,7 +170,7 @@
                                                             String password = account.getPassword();
                                         %>
                                                         <tr class="details">
-                                                            <td data-visible="false"><input type="checkbox" name="user_id" value="<%=id%>"</td>
+                                                            <td data-visible="false"><input type="checkbox" id="checkBox" value="<%=id%>" form="EditAccountsServlet"></td>
                                                             <td class="accountID"><%=id%></td>
                                                             <td><%=username%></td>
                                                             <td><%=email%></td>

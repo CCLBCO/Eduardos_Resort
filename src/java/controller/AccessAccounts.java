@@ -73,7 +73,7 @@ public class AccessAccounts {
     }
 
     
-    public void editAccount(Account accountToBeEdited, String newPassword){
+    public void changePassword(int accountIDToBeEdited, String newPassword){
 
         String updatequery = "UPDATE ACCOUNTS SET PASSWORD = ? WHERE USER_ID = ?";
        
@@ -81,6 +81,7 @@ public class AccessAccounts {
             
             String encryptedPass = Security.encrypt(newPassword);
             updateAccountStmt.setString(1, encryptedPass);
+            updateAccountStmt.setInt(2, accountIDToBeEdited);
             
             int updated = updateAccountStmt.executeUpdate();
             con.commit();
@@ -90,11 +91,25 @@ public class AccessAccounts {
     }
     
     // delete function - done
-    public void deleteAccount(int[] accountsToBeDeleted){
-        
+    public void removeAccount(int[] accountsToBeDeleted){
+        String deletequery = "DELETE FROM ACCOUNTS WHERE USER_ID = ?";
+       
+        try(PreparedStatement deleteRecordStmt = con.prepareStatement(deletequery)){
+            for(int i = 0; accountsToBeDeleted.length > i; i++){
+                deleteRecordStmt.setInt(1, 2);                                      //2 in status means "cancelled"
+                deleteRecordStmt.setInt(2, accountsToBeDeleted[i]);
+
+                int deleted = deleteRecordStmt.executeUpdate();
+                con.commit();
+                System.out.println("Number of records deleted are: " + deleted);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
-    public void addAccount(int stockAdded){
+    public void addAccount(Account newAccount){
     
     }
 }

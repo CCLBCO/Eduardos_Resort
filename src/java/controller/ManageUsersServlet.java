@@ -32,7 +32,6 @@ public class ManageUsersServlet extends HttpServlet {
     private HttpSession session;
     private String path;
 
-    private String search, filter, sort;
     private int currentPage;
     private int MAX_RECORDS_PER_PAGE = 10;
     

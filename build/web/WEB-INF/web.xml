@@ -309,10 +309,41 @@
         <servlet-name>validateOTP</servlet-name>
         <servlet-class>controller.validateOTP</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>controller.ChangePasswordServlet</servlet-class>
+        <init-param>
+            <param-name>jdbcClassName</param-name>
+            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbUserName</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPassword</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbcDriverURL</param-name>
+            <param-value>jdbc:derby</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbHostName</param-name>
+            <param-value>localhost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPort</param-name>
+            <param-value>1527</param-value>
+        </init-param>
+        <init-param>
+            <param-name>databaseName</param-name>
+            <param-value>EduardosResort</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAccountsServlet</servlet-name>
+        <servlet-class>controller.EditAccountsServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
             <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
@@ -393,6 +424,10 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAccountsServlet</servlet-name>
+        <url-pattern>/EditAccountsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
