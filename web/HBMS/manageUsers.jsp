@@ -117,12 +117,13 @@
 
                             <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                 <div class="row col-sm-12 col-lg-10 pt-2 filterflex centeritems">
-                                    <form method="POST" id="EditAccountsServlet" action="<%= request.getContextPath()%>/EditAccountsServlet" class="w-100 filterflex">
+                                    <form method="POST" id="EditAccountsServlet" action="<%= request.getContextPath()%>/EditAccountsServlet"></form>
+                                    <!--form class="w-100 filterflex"-->
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
-                                        <button name="editAccountType" value="remove"
+                                        <button onclick="atLeastOne()" id="removeButton" name="editAccountType" value="remove" form="EditAccountsServlet"
                                             class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
                                             Account</button>
-                                    </form>
+                                    <!--/form-->
                                     
                                         <button onclick="togglePopup()" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change 
                                         Password</button>
@@ -132,10 +133,22 @@
                                 </div>
                             </div>
 
+                            <%
+                                String manageUserMsg = (String)request.getAttribute("error");  
+                                if(manageUserMsg != null) { %>
+                                    <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
+                                        <div class="row col-sm-12 col-lg-10 pt-2 filterflex centeritems">
+                                            <font color=red size=3px><%=manageUserMsg%></font>
+                                        </div>
+                                    </div>
+                            <%  }
+
+                            %>
+                               
                             <div class="content-block bg-light min-vh-100 w-100 mt-4">
                                 <!-- Start of Accounts body -->
                                 <section class="confirmed">
-                                    <form method="POST" id="item-form" action="<%= request.getContextPath()%>/ManageUsersServlet">
+                                    <!--<form method="POST" id="item-form" action="<!--%= request.getContextPath()%>/ManageUsersServlet">-->
                                         <table class="table table-responsive" data-toggle="table" data-search="true"
                                             data-filter-control="true" data-show-export="true"
                                             data-click-to-select="true" data-toolbar="#toolbar">
@@ -150,11 +163,11 @@
                                             </thead>
                                             <tbody>
                                                 <%
-                                                    System.out.print("this is before the arraylist");
+                                                    
                                                     ArrayList<Account> accounts = (ArrayList)session.getAttribute("accountsList");
                                                     int pageLimit = currentPage * 10;
                                                     int start = pageLimit - MAX_RECORDS_PER_PAGE;
-                                                    System.out.print("this is after the arraylist");
+                                                   
                                                     if(accounts.isEmpty()){
                                                         System.out.println("accountList has nothing :((");
                                                     }
@@ -170,7 +183,9 @@
                                                             String password = account.getPassword();
                                         %>
                                                         <tr class="details">
-                                                            <td data-visible="false"><input type="checkbox" id="checkBox" value="<%=id%>" form="EditAccountsServlet"></td>
+                                                            <td>
+                                                                <input type="checkbox" name="userID" value="<%=id%>" form="EditAccountsServlet">
+                                                            </td>
                                                             <td class="accountID"><%=id%></td>
                                                             <td><%=username%></td>
                                                             <td><%=email%></td>
@@ -183,7 +198,7 @@
                                          %>
                                             </tbody>
                                         </table>
-                                    </form>
+                                    <!--/form-->
                                 <!-- End of Accounts Body -->
                             </div>
                         </div>
@@ -193,44 +208,60 @@
         </div>
     </div>
     
+    <!-- Start of Change Password Pop Up -->
     <div class="popup" id="popup">
         <div class="overlay"></div>
         <div class="content">
             <div class="close-btn" onclick="togglePopup()">&times;</div>
             <div class="center">
-                <form>
-                    <label for="usrname">New Password</label>
-                    <input type="password" id="newpassword" name="password" title="Please input a strong password."required>
+                <form method="POST" action="<%= request.getContextPath()%>/EditAccountsServlet">
+                    <label for="username">New Password</label>
+                    <input type="password" id="cpNewPass" name="cpNewPass" title="Please input a strong password." onkeyup='cpCheck();' required>
 
                     <label for="psw">Confirm Password</label>
-                    <input type="password" id="confirmpassword" name="passConf" title="Must match with the given password above." required>
+                    <input type="password" id="cpNewPassConf" name="cpNewPassConf" title="Must match with the given password above." onkeyup='cpCheck();' required>
 
-                    <input type="submit" class="action-button" value="Submit">
+                    <div>
+                        <span id='cpMessage'></span>
+                    </div>
+                    
+                    <button type="submit" class="action-button" name="editAccountType" value="change">CHANGE</button>
                 </form>
             </div>
         </div>
     </div>
-                                            
+    <!-- End of Change Password Pop Up -->
+    
+    <!-- Start of Add Account Pop Up -->
     <div class="popup" id="popup-1">
         <div class="overlay"></div>
         <div class="content">
             <div class="close-btn" onclick="togglePopup1()">&times;</div>
             <div class="center">
-                <form>
+                <!--<form method="POST" action="<!--%= request.getContextPath()%-->/EditAccountsServlet">-->
                     <label for="username">Username</label>
-                    <input type="text"  id="username" name="username"required>
+                    <input type="text"  id="username" name="username" required>
 
+                    <label for="username">Email</label>
+                    <input type="text"  id="email" name="email" required>
+                    
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" title="Please input a strong password."required>
+                    <input type="password" id="addNewPass" name="addNewPass" title="Please input a strong password." onkeyup='aaCheck();' required>
 
                     <label for="confirmpassword1">Confirm Password</label>
-                    <input type="password" id="confirmpassword1" name="passConf" title="Must match with the given password above." required>
-
-                    <input type="submit" class="action-button" value="Submit">
-                </form>
+                    <input type="password" id="addNewPassConf" name="addNewPassConf" title="Must match with the given password above." onkeyup='aaCheck();' form="EditAccountsServlet" required>
+                    
+                    <span id='aaMessage'></span>
+                    
+                    <div>
+                        <button type="submit" class="action-button" name="editAccountType" value="add" form="EditAccountsServlet">ADD</button>
+                    <div>
+                <!--</form>-->
             </div>
         </div>
     </div>
+    <!-- End of Add Account Pop Up -->
+    
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
@@ -264,8 +295,60 @@
     
     <!-- Pop up -->
     <script>
+        
+        function cpCheck() {
+            console.log("you're inside cpCheck");
+            if (document.getElementById("cpNewPass").value === document.getElementById('cpNewPassConf').value) {
+              document.getElementById('cpMessage').style.color = 'green';
+              document.getElementById('cpMessage').innerHTML = 'Passwords match!';
+            } else {
+              document.getElementById('cpMessage').style.color = 'red';
+              document.getElementById('cpMessage').innerHTML = 'Passwords don\'t match!';
+            }
+        }
+        
+        function aaCheck() {
+            console.log("you're inside cpCheck");
+            if (document.getElementById("addNewPass").value === document.getElementById('addNewPassConf').value) {
+              document.getElementById('aaMessage').style.color = 'green';
+              document.getElementById('aaMessage').innerHTML = 'Passwords match!';
+            } else {
+              document.getElementById('aaMessage').style.color = 'red';
+              document.getElementById('aaMessage').innerHTML = 'Passwords don\'t match!';
+            }
+        }
+        
+        
+        
+        function atLeastOne() {
+            var numberOfChecked = $('input:checkbox:checked').length;
+            if (numberOfChecked === 0) {
+               alert("At least one checkbox has to be checked!"); 
+            } else {
+                console.log("one or more has been checked!");
+//                console.log("editButtonType is " + document.getElementsByName("editAccountType").value);
+//                document.getElementsByName("editAccountType").value = "remove";
+//                
+//                console.log("editButtonType is " + document.getElementsByName("editAccountType").value);
+//                const form  = document.getElementById("EditAccountsServlet");
+//
+//                form.submit();                
+                document.forms["EditAccountsServlet"].submit();
+            }
+        }
+        
         function togglePopup(){
-            document.getElementById("popup").classList.toggle("active");
+            var numberOfChecked = $('input:checkbox:checked').length;
+            console.log("total checked is: " + numberOfChecked);
+            if(numberOfChecked > 1) {
+                console.log("more than one was checked");
+                alert("Only one checkbox should be checked!");                
+            } else if(numberOfChecked === 0) { 
+                console.log("less than one was checked");
+                alert("One checkbox has to be checked!"); 
+            } else {
+                document.getElementById("popup").classList.toggle("active");
+            }
         }
         
         function togglePopup1(){

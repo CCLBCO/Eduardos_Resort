@@ -65,30 +65,38 @@ public class EditAccountsServlet extends HttpServlet {
             throws ServletException, IOException {
             session = request.getSession();
             boolean checkboxesNull = false;
+            System.out.println("YOU ARE INSIDE EDIT ACCOUNTS SERVLET");
             if(con != null){
                 try {
                     AccessAccounts account = new AccessAccounts(con);
                     session = request.getSession();
                     
-                    String editAccountType = request.getParameter("editType");
+                    String editAccountType = (String)request.getParameter("editAccountType").trim();
+                    
+                    try {
+                        System.out.println("editAccountType in line 77 is " + editAccountType);
+                        if(!editAccountType.equals("change") || !editAccountType.equals("add")) {
+                            System.out.println("editAccountType in line 79 is " + editAccountType);
+                            //editAccountType = "remove";
+                        }
+                    } catch (NullPointerException npe) {
+                        editAccountType = "remove";
+                    }
                     
                     System.out.println("the edit type you're trying to do is: " + editAccountType);
                     
-                    String accIDs[] = request.getParameterValues("bookingID"); //array of booking IDs that had their boxes checked
+                    String accIDs[] = request.getParameterValues("userID"); //array of booking IDs that had their boxes checked
                     int[] accountIDs = null;
                     
-                    
-                    System.out.println("the number of records that have been checked: "+ accountIDs.length);
-                    accountIDs = new int[accIDs.length];
-
-                    try {
-                        System.out.println("the number of records that have been checked: "+ accountIDs.length);
+                    try {                        
+                        System.out.println("the number of records that have been checked: "+ accIDs.length);
                         accountIDs = new int[accIDs.length];
                     
                         for(int i = 0; accIDs.length > i; i++){
                             System.out.println("inside loop");
                             System.out.println("the number of IDs being converted: "+ (i + 1));
                             accountIDs[i] = Integer.parseInt(accIDs[i]);
+                            System.out.println("accountIDs[i] is " + accountIDs[i]);
                         }
                     } catch (NullPointerException npe) {
                         System.out.println("the add account function must have been pressed so no checkboxes are required to be checked");
@@ -104,23 +112,28 @@ public class EditAccountsServlet extends HttpServlet {
                     
                     //if the above did not catch NullPointerException, the following code will continue to run since there were checkboxes clicked
                     //and even if there were checkboxes clicked and the DELETE ALL button was pressed, there is still a switch case for that
-                    if(accountIDs.length == 0) {
+                    if(!checkboxesNull && accountIDs.length == 0) {
                         //pop alert something in front end
                         System.out.println("there is no account that has been checked");
-                    } else if(accountIDs.length >= 1) {
+                    } else if(!checkboxesNull && accountIDs.length >= 1) {
                         System.out.println("accountIDNums length is greater than or equal to one!");
+                        System.out.println("editAccountType in line 121 is " + editAccountType);
                         
-                        if (editAccountType.equals("remove")) {
+                        if(editAccountType.equals("remove")) {
+                            System.out.println("removeAccount() should be executed");
                             account.removeAccount(accountIDs);
-                        } else if (editAccountType.equals("changePassword")) {
-                            if(accountIDs.length == 1) {
-                                if(request.getParameter("newPass").equals(request.getParameter("confirmNewPass"))){
-                                    account.changePassword(accountIDs[0], request.getParameter("confirmNewPass"));
-                                } 
+                        } else if (editAccountType.equals("change")) {  //change password button
+                                System.out.println("changePassword() should be executed");
+                                System.out.println("the user id that will be edited is " + accountIDs[0]);
+                                System.out.println(request.getParameter("cpNewPass"));
+                                System.out.println(request.getParameter("cpNewPassConf"));
+                            if(request.getParameter("cpNewPass").equals(request.getParameter("cpNewPassConf"))){
+                                account.changePassword(accountIDs[0], request.getParameter("cpNewPassConf"));
                             } else {
-                                //tell user to check only one checkbox
+                                request.setAttribute("error","Passwords did not match!");
                             }
-                        } else {
+                        } else if (editAccountType.equals("add")) {
+                            System.out.println("addAccount() should be executed");
                             //Account account = new Account(request.getParameter("user_id"), 
                                 //                  request.getParameter("username"), 
                                 //                  request.getParameter("email"),  

@@ -65,8 +65,8 @@
                   <!--span class="flaticon-taxi"></span-->
                   <select id="rooms" name="rooms" required>
                     <option value="">Select Room Type</option>
-                    <option value="1">Family Room</option>
-                    <option value="2">Deluxe Room</option>
+                    <option value="1">Deluxe Room</option>
+                    <option value="2">Family Room</option>
                   </select>
                 </div>
                 <div class="inpbox">

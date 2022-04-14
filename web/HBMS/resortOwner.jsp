@@ -81,8 +81,7 @@
                         </li>
                     </ul>
                 </li>
-                <%
-                if(!session.getAttribute("role").equals("handler")) {%>
+                
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle font-weight-bold">ACCOUNTS</a>
@@ -95,7 +94,6 @@
                         </li>
                     </ul>
                 </li>
-                <%  }%>
                 <li class="logout-action">
                     <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
                         class="font-weight-light text-center">
@@ -152,7 +150,7 @@
                 document.forms["confirmedForm"].submit();
             });
 
-            document.getElementById("manageUsers").addEventListener("click", function () {
+            document.getElementById("manageUsersForm").addEventListener("click", function () {
                 document.forms["manageUsersForm"].submit();
             });
 

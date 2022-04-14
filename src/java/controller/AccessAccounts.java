@@ -96,8 +96,8 @@ public class AccessAccounts {
        
         try(PreparedStatement deleteRecordStmt = con.prepareStatement(deletequery)){
             for(int i = 0; accountsToBeDeleted.length > i; i++){
-                deleteRecordStmt.setInt(1, 2);                                      //2 in status means "cancelled"
-                deleteRecordStmt.setInt(2, accountsToBeDeleted[i]);
+                
+                deleteRecordStmt.setInt(1, accountsToBeDeleted[i]);
 
                 int deleted = deleteRecordStmt.executeUpdate();
                 con.commit();

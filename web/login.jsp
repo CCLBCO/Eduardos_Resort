@@ -25,6 +25,12 @@
             <form method="post" action="loginServlet">
                 <img src="image/avatar.svg">
                 <h2 class="title">ADMIN LOGIN</h2>
+                <%
+                    String login_msg=(String)request.getAttribute("error");  
+                    if(login_msg!=null)
+                    out.println("<font color=red size=3px>"+login_msg+"</font>");
+                %>
+                <br><br>
                    <div class="input-div one">
                       <div class="i">
                               <i class="fas fa-user"></i>
@@ -53,12 +59,9 @@
                 <input type="submit" class="btn" value="Login">
                 
             </form>
-            <%
-                String login_msg=(String)request.getAttribute("error");  
-                if(login_msg!=null)
-                out.println("<font color=red size=3px>"+login_msg+"</font>");
-            %>
+            
         </div>
+        
     </div>
 
     <script>

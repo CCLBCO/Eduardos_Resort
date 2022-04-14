@@ -10,9 +10,6 @@
                     <file>${file.reference.mysql-connector-java-5.1.45.jar}</file>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.commons-text-1.9.jar-1}</file>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.derbyclient.jar-1}</file>
                 </library>
                 <library dirs="200">
@@ -23,11 +20,15 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.commons-lang3-3.12.0.jar}</file>
+                    <file>${file.reference.javax.mail.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.javax.mail.jar}</file>
+                    <file>${file.reference.commons-text-1.9.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.commons-lang3-3.12.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

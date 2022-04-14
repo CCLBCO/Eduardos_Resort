@@ -80,21 +80,21 @@
                         </li>
                     </ul>
                 </li>
-                <%
+                <!--%
                 if(!session.getAttribute("role").equals("handler")) {%>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle font-weight-bold">ACCOUNTS</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <form method="POST" action="<%= request.getContextPath()%>/ManageUsersServlet"
+                            <form method="POST" action="<!-- %= request.getContextPath()%>/ManageUsersServlet"
                                 class="pl-5 font-weight-light submenu-form" id="manageUsersForm">
                                 <button class="submenu" id="manageUsersForm" value="manageUsers">Manage Users</button>
                             </form>
                         </li>
                     </ul>
                 </li>
-                <%  }%>
+                <!--%  }% -->
                 <li class="logout-action">
                     <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
                         class="font-weight-light text-center">

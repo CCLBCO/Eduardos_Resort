@@ -94,9 +94,9 @@
                         class="dropdown-toggle font-weight-bold">ACCOUNTS</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <form action="manageUsers.html" class="pl-5 font-weight-light submenu-form" id="manageUsersForm">
-<!--                                <p class="submenu" id="manageUsers">Manage Users</p>-->
-                                <button class="submenu" id="manageUsers" value="manageUsers">Manage Users</button>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageUsersServlet"
+                                class="pl-5 font-weight-light submenu-form" id="manageUsersForm">
+                                <button class="submenu" id="manageUsers">Manage Users</button>
                             </form>
                         </li>
                     </ul>
@@ -272,15 +272,11 @@
                 document.forms["confirmedForm"].submit();
             });
 
-//            document.getElementById("manageUsers").addEventListener("click", function () {
-//                document.forms["manageUsersForm"].submit();
-//            });
-
-            document.getElementById("generateExcel").addEventListener("click", function () {
-                console.log("YOU ARE INSIDE GENERATE EXCEL");
-                var table2excel = new Table2Excel();
-                table2excel.export(document.querySelectorAll("#unconfirmed-records"), "EduardosResort-Unconfirmed-Bookings");
+            document.getElementById("manageUsersForm").addEventListener("click", function () {
+                document.forms["manageUsersForm"].submit();
             });
+
+            
         })();
     </script>
 </body>
