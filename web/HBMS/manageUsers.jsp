@@ -116,19 +116,19 @@
                             </div>
 
                             <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
-                                <div class="row col-sm-12 col-lg-10 pt-2 filterflex">
+                                <div class="row col-sm-12 col-lg-10 pt-2 filterflex centeritems">
                                     <form method="POST" id="EditAccountsServlet" action="<%= request.getContextPath()%>/EditAccountsServlet" class="w-100 filterflex">
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
                                         <button name="editAccountType" value="remove"
                                             class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
                                             Account</button>
-                                        <button name="editAccountType" value="changePassword"
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change
-                                            Password</button>
-                                        <button name="editAccountType" value="addAccount"
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
-                                            Account</button>
                                     </form>
+                                    
+                                        <button onclick="togglePopup()" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change 
+                                        Password</button>
+                                        
+                                        <button onclick="togglePopup1()" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
+                                        Account</button>
                                 </div>
                             </div>
 
@@ -192,7 +192,45 @@
             </div>
         </div>
     </div>
+    
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup()">&times;</div>
+            <div class="center">
+                <form>
+                    <label for="usrname">New Password</label>
+                    <input type="password" id="newpassword" name="password" title="Please input a strong password."required>
 
+                    <label for="psw">Confirm Password</label>
+                    <input type="password" id="confirmpassword" name="passConf" title="Must match with the given password above." required>
+
+                    <input type="submit" class="action-button" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+                                            
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup1()">&times;</div>
+            <div class="center">
+                <form>
+                    <label for="username">Username</label>
+                    <input type="text"  id="username" name="username"required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" title="Please input a strong password."required>
+
+                    <label for="confirmpassword1">Confirm Password</label>
+                    <input type="password" id="confirmpassword1" name="passConf" title="Must match with the given password above." required>
+
+                    <input type="submit" class="action-button" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
@@ -222,6 +260,17 @@
             });
 
         })();
+    </script>
+    
+    <!-- Pop up -->
+    <script>
+        function togglePopup(){
+            document.getElementById("popup").classList.toggle("active");
+        }
+        
+        function togglePopup1(){
+            document.getElementById("popup-1").classList.toggle("active");
+        }
     </script>
 </body>
 

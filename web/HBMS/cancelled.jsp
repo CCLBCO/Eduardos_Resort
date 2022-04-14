@@ -128,11 +128,11 @@
                     <div class="row p-5">
                         <div class="w-100">
                             <div class="row ml-0 centeritems">
-                                <p class="h2 text-light font-weight-bold align-text-bottom">CANCELLED BOOKINGS</p>
+                                <p class="h2 text-light font-weight-bold align-text-bottom">CANCELLED RECORDS</p>
                             </div>
                             <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
-                                <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
-                                    <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
+                                <div class="row col-sm-12 col-lg-7 pt-2 filterflex1">
+                                    <form class="w-100 filterflex1" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
                                         <button type="submit" id="deleteButton" name="editType" value="move"
                                             class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Restore</button>

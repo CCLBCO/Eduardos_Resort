@@ -161,13 +161,13 @@
                                 </select>
                             </div>
                             <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
-                                <div class="row col-sm-12 col-lg-7 pt-2 filterflex">
-                                    <form class="w-100 filterflex" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
+                                <div class="row col-sm-12 col-lg-7 pt-2 filterflex1">
+                                    <form class="w-100 filterflex1" method="POST" id="FilterRecordsServlet" action="<%= request.getContextPath()%>/FilterRecordsServlet">
                                         <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom" name="filterType" value="filter">Filter</button>
                                         <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom" name="filterType" value="reset">Reset</button>
                                         <input type="hidden" name="status" value="unconfirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
                                     </form>
-                                    <form class="w-100 filterflex" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
+                                    <form class="w-100 filterflex1" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
                                         <button type="submit" id="deleteButton" name="editType" value="delete"
                                             class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
