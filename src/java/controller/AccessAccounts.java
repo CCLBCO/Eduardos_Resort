@@ -35,7 +35,7 @@ public class AccessAccounts {
     
     // Select all inventory
     public ResultSet showAccounts() {
-        String query = "SELECT * FROM ACCOUNTS";
+        String query = "SELECT * FROM ACCOUNT";
         try{
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -75,7 +75,7 @@ public class AccessAccounts {
     
     public void changePassword(int accountIDToBeEdited, String newPassword){
 
-        String updatequery = "UPDATE ACCOUNTS SET PASSWORD = ? WHERE USER_ID = ?";
+        String updatequery = "UPDATE ACCOUNT SET PASSWORD = ? WHERE USER_ID = ?";
        
         try(PreparedStatement updateAccountStmt = con.prepareStatement(updatequery)){
             
@@ -92,8 +92,8 @@ public class AccessAccounts {
     
     // delete function - done
     public void removeAccount(int[] accountsToBeDeleted){
-        String deletequery = "DELETE FROM ACCOUNTS WHERE USER_ID = ?";
-       
+        String deletequery = "DELETE FROM ACCOUNT WHERE USER_ID = ?";
+        
         try(PreparedStatement deleteRecordStmt = con.prepareStatement(deletequery)){
             for(int i = 0; accountsToBeDeleted.length > i; i++){
                 
@@ -109,7 +109,24 @@ public class AccessAccounts {
         }
     }
     
-    public void addAccount(Account newAccount){
-    
+    public void addAccount(String uname, String email, String addNewPass){
+        String insertquery = "INSERT INTO APP.ACCOUNT (USERNAME, EMAIL, PASSWORD, ROLE) VALUES(?, ?, ?, ?)";    
+        
+        try(PreparedStatement insertRecordStmt = con.prepareStatement(insertquery)){
+            
+            String encryptedPass = Security.encrypt(addNewPass);
+            insertRecordStmt.setString(1, uname);
+            insertRecordStmt.setString(2, email);
+            insertRecordStmt.setString(3, encryptedPass);
+            insertRecordStmt.setString(4, "handler");
+            
+            int inserted = insertRecordStmt.executeUpdate();
+            con.commit();
+            System.out.println("Number of records deleted are: " + inserted);
+            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

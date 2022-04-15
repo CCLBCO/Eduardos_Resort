@@ -120,9 +120,9 @@
                                     <form method="POST" id="EditAccountsServlet" action="<%= request.getContextPath()%>/EditAccountsServlet"></form>
                                     <!--form class="w-100 filterflex"-->
                                         <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
-                                        <button onclick="atLeastOne()" id="removeButton" name="editAccountType" value="remove" form="EditAccountsServlet"
-                                            class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Remove
-                                            Account</button>
+                                        <button id="removeButton" name="editAccountType" value="remove" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom" 
+                                                form="EditAccountsServlet">Remove Account
+                                        </button>
                                     <!--/form-->
                                     
                                         <button onclick="togglePopup()" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change 
@@ -134,16 +134,14 @@
                             </div>
 
                             <%
-                                String manageUserMsg = (String)request.getAttribute("error");  
+                                String manageUserMsg = (String)session.getAttribute("error");  
                                 if(manageUserMsg != null) { %>
                                     <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                         <div class="row col-sm-12 col-lg-10 pt-2 filterflex centeritems">
                                             <font color=red size=3px><%=manageUserMsg%></font>
                                         </div>
                                     </div>
-                            <%  }
-
-                            %>
+                            <%  } %>
                                
                             <div class="content-block bg-light min-vh-100 w-100 mt-4">
                                 <!-- Start of Accounts body -->
@@ -214,19 +212,22 @@
         <div class="content">
             <div class="close-btn" onclick="togglePopup()">&times;</div>
             <div class="center">
-                <form method="POST" action="<%= request.getContextPath()%>/EditAccountsServlet">
+                <!--form method="POST" action="<!--%= request.getContextPath()%>/EditAccountsServlet"-->
                     <label for="username">New Password</label>
-                    <input type="password" id="cpNewPass" name="cpNewPass" title="Please input a strong password." onkeyup='cpCheck();' required>
+                    <input type="password" id="cpNewPass" name="cpNewPass" title="Please input a strong password." 
+                           onkeyup='cpCheck();' form="EditAccountsServlet" required>
 
                     <label for="psw">Confirm Password</label>
-                    <input type="password" id="cpNewPassConf" name="cpNewPassConf" title="Must match with the given password above." onkeyup='cpCheck();' required>
+                    <input type="password" id="cpNewPassConf" name="cpNewPassConf" title="Must match with the given password above." 
+                           onkeyup='cpCheck();' form="EditAccountsServlet" required>
 
                     <div>
                         <span id='cpMessage'></span>
                     </div>
                     
-                    <button type="submit" class="action-button" name="editAccountType" value="change">CHANGE</button>
-                </form>
+                    <button type="submit" id="changePassButton" class="action-button" 
+                            name="editAccountType" value="change" form="EditAccountsServlet">CHANGE</button>
+                <!--/form-->
             </div>
         </div>
     </div>
@@ -238,23 +239,23 @@
         <div class="content">
             <div class="close-btn" onclick="togglePopup1()">&times;</div>
             <div class="center">
-                <!--<form method="POST" action="<!--%= request.getContextPath()%-->/EditAccountsServlet">-->
+                <form method="POST" id="AddAccountServlet" action="<%= request.getContextPath()%>/AddAccountServlet">
                     <label for="username">Username</label>
                     <input type="text"  id="username" name="username" required>
 
-                    <label for="username">Email</label>
+                    <label for="email">Email</label>
                     <input type="text"  id="email" name="email" required>
                     
                     <label for="password">Password</label>
                     <input type="password" id="addNewPass" name="addNewPass" title="Please input a strong password." onkeyup='aaCheck();' required>
 
                     <label for="confirmpassword1">Confirm Password</label>
-                    <input type="password" id="addNewPassConf" name="addNewPassConf" title="Must match with the given password above." onkeyup='aaCheck();' form="EditAccountsServlet" required>
+                    <input type="password" id="addNewPassConf" name="addNewPassConf" title="Must match with the given password above." onkeyup='aaCheck();' required>
                     
                     <span id='aaMessage'></span>
                     
                     <div>
-                        <button type="submit" class="action-button" name="editAccountType" value="add" form="EditAccountsServlet">ADD</button>
+                        <button type="submit" id="addAccButton" class="action-button">ADD</button>
                     <div>
                 <!--</form>-->
             </div>
@@ -290,6 +291,36 @@
                 document.forms["manageUsersForm"].submit();
             });
 
+            document.getElementById("removeButton").addEventListener("click", function (event) {
+                var numberOfChecked = $('input:checkbox:checked').length;
+            
+                console.log("YOU PRESSED REMOVE BUTTON");
+                if(numberOfChecked === 0) {
+                    alert("At least one checkbox has to be checked!"); 
+                    event.preventDefault();
+                } else {
+                    console.log("one or more has been checked!");
+                    document.forms["EditAccountsServlet"].submit();
+                }
+            });
+            //onclick="atLeastOne()"
+            document.getElementById("changePassButton").addEventListener("click", function (event) {
+                if(document.getElementById("cpNewPass").value === document.getElementById('cpNewPassConf').value) {
+                    console.log("YOU PRESSED CHANGE PASS BUTTON");
+                    document.forms["EditAccountsServlet"].submit();
+                } else {
+                    event.preventDefault();
+                }
+            });
+            
+            document.getElementById("addAccButton").addEventListener("click", function (event) {
+                if(document.getElementById("addNewPass").value === document.getElementById('addNewPassConf').value) {
+                    console.log("YOU PRESSED ADD ACCOUNT BUTTON");
+                    document.forms["AddAccountServlet"].submit();
+                } else {
+                    event.preventDefault();
+                }
+            });
         })();
     </script>
     
@@ -308,7 +339,7 @@
         }
         
         function aaCheck() {
-            console.log("you're inside cpCheck");
+            console.log("you're inside aaCheck");
             if (document.getElementById("addNewPass").value === document.getElementById('addNewPassConf').value) {
               document.getElementById('aaMessage').style.color = 'green';
               document.getElementById('aaMessage').innerHTML = 'Passwords match!';
@@ -330,10 +361,10 @@
 //                document.getElementsByName("editAccountType").value = "remove";
 //                
 //                console.log("editButtonType is " + document.getElementsByName("editAccountType").value);
-//                const form  = document.getElementById("EditAccountsServlet");
-//
-//                form.submit();                
-                document.forms["EditAccountsServlet"].submit();
+                const form  = document.getElementById("EditAccountsServlet");
+
+                form.submit();                
+//                document.forms["EditAccountsServlet].submit();
             }
         }
         
