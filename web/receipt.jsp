@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduardos Resort - Receipt</title>
@@ -10,6 +11,7 @@
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/receipt.css">
+   
 
 </head>
 <body>
@@ -53,11 +55,6 @@
         </div>
 
         <form>
-            <!--I kept it as a form to preserve the look-->
-            <!--Di ko ginalaw "form" and CSS niya-->
-            <!--the only CSS I added is details class, in syncing this and cheska's rate's page I
-            suggest just adding "details" into her CSS file-->
-
             <div class="inputBox">
                 <h3 class="details">ROOM: </h3>
                 <% out.println("<h3 class=" + "details" + ">"+ room + "</h3>"); %>
@@ -98,13 +95,10 @@
                 <h3 class="details">COUNTRY:</h3>
                 <% out.println("<h3 class=" + "details" + ">"+ country + "</h3>"); %>
             </div>
-
-            <input type="submit" value="DOWNLOAD PDF" class="btn">
-
+        <button type="button" class="btn" id="downPDF">Download PDF</button>
         </form>
-
+     
     </div>
-
 </section>
 
 
@@ -137,7 +131,6 @@
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
-
-
 </body>
+<script src="js/downloadpdf.js"></script>
 </html>

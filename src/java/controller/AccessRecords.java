@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import javax.mail.MessagingException;
 
 
 public class AccessRecords {
@@ -131,16 +132,18 @@ public class AccessRecords {
 //    }
 
     //Update queries
-    public void moveRecords(int[] bookingIDs, String status){
+    public void moveRecords(int[] bookingIDs, String status) throws SQLException, MessagingException{
         
         String statusToBeSwitchedTo = "";
         System.out.print("inside moveRecords() function");
         switch(status){
             //if it was an unconfirmed record, it will be updated to confirmed
-            case "unconfirmed": statusToBeSwitchedTo = "1";       //1 means confirmed
+            case "unconfirmed": statusToBeSwitchedTo = "1"; //1 means confirmed
+                                loopThroughSuccessEmail(bookingIDs);
                 break;
             //if it was an confirmed record, it will be updated to unconfirmed, probably means that the handler made a mistake in confirming
             case "confirmed": statusToBeSwitchedTo = "0";         //0 means unconfirmed
+                              loopThroughHandlerErrorEmail(bookingIDs);
                 break;
             case "cancelled": statusToBeSwitchedTo = "0";         //0 means unconfirmed
                 break;
@@ -163,6 +166,55 @@ public class AccessRecords {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    // uses a query to get the email of a customer based on booking_id
+    public String getEmail (int bookingID) throws SQLException{
+        String email = null;
+        String getEmailQuery = "SELECT EMAIL FROM BOOKING_INFO WHERE BOOKING_ID = ?";
+        System.out.println("Successfully emailed booking id:" + bookingID);
+        PreparedStatement ps;
+        ResultSet res;
+        ps = con.prepareStatement(getEmailQuery);
+        ps .setInt(1, bookingID);
+        res = ps.executeQuery();
+                    
+        while(res.next())                                              
+        {
+          email = res.getString("EMAIL");
+        }
+         
+        return email;
+    }
+     
+    // iterates through the array of bookingIDs so we can email each customer
+    public void loopThroughSuccessEmail(int[] bookingIDs) throws SQLException, MessagingException{
+        String email;
+        for(int i = 0; bookingIDs.length > i; i++){
+           email = getEmail(bookingIDs[i]);
+//         successEmail(email);  // Will be used in deployment
+           successEmail("gilcruzada16@gmail.com"); // Placeholder onleh
+        }
+    }
+    
+    // iterates through the array of bookingIDs so we can email each customer about errors
+    public void loopThroughHandlerErrorEmail(int[] bookingIDs) throws SQLException, MessagingException{
+        String email;
+        for(int i = 0; bookingIDs.length > i; i++){
+           email = getEmail(bookingIDs[i]);
+//         handlerErrorEmail(email);  // Will be used in deployment
+           handlerErrorEmail("gilcruzada16@gmail.com"); // Placeholder onleh
+        }
+    }
+    
+    // emails the customer for a successful booking
+    public void successEmail(String email) throws MessagingException{
+        EmailSuccessBookingUtil.sendMail(email);
+    }
+    
+     // emails the customer about potentialhandler error
+    public void handlerErrorEmail(String email) throws MessagingException{
+        EmailHandlerErrorUtil.sendMail(email);
     }
     
     //changing status to 'cancelled'

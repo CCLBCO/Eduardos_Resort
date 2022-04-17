@@ -13,6 +13,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +65,7 @@ public class EditRecordsServlet extends HttpServlet {
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, MessagingException {
             session = request.getSession();
             boolean checkboxesNull = false;
             if(con != null){
@@ -188,13 +191,21 @@ public class EditRecordsServlet extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
+        try {
             processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(EditRecordsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
 
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
+        try {
             processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(EditRecordsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
 
         @Override
