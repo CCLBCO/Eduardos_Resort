@@ -105,7 +105,7 @@ public class EditRecordsServlet extends HttpServlet {
                     } else if(!checkboxesNull && bookingIDs.length >= 1) {
                         System.out.println("bookingIDs length is greater than or equal to one!");
                         switch(editButtonType){
-                            case "delete": record.deleteRecords(bookingIDs);
+                            case "delete": record.deleteRecords(bookingIDs, statusRecords);
                                 break;
                             case "move":  record.moveRecords(bookingIDs, statusRecords);
                                 break;

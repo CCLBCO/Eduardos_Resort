@@ -36,7 +36,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class EmailSuccessBookingUtil {
     
-    public static void sendMail(String recepient) throws MessagingException{
+    public static void sendMail(String recepient, String name) throws MessagingException{
         System.out.println("Preparing to Send...");
         String senderAccount = "ttestuser1628@gmail.com";
         String senderAccountPW = "applebottomjeans";
@@ -58,7 +58,7 @@ public class EmailSuccessBookingUtil {
         
         Session session = Session.getInstance(properties, auth);
         session.setDebug(true);
-        Message message = prepareMessage(session, senderAccount, recepient);
+        Message message = prepareMessage(session, senderAccount, recepient, name);
         
         Transport.send(message);
         System.out.println("Message Sent");
@@ -66,7 +66,7 @@ public class EmailSuccessBookingUtil {
     }
     
     
-    private static Message prepareMessage(Session session, String sA, String rec) throws MessagingException{
+    private static Message prepareMessage(Session session, String sA, String rec, String name) throws MessagingException{
         Map<String, String> mapInlineImages;
         
         Message msg = new MimeMessage(session);
@@ -82,13 +82,13 @@ public class EmailSuccessBookingUtil {
             
             // creates message part
             BodyPart messageBodyPart = new MimeBodyPart();
-            String htmlBody = "<img src=\"cid:image\">";
+            String htmlBody = "<img src=\"cid:image\"><br>";
             messageBodyPart.setContent(htmlBody, "text/html");
             multipart.addBodyPart(messageBodyPart);
 
             // creates image part
             messageBodyPart = new MimeBodyPart();
-            DataSource fds = new FileDataSource("C:\\Users\\User\\Documents\\NetBeansProjects\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
+            DataSource fds = new FileDataSource("E:\\SE II\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
             messageBodyPart.setDataHandler(new DataHandler(fds));
             messageBodyPart.setHeader("Content-ID", "<image>");
              
@@ -97,7 +97,7 @@ public class EmailSuccessBookingUtil {
             
             // add content
             messageBodyPart = new MimeBodyPart();
-            String htmlBody2 = "<html> Hey Gil, <br> <br>"
+            String htmlBody2 = "<html> Hey " + name + ", <br> <br>"
                     + "This is just a quick email to update you that we have confirmed your booking. <br> <br>"
                     + "We look forward to see you within Eduardo's Resort. Please refer to your receipt regarding the details of your confirmation.<br><br>"
                     + "In the meanwhile, if you have any questions, send us an email at eduardosresort@gmail.com. You can also call us at 09183227201. We'll be more than happy to help you!"

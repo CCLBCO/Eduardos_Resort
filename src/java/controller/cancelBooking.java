@@ -31,7 +31,7 @@ public class cancelBooking extends HttpServlet {
     Connection con;
     static StringBuffer url;
     static String userDB, passDB;                                                       // Username and Password from web.xml
-    static String query, dtbsCode, inputCode, updateQuery, getEmail, email;
+    static String query, dtbsCode, inputCode, updateQuery, getEmail, name, email;
     RequestDispatcher rd;
     
     public void init(ServletConfig config) throws ServletException 
@@ -74,7 +74,7 @@ public class cancelBooking extends HttpServlet {
                 
                 query = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = 0 AND BOOKING_CODE = ? ";    
                 updateQuery = "UPDATE BOOKING_INFO SET STATUS_ID = 2 WHERE BOOKING_CODE = ? AND STATUS_ID = 0";
-                getEmail = "SELECT EMAIL FROM BOOKING_INFO WHERE BOOKING_CODE = ?";
+                getEmail = "SELECT NAME, EMAIL FROM BOOKING_INFO WHERE BOOKING_CODE = ?";
                 
                 PreparedStatement ps, uc, ge;
                 ps = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);   
@@ -108,22 +108,23 @@ public class cancelBooking extends HttpServlet {
                     while(res.next())                                              
                     {
                         email = res.getString("EMAIL");
+                        name = res.getString("NAME");
                     }
                     
                     System.out.println(email);
                     String forHandler = "<html> Dear Handler, <br> <br>"
-                    + "The following customer's , ___ , issue for cancellation has been processed. <br> <br>";
-                    emailNotif("shiryou16@gmail.com", forHandler); // For test only
+                    + "The following customer , "+ name +", issue for cancellation has been processed. <br> <br>";
+                    emailNotif("cecibuico@gmail.com", forHandler); // For test only
                     // emailNotif(email, forHandler); // This is for deployment
                     
-                    String forCustomer = "<html> Hi Gil, <br> <br>"
+                    String forCustomer = "<html> Hi "+ name +", <br> <br>"
                     + "We are sorry to hear from you about your booking cancellation. <br> <br>"
                     + "May you soon considder us again for all your resort needs. <br><br>"
                     + "Best Wishes, Eduardo's Resort "
                     + "</html>";
-                    emailNotif("xoulx16@gmail.com", forCustomer);
+                    emailNotif("cecibuico@gmail.com", forCustomer);
                     
-                    rd = request.getRequestDispatcher("/receipt.jsp");            
+                    rd = request.getRequestDispatcher("/index.jsp");            
                     rd.include(request, response);
                 }
              

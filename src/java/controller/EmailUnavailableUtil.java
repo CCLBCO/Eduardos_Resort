@@ -34,9 +34,9 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author Gil Cruzada
  */
-public class EmailHandlerErrorUtil {
+public class EmailUnavailableUtil {
     
-    public static void sendMail(String recepient) throws MessagingException{
+    public static void sendMail(String recepient, String name) throws MessagingException{
         System.out.println("Preparing to Send...");
         String senderAccount = "ttestuser1628@gmail.com";
         String senderAccountPW = "applebottomjeans";
@@ -58,7 +58,7 @@ public class EmailHandlerErrorUtil {
         
         Session session = Session.getInstance(properties, auth);
         session.setDebug(true);
-        Message message = prepareMessage(session, senderAccount, recepient);
+        Message message = prepareMessage(session, senderAccount, recepient, name);
         
         Transport.send(message);
         System.out.println("Message Sent");
@@ -66,7 +66,7 @@ public class EmailHandlerErrorUtil {
     }
     
     
-    private static Message prepareMessage(Session session, String sA, String rec) throws MessagingException{
+    private static Message prepareMessage(Session session, String sA, String rec, String name) throws MessagingException{
         Map<String, String> mapInlineImages;
         
         Message msg = new MimeMessage(session);
@@ -74,7 +74,7 @@ public class EmailHandlerErrorUtil {
             msg.setFrom(new InternetAddress(sA));
             InternetAddress[] toAddress = { new InternetAddress(rec) };
             msg.setRecipients(Message.RecipientType.TO, toAddress);
-            msg.setSubject("Eduardo's Resort Handler Error");
+            msg.setSubject("Eduardo's Resort Reservation Discontinued");
             msg.setSentDate(new Date());
             
             // creates multi-part (body, and embedded images)
@@ -97,9 +97,9 @@ public class EmailHandlerErrorUtil {
             
             // add content
             messageBodyPart = new MimeBodyPart();
-            String htmlBody2 = "<html><br> <br>"
-                    + "We have detected an error in the system with regards to your booking. <br> <br>"
-                    + "It seems that your booking has been mistakenly labelled. The team will immediately have a prompt action to address this.<br><br>"
+            String htmlBody2 = "<html><br>Dear " + name + ", <br> <br>"
+                    + "Warm greetings from Eduardo's Resort, <br> <br>"
+                    + "We're grateful for your deep interest about reserving in our resort. Unfortunately, we currently don't have enough rooms to accommodate you within your requested dates.<br><br>"
                     + "In the meanwhile, if you have any questions, send us an email at eduardosresort@gmail.com. You can also call us at 09183227201. We'll be more than happy to help you! <br><br>"
                     + "Thank you for understanding, Eduardo's Resort."
                     + "</html>";
@@ -111,7 +111,7 @@ public class EmailHandlerErrorUtil {
             return msg;
         
         } catch (AddressException ex) {
-            Logger.getLogger(EmailHandlerErrorUtil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmailUnavailableUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;        
     }

@@ -107,30 +107,92 @@ public class AccessRecords {
         return null;
     }
 
-//    private static boolean isInteger(String str) {
-//        if (str == null) {
-//            return false;
-//        }
-//        int length = str.length();
-//        if (length == 0) {
-//            return false;
-//        }
-//        int i = 0;
-//        if (str.charAt(0) == '-') {
-//            if (length == 1) {
-//                return false;
-//            }
-//            i = 1;
-//        }
-//        for (; i < length; i++) {
-//            char c = str.charAt(i);
-//            if (c < '0' || c > '9') {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
+    // uses a query to get the email of a customer based on booking_id
+    public String getEmail (int bookingID) throws SQLException{
+        String email = null;
+        String getEmailQuery = "SELECT EMAIL FROM BOOKING_INFO WHERE BOOKING_ID = ?";
+        System.out.println("Successfully emailed booking id:" + bookingID);
+        PreparedStatement ps;
+        ResultSet res;
+        ps = con.prepareStatement(getEmailQuery);
+        ps .setInt(1, bookingID);
+        res = ps.executeQuery();
+                    
+        while(res.next())                                              
+        {
+          email = res.getString("EMAIL");
+        }
+         
+        return email;
+    }
+    
+    // uses a query to get the email of a customer based on booking_id
+    public String getName (int bookingID) throws SQLException{
+        String name = null;
+        String getEmailQuery = "SELECT NAME FROM BOOKING_INFO WHERE BOOKING_ID = ?";
+        System.out.println("Successfully emailed booking id:" + bookingID);
+        PreparedStatement ps;
+        ResultSet res;
+        ps = con.prepareStatement(getEmailQuery);
+        ps .setInt(1, bookingID);
+        res = ps.executeQuery();
+                    
+        while(res.next())                                              
+        {
+          name = res.getString("NAME");
+        }
+         
+        return name;
+    }
+     
+    // iterates through the array of bookingIDs so we can email each customer
+    public void loopThroughSuccessEmail(int[] bookingIDs) throws SQLException, MessagingException{
+        String email, name;
+        for(int i = 0; bookingIDs.length > i; i++){
+           email = getEmail(bookingIDs[i]);
+           name = getName(bookingIDs[i]);
+//         successEmail(email, name);  // Will be used in deployment
+           successEmail("cecibuico@gmail.com", name); // Placeholder onleh
+        }
+    }
+    
+    // iterates through the array of bookingIDs so we can email each customer
+    public void loopThroughDiscontinueEmail(int[] bookingIDs) throws SQLException, MessagingException{
+        String email, name;
+        for(int i = 0; bookingIDs.length > i; i++){
+           email = getEmail(bookingIDs[i]);
+           name = getName(bookingIDs[i]);
+//         discontinueEmail(email, name);  // Will be used in deployment
+           discontinueEmail("cecibuico@gmail.com", name); // Placeholder onleh
+        }
+    }
+    
+    // iterates through the array of bookingIDs so we can email each customer about errors
+    public void loopThroughHandlerErrorEmail(int[] bookingIDs) throws SQLException, MessagingException{
+        String email;
+        for(int i = 0; bookingIDs.length > i; i++){
+           email = getEmail(bookingIDs[i]);
+//         handlerErrorEmail(email);  // Will be used in deployment
+           handlerErrorEmail("cecibuico@gmail.com"); // Placeholder onleh
+        }
+    }
+    
+    // emails the customer for a successful booking
+    public void successEmail(String email, String name) throws MessagingException{
+        EmailSuccessBookingUtil.sendMail(email, name);
+    }
+    
+    // emails the customer for a successful booking
+    public void discontinueEmail(String email, String name) throws MessagingException{
+        EmailUnavailableUtil.sendMail(email, name);
+    }
+    
+     // emails the customer about potentialhandler error
+    public void handlerErrorEmail(String email) throws MessagingException{
+        EmailHandlerErrorUtil.sendMail(email);
+    }
+    
     //Update queries
     public void moveRecords(int[] bookingIDs, String status) throws SQLException, MessagingException{
         
@@ -168,57 +230,15 @@ public class AccessRecords {
         }
     }
     
-    // uses a query to get the email of a customer based on booking_id
-    public String getEmail (int bookingID) throws SQLException{
-        String email = null;
-        String getEmailQuery = "SELECT EMAIL FROM BOOKING_INFO WHERE BOOKING_ID = ?";
-        System.out.println("Successfully emailed booking id:" + bookingID);
-        PreparedStatement ps;
-        ResultSet res;
-        ps = con.prepareStatement(getEmailQuery);
-        ps .setInt(1, bookingID);
-        res = ps.executeQuery();
-                    
-        while(res.next())                                              
-        {
-          email = res.getString("EMAIL");
-        }
-         
-        return email;
-    }
-     
-    // iterates through the array of bookingIDs so we can email each customer
-    public void loopThroughSuccessEmail(int[] bookingIDs) throws SQLException, MessagingException{
-        String email;
-        for(int i = 0; bookingIDs.length > i; i++){
-           email = getEmail(bookingIDs[i]);
-//         successEmail(email);  // Will be used in deployment
-           successEmail("gilcruzada16@gmail.com"); // Placeholder onleh
-        }
-    }
-    
-    // iterates through the array of bookingIDs so we can email each customer about errors
-    public void loopThroughHandlerErrorEmail(int[] bookingIDs) throws SQLException, MessagingException{
-        String email;
-        for(int i = 0; bookingIDs.length > i; i++){
-           email = getEmail(bookingIDs[i]);
-//         handlerErrorEmail(email);  // Will be used in deployment
-           handlerErrorEmail("gilcruzada16@gmail.com"); // Placeholder onleh
-        }
-    }
-    
-    // emails the customer for a successful booking
-    public void successEmail(String email) throws MessagingException{
-        EmailSuccessBookingUtil.sendMail(email);
-    }
-    
-     // emails the customer about potentialhandler error
-    public void handlerErrorEmail(String email) throws MessagingException{
-        EmailHandlerErrorUtil.sendMail(email);
-    }
-    
     //changing status to 'cancelled'
-    public void deleteRecords(int[] bookingIDs){
+    public void deleteRecords(int[] bookingIDs, String status) throws SQLException, MessagingException{
+        System.out.print("inside moveRecords() function");
+        switch(status){
+            //if it was an unconfirmed record, it will be be emailed that their booking is discontinued
+            case "unconfirmed": loopThroughDiscontinueEmail(bookingIDs);
+                break;
+        }
+        
         String updatequery = "UPDATE BOOKING_INFO SET STATUS_ID = ? WHERE BOOKING_ID = ?";
        
         try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){

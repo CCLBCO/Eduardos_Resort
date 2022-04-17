@@ -138,7 +138,18 @@ public class ReservationServlet extends HttpServlet {
                 ps.close();
                 
                 // confirmNotif(email); // For Deployment
-                confirmNotif("xoulx16@gmail.com");
+                confirmNotif("cecibuic@gmail.com");
+                
+                String forHandler = "<html> Hi Handler, <br> <br>"
+                    + "The following customer has issued a reservation. Details are as follows: <br> <br>"
+                    + "Name: " + cstmName + "<br>"
+                    + "Email: " + email + "<br>"
+                    + "Phone Number: " + phnNumber + "<br>"
+                    + "Country: " + country + "<br><br>"
+                    + "For further details about check-in and check-out time you may visit the HBMS.";
+                     
+                
+                 handlerConfirmNotif("cecibuico@gmail.com", forHandler);
                 
             }
         } 
@@ -178,6 +189,10 @@ public class ReservationServlet extends HttpServlet {
     
     public void confirmNotif(String email) throws MessagingException{
         EmailConfirmationUtil.sendMail(email);
+    }
+    
+    public void handlerConfirmNotif(String email, String msg) throws MessagingException{
+        EmailReservationHandlerUtil.sendMail(email, msg);
     }
     
     public int getDaysInBetween(LocalDate pPD, LocalDate dDD) {  
