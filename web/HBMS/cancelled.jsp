@@ -69,7 +69,7 @@
                     <ul class="list-unstyled collapse show" id="homeSubmenu">
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
-                                class="pl-5 font-weight-light submenu-form sub-active" id="unconfirmedForm">
+                                class="pl-5 font-weight-light submenu-form" id="unconfirmedForm">
                                 <button class="submenu" id="unconfirmed" name="status" value="unconfirmed">Unconfirmed Records</button>
                             </form>
                         </li>
@@ -81,7 +81,7 @@
                         </li>
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
-                                class="pl-5 font-weight-light submenu-form" id="cancelledbookings">
+                                class="pl-5 font-weight-light submenu-form sub-active" id="cancelledbookings">
                                   <button class="submenu" id="cancelled" name="status" value="cancelled">Cancelled Records</button>
                             </form>
                         </li>
@@ -132,16 +132,13 @@
                             </div>
                             <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
                                 <div class="row col-sm-12 col-lg-7 pt-2 filterflex1">
-                                    <form class="w-100 filterflex1" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
+                                    <form class="w-100 filterflex1" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet"></form>
                                         <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
-                                        <button type="submit" id="deleteButton" name="editType" value="move"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Restore</button>
-                                        <button type="submit" id="deleteButton" name="editType" value="trueDelete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
-                                        <button type="submit" id="moveButton" name="editType" value="trueDeleteAll" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete All</button>
+                                        <button onclick="toggleRestoreWarning()" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Restore</button>
+                                        <button onclick="toggleFinalDeleteWarning()" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
+                                        <button onclick="toggleFinalDeleteAllWarning()" class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete All</button>
                                         <input type="hidden" name="status" value="cancelled" form="EditRecordsServlet">
-                                    </form>
+                                    
                                 </div>
                                         
                                 <div class="topnav">
@@ -244,7 +241,55 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Start of Restore Warning Pop Up -->
+    <div class="popup" id="restorepopup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="toggleRestoreWarning()">&times;</div>
+            <div class="center">
+                <img src="../image/warning-orange.png" style="max-height: 180px; max-width: 180px;">
+                <label>Are you sure about restoring these records back to unconfirmed? If you delete or confirm them again, this will notify the booker.</label>
+                <!--<button onclick="toggleMoveWarning()" class="action-button">CHECK AGAIN</button>-->  
+                <label style="color: red; font-size:10px;">(exit if you want to check again)</label>
+                <button type="submit" id="moveButton" class="action-button" name="editType" value="move" form="EditRecordsServlet">YES</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of Restore Warning Password Pop Up -->
+    
+    <!-- Start of Final Delete Warning Pop Up -->
+    <div class="popup" id="finaldeletepopup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="toggleFinalDeleteWarning()">&times;</div>
+            <div class="center">
+                <img src="../image/warning-orange.png" style="max-height: 180px; max-width: 180px;">
+                <label>Are you sure about deleting the following records? After this there is no way to restore them again.</label>
+                <!--<button onclick="toggleDeleteWarning()" class="action-button">CHECK AGAIN</button>-->    
+                <label style="color: red; font-size:10px;">(exit if you want to check again)</label>
+                <button type="submit" id="finalDeleteButton" name="editType" value="trueDelete" class="action-button" form="EditRecordsServlet">YES</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of Final Delete ALL Warning Pop Up -->
+    
+    <!-- Start of Final Delete Warning Pop Up -->
+    <div class="popup" id="finaldeleteallpopup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="toggleFinalDeleteAllWarning()">&times;</div>
+            <div class="center">
+                <img src="../image/warning-orange.png" style="max-height: 180px; max-width: 180px;">
+                <label>Are you sure about deleting all the records? After this there is no way to restore them again.</label>
+                <!--<button onclick="toggleDeleteWarning()" class="action-button">CHECK AGAIN</button>-->    
+                <label style="color: red; font-size:10px;">(exit if you want to check again)</label>
+                <button type="submit" id="finalDeleteAllButton" name="editType" value="trueDeleteAll" class="action-button" form="EditRecordsServlet">YES</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of Final Delete ALL Warning Pop Up -->
+    
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
@@ -278,6 +323,31 @@
 
             
         })();
+    </script>
+        <script>        
+        function toggleFinalDeleteWarning(){
+            var numberOfChecked = $('input:checkbox:checked').length;
+            console.log("total checked is: " + numberOfChecked);
+            if(numberOfChecked < 1) {
+                alert("At least one should be checked!");                
+            } else {
+                document.getElementById("finaldeletepopup").classList.toggle("active");
+            }
+        }
+        
+        function toggleFinalDeleteAllWarning(){
+            document.getElementById("finaldeleteallpopup").classList.toggle("active");
+        }
+        
+        function toggleRestoreWarning(){
+            var numberOfChecked = $('input:checkbox:checked').length;
+            console.log("total checked is: " + numberOfChecked);
+            if(numberOfChecked < 1) {
+                alert("At least one should be checked!");                
+            } else {
+                document.getElementById("restorepopup").classList.toggle("active");
+            }
+        }
     </script>
 </body>
 </html>

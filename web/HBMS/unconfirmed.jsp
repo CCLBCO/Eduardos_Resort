@@ -168,14 +168,12 @@
                                         <button class="btn btn-base ml-1 ml-lg-3 marginleft marginbottom" name="filterType" value="reset">Reset</button>
                                         <input type="hidden" name="status" value="unconfirmed" form="FilterRecordsServlet"><!-- IMPORTANT FOR GETTING CONFIRMED RECORDS ONLY -->
                                     </form>
-                                    <form class="w-100 filterflex1" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet">
-                                        <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
-                                        <button type="submit" id="deleteButton" name="editType" value="delete"
-                                            class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
-                                        <button type="submit" id="moveButton" name="editType" value="move" 
-                                            class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Move to Confirmed</button>
-                                        <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
-                                    </form>
+                                    <form class="w-100 filterflex1" method="POST" id="EditRecordsServlet" action="<%= request.getContextPath()%>/EditRecordsServlet"></form>
+                                    <!--button id="editButton" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2" onclick="show_hide()">Edit</button-->
+                                    <button onclick="toggleDeleteWarning()" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
+                                    <button onclick="toggleMoveWarning()" class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Move to Confirmed</button>
+                                    <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
+                                    
                                 </div>
                                         
                                 <div class="topnav">
@@ -273,6 +271,38 @@
         </div>
     </div>
 
+    <!-- Start of Delete Warning Pop Up -->
+    <div class="popup" id="deletepopup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="toggleDeleteWarning()">&times;</div>
+            <div class="center">
+                <img src="../image/warning-orange.png" style="max-height: 180px; max-width: 180px;">
+                <label>Are you sure about deleting these records? This will send an email that the customer's booking was discontinued.</label>
+                <!--<button onclick="toggleDeleteWarning()" class="action-button">CHECK AGAIN</button>-->    
+                <label style="color: red; font-size:10px;">(exit if you want to check again)</label>
+                <button type="submit" id="deleteButton" class="action-button" name="editType" value="delete" form="EditRecordsServlet">YES</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of Delete Warning Password Pop Up -->
+    
+    <!-- Start of Move Warning Pop Up -->
+    <div class="popup" id="movepopup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="toggleMoveWarning()">&times;</div>
+            <div class="center">
+                <img src="../image/warning-orange.png" style="max-height: 180px; max-width: 180px;">
+                <label>Are you sure about confirming these records? This will send an email to whom you confirmed.</label>
+                <!--<button onclick="toggleMoveWarning()" class="action-button">CHECK AGAIN</button>-->  
+                <label style="color: red; font-size:10px;">(exit if you want to check again)</label>
+                <button type="submit" id="moveButton" class="action-button" name="editType" value="move" form="EditRecordsServlet">YES</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of Move Warning Password Pop Up -->
+    
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
@@ -310,6 +340,28 @@
                 table2excel.export(document.querySelectorAll("#unconfirmed-records"), "EduardosResort-Unconfirmed-Bookings");
             });
         })();
+    </script>
+    
+    <script>        
+        function toggleDeleteWarning(){
+            var numberOfChecked = $('input:checkbox:checked').length;
+            console.log("total checked is: " + numberOfChecked);
+            if(numberOfChecked < 1) {
+                alert("At least one should be checked!");                
+            } else {
+                document.getElementById("deletepopup").classList.toggle("active");
+            }
+        }
+        
+        function toggleMoveWarning(){
+            var numberOfChecked = $('input:checkbox:checked').length;
+            console.log("total checked is: " + numberOfChecked);
+            if(numberOfChecked < 1) {
+                alert("At least one should be checked!");                
+            } else {
+                document.getElementById("movepopup").classList.toggle("active");
+            }
+        }
     </script>
 </body>
 

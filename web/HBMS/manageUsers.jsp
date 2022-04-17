@@ -52,7 +52,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true"
                         class="dropdown-toggle font-weight-bold">BOOKING</a>
 
-                    <ul class="list-unstyled collapse show" id="homeSubmenu">
+                    <ul class="list-unstyled collapse" id="homeSubmenu">
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
                                 class="pl-5 font-weight-light submenu-form" id="unconfirmedForm">
@@ -61,7 +61,7 @@
                         </li>
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
-                                class="pl-5 font-weight-light submenu-form sub-active" id="confirmedForm">
+                                class="pl-5 font-weight-light submenu-form" id="confirmedForm">
                                 <button class="submenu" id="confirmed" name="status" value="confirmed">Confirmed Records</button>
                             </form>
                         </li>
@@ -78,20 +78,20 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle font-weight-bold">ACCOUNTS</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <ul class="collapse list-unstyled show" id="pageSubmenu">
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageUsersServlet"
-                                 class="font-weight-light text-center" id="manageUsersForm">
+                                 class="pl-5 font-weight-light submenu-form sub-active" id="manageUsersForm">
                                 <button class="submenu" id="manageUsers" name="status" value="manageUsers">Manage Users</button>
                             </form>
                         </li>
                     </ul>
                 </li>
                 <%  }%>
-                <li class="logout-action1">
+                <li class="logout-action">
                     <form method="POST" action="<%= request.getContextPath()%>/logoutServlet"
                          class="font-weight-light text-center">
-                                <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
+                            <button class="btn btn-base logout text-center" id="logout">LOG OUT</button>
                     </form>
                 </li>
             </ul>
