@@ -92,6 +92,13 @@
                                 <button class="submenu" id="manageUsersForm" value="manageUsers">Manage Users</button>
                             </form>
                         </li>
+                        <li>
+                            <form method="POST" action="<%= request.getContextPath()%>/ManageLogsServlet" 
+                                  class="pl-5 font-weight-light submenu-form" id="manageLogsForm">
+<!--                                <p class="submenu" id="manageUsers">Manage Users</p>-->
+                                <button class="submenu" id="manageLogs" value="manageLogs">Handler Logs</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <li class="logout-action">
