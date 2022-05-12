@@ -114,7 +114,7 @@ public class cancelBooking extends HttpServlet {
                     System.out.println(email);
                     String forHandler = "<html> Dear Handler, <br> <br>"
                     + "The following customer , "+ name +", issue for cancellation has been processed. <br> <br>";
-                    emailNotif("cecibuico@gmail.com", forHandler); // For test only
+                    emailNotif("xoulx16@gmail.com", forHandler); // For test only
                     // emailNotif(email, forHandler); // This is for deployment
                     
                     String forCustomer = "<html> Hi "+ name +", <br> <br>"
@@ -122,7 +122,7 @@ public class cancelBooking extends HttpServlet {
                     + "May you soon considder us again for all your resort needs. <br><br>"
                     + "Best Wishes, Eduardo's Resort "
                     + "</html>";
-                    emailNotif("cecibuico@gmail.com", forCustomer);
+                    emailNotif("xoulx16@gmail.com", forCustomer);
                     
                     rd = request.getRequestDispatcher("/index.jsp");            
                     rd.include(request, response);
