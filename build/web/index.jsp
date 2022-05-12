@@ -51,6 +51,7 @@
         <li> <a href="#restaurant">Event Packages</a></li>
         <li> <a href="#gallary">Gallery</a></li>
         <li> <a href="reservation.jsp">Reservation</a></li>
+        <li> <a href="booking.jsp">Booking</a></li>
         <!--li> <a href="login.jsp">Admin Login</a></li-->
       </ul>
 

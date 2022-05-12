@@ -153,7 +153,7 @@ public class AccessRecords {
            email = getEmail(bookingIDs[i]);
            name = getName(bookingIDs[i]);
 //         successEmail(email, name);  // Will be used in deployment
-           successEmail("cecibuico@gmail.com", name); // Placeholder onleh
+           successEmail("xoulx16@gmail.com", name); // Placeholder onleh
         }
     }
     
@@ -164,7 +164,7 @@ public class AccessRecords {
            email = getEmail(bookingIDs[i]);
            name = getName(bookingIDs[i]);
 //         discontinueEmail(email, name);  // Will be used in deployment
-           discontinueEmail("cecibuico@gmail.com", name); // Placeholder onleh
+           discontinueEmail("xoulx16@gmail.com", name); // Placeholder onleh
         }
     }
     
@@ -174,7 +174,7 @@ public class AccessRecords {
         for(int i = 0; bookingIDs.length > i; i++){
            email = getEmail(bookingIDs[i]);
 //         handlerErrorEmail(email);  // Will be used in deployment
-           handlerErrorEmail("cecibuico@gmail.com"); // Placeholder onleh
+           handlerErrorEmail("xoulx16@gmail.com"); // Placeholder onleh
         }
     }
     

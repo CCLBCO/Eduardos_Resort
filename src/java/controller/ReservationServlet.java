@@ -138,7 +138,7 @@ public class ReservationServlet extends HttpServlet {
                 ps.close();
                 
                 // confirmNotif(email); // For Deployment
-                confirmNotif("cecibuic@gmail.com");
+                confirmNotif("xoulx16@gmail.com");
                 
                 String forHandler = "<html> Hi Handler, <br> <br>"
                     + "The following customer has issued a reservation. Details are as follows: <br> <br>"

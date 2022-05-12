@@ -27,19 +27,30 @@
 </header>  
   
 <body>
+     <%
+        String room = (String)request.getAttribute("room");
+        String name = (String)request.getAttribute("name");
+        String arvDate = (String)request.getAttribute("arrivalDate");
+        String deptDate = (String)request.getAttribute("departDate");
+        String email = (String)request.getAttribute("email");
+        String phone = (String)request.getAttribute("phone");
+        String cost = (String)request.getAttribute("cost");
+        String code = (String)request.getAttribute("code");
+        String country = (String)request.getAttribute("country");
+    %>
+    
     <div class="container">
         <div class="book">
             <h1>Your Reservation</h1>
             <ul class="details">
-                <li>Room: </li>
-                <li>Arrival Date: </li>
-                <li>Departure Date: </li>
-                <li>Total Amount: </li>
-                <li>Name: </li>
-                <li>Email: </li>
-                <li>Phone: </li>
-                <li>Country: </li>
-                <li>Booking ID: </li>
+                <li>Room: <b> <% out.println(room);%> </b> </li>
+                <li>Arrival Date: <b><% out.println(arvDate);%></b> </li>
+                <li>Departure Date: <b><% out.println(deptDate);%></b> </li>
+                <li>Total Amount: <b><% out.println("PHP " + cost);%></b> </li>
+                <li>Name: <b><% out.println(name);%></b> </li>
+                <li>Email: <b><% out.println(email);%></b> </li>
+                <li>Phone: <b><% out.println(phone);%></b> </li>
+                <li>Country: <b><% out.println(country);%></b> </li>
             </ul>
         </div>
         
