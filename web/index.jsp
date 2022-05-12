@@ -139,7 +139,7 @@
         <p>To provide excellent training, state-of-the-art competition, facility and other athletic support to members and beneficiaries of the foundation;</p>
         <p>To extend pool access and swimming lesson for individuals who are eager and passionate to learn the sport of swimming; to create programs, incentives and scholarships opportunities for competitive swimmers, coaches and officials;</p>
         <p>To establish strong partnership and linkage with local, national and international both private and government which can provide opportunities for the members and beneficiaries of the foundation.</p>
-        <button class="btn1">DOWNLOAD BROCHURE</button>
+        <!--<button class="btn1">DOWNLOAD BROCHURE</button>-->
       </div>
     </div>
   </div>
@@ -187,7 +187,7 @@
           <span>Conference Room</span>
         </div>
         
-        <div class="box flex">
+<!--        <div class="box flex">
           <i class="fa-solid fa-house-chimney-window"></i>
           <span>Cottages</span>
         </div>
@@ -195,7 +195,7 @@
         <div class="box flex">
           <i class="fa-solid fa-wind"></i>
           <span>Air-Conditioned Room</span>
-        </div>
+        </div>-->
           
           
       </div>

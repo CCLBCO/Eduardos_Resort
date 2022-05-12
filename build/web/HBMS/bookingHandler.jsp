@@ -59,7 +59,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle font-weight-bold">BOOKING</a>
 
-                    <ul class="list-unstyled collapse" id="homeSubmenu">
+                    <ul class="list-unstyled collapse show" id="homeSubmenu">
                         <li>
                             <form method="POST" action="<%= request.getContextPath()%>/ManageRecordsServlet"
                                 class="pl-5 font-weight-light submenu-form" id="unconfirmedForm">
@@ -118,7 +118,7 @@
                 <div class="container mt-sm-5 mt-lg-2">
                     <div class="row">
                         <div class="w-100">
-                            <img src="../image/welcome.png" class="w-100" alt="welcome">
+                            <!--<img src="../image/welcome.png" class="w-100" alt="welcome">-->
                         </div>
                     </div>
                 </div>
