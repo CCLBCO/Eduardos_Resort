@@ -128,7 +128,10 @@ public class ManageRecordsServlet extends HttpServlet {
                             rs.getInt("number_of_days"),
                             rs.getDouble("cost"),
                             rs.getString("booking_code"),
-                            status_type)
+                            status_type,
+                            rs.getString("last_edited_by"),
+                            rs.getTimestamp("last_edited_time")
+                            )
                         );
                         numberOfRecords++;
                         System.out.println("the name of this record is " + rs.getString("name"));

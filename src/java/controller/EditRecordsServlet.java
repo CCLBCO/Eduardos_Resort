@@ -38,6 +38,7 @@ public class EditRecordsServlet extends HttpServlet {
     private String path;
     private ArrayList<BookingRecord> brList;
     private HttpSession session;
+    private String editingUser;
     
     @Override
     public void init(ServletConfig config) throws ServletException 
@@ -72,7 +73,7 @@ public class EditRecordsServlet extends HttpServlet {
                 try {
                     AccessRecords record = new AccessRecords(con);
                     session = request.getSession();
-                    
+                    editingUser = request.getParameter("username");
                     String editButtonType = request.getParameter("editType");
                     String statusRecords = request.getParameter("status");
                     
@@ -105,9 +106,9 @@ public class EditRecordsServlet extends HttpServlet {
                     } else if(!checkboxesNull && bookingIDs.length >= 1) {
                         System.out.println("bookingIDs length is greater than or equal to one!");
                         switch(editButtonType){
-                            case "delete": record.deleteRecords(bookingIDs, statusRecords);
+                            case "delete": record.deleteRecords(bookingIDs, statusRecords, editingUser);
                                 break;
-                            case "move":  record.moveRecords(bookingIDs, statusRecords);
+                            case "move":  record.moveRecords(bookingIDs, statusRecords, editingUser);
                                 break;
                             case "trueDelete":  record.finalDeleteRecords(bookingIDs);
                                 break;
@@ -156,7 +157,10 @@ public class EditRecordsServlet extends HttpServlet {
                             rs.getInt("number_of_days"),
                             rs.getDouble("cost"),
                             rs.getString("booking_code"),
-                            status_type)
+                            status_type, 
+                            rs.getString("last_edited_by"),
+                            rs.getTimestamp("last_edited_time")
+                            )
                         );
                         numberOfRecords++;
                         System.out.println("the name of this record is " + rs.getString("name"));

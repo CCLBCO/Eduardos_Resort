@@ -15,9 +15,7 @@
             throw new NotOwnerException();
         }
         
-        final int MAX_RECORDS_PER_PAGE = 10;
-        int currentPage = 1;    //TEMP VALUES
-        String maxPage = "10";  //TEMP VALUES
+        String user = (String)session.getAttribute("user");
         
         // Needed to Disable Back-tracking without Session
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -163,14 +161,14 @@
                                                 <%
                                                     
                                                     ArrayList<Account> accounts = (ArrayList)session.getAttribute("accountsList");
-                                                    int pageLimit = currentPage * 10;
-                                                    int start = pageLimit - MAX_RECORDS_PER_PAGE;
-                                                   
+//                                                    int pageLimit = currentPage * 10;
+//                                                    int start = pageLimit - MAX_RECORDS_PER_PAGE;
+                                                    int start = 0;
                                                     if(accounts.isEmpty()){
                                                         System.out.println("accountList has nothing :((");
                                                     }
                                                     
-                                                    for (int i = start; i < pageLimit; i++)
+                                                    for (int i = start; i < accounts.size(); i++)
                                                     {
                                                         if (i != accounts.size())
                                                         {

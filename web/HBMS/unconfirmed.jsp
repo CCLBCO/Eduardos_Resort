@@ -17,13 +17,10 @@
     // If a user that's not an admin logins and tries to access the admin.jsp it will throw an exception
     if(!session.getAttribute("role").equals("handler") && !session.getAttribute("role").equals("owner")){
         //throw new WrongAdminException();
-     }
+    }
         
-
-    final int MAX_RECORDS_PER_PAGE = 10;
-    int currentPage = 1;    //TEMP VALUES
-    String maxPage = "10";  //TEMP VALUES
-
+    String user = (String)session.getAttribute("user");
+        
     // Maintaining the search parameter.
     //String searchParameter = (String) session.getAttribute("searchView");
     //if (searchParameter == null) searchParameter = "";
@@ -173,7 +170,7 @@
                                     <button onclick="toggleDeleteWarning()" class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Delete</button>
                                     <button onclick="toggleMoveWarning()" class="col-sm-12 col-lg-4 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom1">Move to Confirmed</button>
                                     <input type="hidden" name="status" value="unconfirmed" form="EditRecordsServlet">
-                                    
+                                    <input type="hidden" name="username" value="<%=user%>" form="EditRecordsServlet">                                    
                                 </div>
                                         
                                 <div class="topnav">
@@ -207,26 +204,25 @@
                                                     <th>Check Out</th>
                                                     <th>Cost</th>
                                                     <th>Booking Code</th>
-                                                    <th></th>
+                                                    <th>Last Edit By</th>
+                                                    <th>Last Edit Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <%
                                                     //for double values like price
                                                     DecimalFormat df = new DecimalFormat("###,##0.00");
-                                                    int pageLimit = currentPage * 10;
-                                                    int start = pageLimit - MAX_RECORDS_PER_PAGE;
+                                                    int start = 0;
                                                     System.out.print("this is before the arraylist");
                                                     ArrayList<BookingRecord> records = (ArrayList)session.getAttribute("brList");
                                                     System.out.print("this is after the arraylist");
                                                     if(records.isEmpty()){
                                                         System.out.println("brList has nothing :((");
                                                     }
-                                                    for (int i = start; i < pageLimit; i++)
+                                                    for (int i = start; i < records.size(); i++)
                                                     {
                                                         if (i != records.size())
                                                         {
-                                                            
                                                             BookingRecord record = records.get(i);
                                                             int id = record.getBookingId();
                                                             Timestamp date_booked = record.getDateBooked();
@@ -239,6 +235,8 @@
                                                             Date end_booking = record.getEndBookingDate();
                                                             double cost = record.getCost();
                                                             String booking_code = record.getBookingCode();        
+                                                            String last_edited_by = record.getLastEditedBy();
+                                                            Timestamp last_edited_time = record.getLastEditedTime();
                                                             System.out.println("this is the name: " + name);
                                                 %>
                                                 <tr class="details">
@@ -254,6 +252,8 @@
                                                     <td><%=end_booking%></td>
                                                     <td><%=df.format(cost)%></td>
                                                     <td><%=booking_code%></td>
+                                                    <td><%=last_edited_by%></td>
+                                                    <td><%=last_edited_time%></td>
                                                 </tr>
                                                 <%} else {
                                                         break;

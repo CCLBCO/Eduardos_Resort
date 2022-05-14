@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.mail.MessagingException;
 
@@ -99,7 +100,9 @@ public class AccessRecords {
                         rs.getInt("number_of_days"),
                         rs.getDouble("cost"),
                         rs.getString("booking_code"),
-                        status_type
+                        status_type,
+                        rs.getString("last_edited_by"),
+                        rs.getTimestamp("last_edited_time")
                 );
             }
         } catch (SQLException ex) 
@@ -194,7 +197,7 @@ public class AccessRecords {
     }
     
     //Update queries
-    public void moveRecords(int[] bookingIDs, String status) throws SQLException, MessagingException{
+    public void moveRecords(int[] bookingIDs, String status, String username) throws SQLException, MessagingException{
         
         String statusToBeSwitchedTo = "";
         System.out.print("inside moveRecords() function");
@@ -224,6 +227,8 @@ public class AccessRecords {
                 con.commit();
                 System.out.println("Number of records updated are: " + updated);
             }
+            //function that updates LAST_EDITED_BY and LAST_EDITED_TIME
+            updateEditTrace(bookingIDs, username);
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -231,7 +236,7 @@ public class AccessRecords {
     }
     
     //changing status to 'cancelled'
-    public void deleteRecords(int[] bookingIDs, String status) throws SQLException, MessagingException{
+    public void deleteRecords(int[] bookingIDs, String status, String username) throws SQLException, MessagingException{
         System.out.print("inside moveRecords() function");
         switch(status){
             //if it was an unconfirmed record, it will be be emailed that their booking is discontinued
@@ -249,6 +254,29 @@ public class AccessRecords {
                 int updated = updateRecordStmt.executeUpdate();
                 con.commit();
                 System.out.println("Number of records updated are: " + updated);
+            }
+            //function that updates LAST_EDITED_BY and LAST_EDITED_TIME
+            updateEditTrace(bookingIDs, username);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void updateEditTrace(int[] bookingIDs, String username) throws SQLException{
+        
+        String updatequery = "UPDATE BOOKING_INFO SET LAST_EDITED_BY = ?, LAST_EDITED_TIME = ? WHERE BOOKING_ID = ?";
+       
+        try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){
+            for(int i = 0; bookingIDs.length > i; i++){
+                System.out.print("the bookingID being updated right now is: " + bookingIDs[i]);
+                updateRecordStmt.setString(1, username);
+                updateRecordStmt.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+                updateRecordStmt.setInt(3, bookingIDs[i]);
+
+                int updated = updateRecordStmt.executeUpdate();
+                con.commit();
+                System.out.println("Number of records traced are: " + updated);
             }
             
         } catch (SQLException ex) {

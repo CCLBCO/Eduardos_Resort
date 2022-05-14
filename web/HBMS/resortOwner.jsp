@@ -20,10 +20,7 @@
             //throw new WrongAdminException();
         }
         
-        final int MAX_RECORDS_PER_PAGE = 10;
-        
-        int currentPage = 1;    //TEMP VALUES
-        String maxPage = "10";  //TEMP VALUES
+        String user = (String)session.getAttribute("user");
         
         // Needed to Disable Back-tracking without Session
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

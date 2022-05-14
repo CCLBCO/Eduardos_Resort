@@ -113,8 +113,8 @@ public class ReservationServlet extends HttpServlet {
                 // We need to not add PASS=? because the program cannot continue if the password is already wrong
                 query = "INSERT INTO APP.BOOKING_INFO (DATE_BOOKED, NAME, EMAIL, PHONE_NUMBER, COUNTRY, "
                         + "ROOM_ID, START_BOOKING, END_BOOKING, NUMBER_OF_DAYS, COST, BOOKING_CODE,"
-                        + "STATUS_ID) "
-                        + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
+                        + "STATUS_ID, LAST_EDITED_BY, LAST_EDITED_TIME)"
+                        + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
                 
                 ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setTimestamp(1, currentDate);
@@ -129,6 +129,8 @@ public class ReservationServlet extends HttpServlet {
                 ps.setInt(10, convCost);
                 ps.setString(11, randomizedCode);
                 ps.setInt(12, status_id);
+                ps.setString(13, "none");
+                ps.setTimestamp(14, currentDate);
                 ps.executeUpdate();
                 con.commit();
                 

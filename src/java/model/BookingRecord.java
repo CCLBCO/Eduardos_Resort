@@ -27,6 +27,8 @@ public class BookingRecord {
     private double cost;
     private String booking_code;
     private String status_type;
+    private String last_edited_by;
+    private Timestamp last_edited_time;
     
     
     //constructors
@@ -46,7 +48,9 @@ public class BookingRecord {
         int number_of_days,
         double cost,
         String booking_code,
-        String status_type)
+        String status_type,
+        String last_edited_by,
+        Timestamp last_edited_time)
     {
         this.booking_id = booking_id;
         this.date_booked = date_booked;
@@ -61,6 +65,8 @@ public class BookingRecord {
         this.cost = cost;
         this.booking_code = booking_code;
         this.status_type = status_type;
+        this.last_edited_by = last_edited_by;
+        this.last_edited_time = last_edited_time;
     }
 
     
@@ -120,5 +126,11 @@ public class BookingRecord {
     }
     public String getStatus(){
         return status_type;
+    }
+    public String getLastEditedBy(){
+        return last_edited_by;
+    }
+    public Timestamp getLastEditedTime(){
+        return last_edited_time;
     }
 }

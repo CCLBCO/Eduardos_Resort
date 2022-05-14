@@ -103,6 +103,7 @@ public class loginServlet extends HttpServlet {
 
                         session.setAttribute("sessionUser", userArg);
                         session.setAttribute("role", r);
+                        session.setAttribute("user", u);
                         response.sendRedirect("bookingManagement");
                     }
                 }
