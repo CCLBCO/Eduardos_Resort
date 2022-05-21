@@ -15,7 +15,9 @@
             throw new NotOwnerException();
         }
         
-        String user = (String)session.getAttribute("user");
+        final int MAX_RECORDS_PER_PAGE = 10;
+        int currentPage = 1;    //TEMP VALUES
+        String maxPage = "10";  //TEMP VALUES
         
         // Needed to Disable Back-tracking without Session
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -117,25 +119,7 @@
                     <div class="row p-5">
                         <div class="w-100">
                             <div class="row ml-0">
-                                <p class="h2 text-light font-weight-bold align-text-bottom">MANAGE USERS</p>
-                            </div>
-
-                            <div class="row justify-content-between mt-3 w-100 ml-0 centeritems">
-                                <div class="row col-sm-12 col-lg-10 pt-2 filterflex centeritems">
-                                    <form method="POST" id="EditAccountsServlet" action="<%= request.getContextPath()%>/EditAccountsServlet"></form>
-                                    <!--form class="w-100 filterflex"-->
-                                        <!--button class="col-sm-12 col-lg-2 mt-sm-2 mt-lg-0 btn btn-actions">View</button-->
-                                        <button id="removeButton" name="editAccountType" value="remove" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom" 
-                                                form="EditAccountsServlet">Remove Account
-                                        </button>
-                                    <!--/form-->
-                                    
-                                        <button onclick="togglePopup()" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Change 
-                                        Password</button>
-                                        
-                                        <button onclick="togglePopup1()" class="col-sm-12 col-lg-3 mt-sm-2 mt-lg-0 btn btn-actions ml-0 ml-lg-2 marginleft marginbottom">Add
-                                        Account</button>
-                                </div>
+                                <p class="h2 text-light font-weight-bold align-text-bottom">HANDLER LOGS</p>
                             </div>
 
                             <%
@@ -157,25 +141,25 @@
                                             data-click-to-select="true" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
-                                                    <th></th>
+                                                    <!--th></th-->
                                                     <th class="user_id">ID</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>
-                                                    <th>Password</th>
+                                                    <th>Handler</th>
+                                                    <th>Time Logged In</th>
+                                                    <th>Time Logged Out</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <%
                                                     
                                                     ArrayList<Account> accounts = (ArrayList)session.getAttribute("accountsList");
-//                                                    int pageLimit = currentPage * 10;
-//                                                    int start = pageLimit - MAX_RECORDS_PER_PAGE;
-                                                    int start = 0;
+                                                    int pageLimit = currentPage * 10;
+                                                    int start = pageLimit - MAX_RECORDS_PER_PAGE;
+                                                   
                                                     if(accounts.isEmpty()){
                                                         System.out.println("accountList has nothing :((");
                                                     }
                                                     
-                                                    for (int i = start; i < accounts.size(); i++)
+                                                    for (int i = start; i < pageLimit; i++)
                                                     {
                                                         if (i != accounts.size())
                                                         {
@@ -186,9 +170,9 @@
                                                             String password = account.getPassword();
                                         %>
                                                         <tr class="details">
-                                                            <td>
+                                                            <!--td>
                                                                 <input type="checkbox" name="userID" value="<%=id%>" form="EditAccountsServlet">
-                                                            </td>
+                                                            </td-->
                                                             <td class="accountID"><%=id%></td>
                                                             <td><%=username%></td>
                                                             <td><%=email%></td>
@@ -392,5 +376,4 @@
         }
     </script>
 </body>
-
 </html>
