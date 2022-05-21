@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -65,6 +66,16 @@ public class cancelBooking extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, MessagingException {
+        HttpSession session = request.getSession();
+        
+        String room = (String)session.getAttribute("sRoom");
+        String name = (String)session.getAttribute("sName");
+        String pckDate = (String)session.getAttribute("sArrivalDate");
+        String deptDate = (String)session.getAttribute("sDepartDate");
+        String email = (String)session.getAttribute("sEmail");
+        String phnNumber = (String)session.getAttribute("sPhone");
+        String cost = (String)session.getAttribute("sCost");
+        String country = (String)session.getAttribute("sCountry");
 
         try {
         if (con != null) {
@@ -86,8 +97,16 @@ public class cancelBooking extends HttpServlet {
                 //Gets stored data from the Database
                 if(!res.next()){
                     System.out.println("No such booking code");
+                    request.setAttribute("room", room);
+                    request.setAttribute("name", name);
+                    request.setAttribute("arrivalDate", pckDate);
+                    request.setAttribute("departDate", deptDate);
+                    request.setAttribute("email", email);
+                    request.setAttribute("phone", phnNumber);
+                    request.setAttribute("cost", cost);
+                    request.setAttribute("country", country);
                     request.setAttribute("error", "Your booking has already been cancelled or Booking Code no longer exists!");
-                    rd = request.getRequestDispatcher("/reservation.jsp");            
+                    rd = getServletContext().getRequestDispatcher("/roomdetails.jsp");            
                     rd.include(request, response);
                     res.close();
                 }
@@ -124,7 +143,7 @@ public class cancelBooking extends HttpServlet {
                     + "</html>";
                     emailNotif("xoulx16@gmail.com", forCustomer);
                     
-                    rd = request.getRequestDispatcher("/index.jsp");            
+                    rd = getServletContext().getRequestDispatcher("/index.jsp");            
                     rd.include(request, response);
                 }
              

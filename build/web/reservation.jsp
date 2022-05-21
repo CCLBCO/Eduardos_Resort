@@ -38,12 +38,6 @@
             </div>
             
             <div class="form">
-            
-            <%
-                String login_msg=(String)request.getAttribute("error");  
-                if(login_msg!=null)
-                out.println("<font color=red size=3px>"+login_msg+"</font>");
-            %>
                 
               <form method="post" action="ReservationServlet">
                 

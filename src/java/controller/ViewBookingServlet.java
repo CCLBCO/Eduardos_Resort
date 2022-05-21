@@ -127,7 +127,18 @@ public class ViewBookingServlet extends HttpServlet {
                 request.setAttribute("phone", phnNumber);
                 request.setAttribute("cost", String.valueOf(convCost));
                 request.setAttribute("country", country);
-                rd = request.getRequestDispatcher("/roomdetails.jsp");            
+                
+                session = request.getSession();
+                session.setAttribute("sRoom", convRoom);
+                session.setAttribute("sName", cstmName);
+                session.setAttribute("sArrivalDate", dateFormat.format(convPckDate));
+                session.setAttribute("sDepartDate", dateFormat.format(convDropDate));
+                session.setAttribute("sEmail", email);
+                session.setAttribute("sPhone", phnNumber);
+                session.setAttribute("sCost", String.valueOf(convCost));
+                session.setAttribute("sCountry", country);
+                
+                rd = request.getServletContext().getRequestDispatcher("/roomdetails.jsp");            
                 rd.include(request, response);
 
             }
