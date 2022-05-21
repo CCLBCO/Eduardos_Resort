@@ -43,15 +43,15 @@
     <nav class="navbar flex1">
 
       <ul class="nav-menu">
-        <li> <a href="#home">Home</a></li>
-        <li> <a href="#amenities-anchor">Amenities</a></li>
-        <li> <a href="#room">Accomodations</a></li>
-        <li> <a href="rates.jsp">Rates and Promos</a></li>
+        <li> <a href="${pageContext.request.contextPath}/index.jsp#home">Home</a></li>
+        <li> <a href="${pageContext.request.contextPath}/index.jsp#amenities-anchor">Amenities</a></li>
+        <li> <a href="${pageContext.request.contextPath}/index.jsp#room">Accomodations</a></li>
+        <li> <a href="${pageContext.request.contextPath}/rates.jsp">Rates and Promos</a></li>
         <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
-        <li> <a href="#restaurant">Event Packages</a></li>
-        <li> <a href="#gallary">Gallery</a></li>
-        <li> <a href="reservation.jsp">Reservation</a></li>
-        <li> <a href="booking.jsp">Booking</a></li>
+        <li> <a href="${pageContext.request.contextPath}/index.jsp#restaurant">Event Packages</a></li>
+        <li> <a href="${pageContext.request.contextPath}/index.jsp#gallary">Gallery</a></li>
+        <li> <a href="${pageContext.request.contextPath}/reservation.jsp">Reservation</a></li>
+        <li> <a href="${pageContext.request.contextPath}/booking.jsp">Booking</a></li>
         <!--li> <a href="login.jsp">Admin Login</a></li-->
       </ul>
 
@@ -215,7 +215,7 @@
         <h2>Featured Rooms and Suites</h2>
       </div>
       <div class="button">
-          <form action="rooms.jsp">
+          <form action="${pageContext.request.contextPath}/rooms.jsp">
               <button class="btn1">BOOK NOW</button>
           </form>
       </div>

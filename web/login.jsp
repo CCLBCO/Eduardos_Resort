@@ -49,7 +49,7 @@
                            <input type="password" class="input" name="password">
                    </div>
                 </div>
-                <a href="/Eduardos_Resort/forgotpassword.jsp">Forgot Password?</a>
+                <a href="${pageContext.request.contextPath}/forgotpassword.jsp">Forgot Password?</a>
                 <br>
                 <!-- reCAPTCHA -->
                 <div class="g-recaptcha"

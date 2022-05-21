@@ -21,11 +21,11 @@
         <div class="container1">
             <nav class="navbar flex1">
               <ul class="nav-menu">
-                <li> <a href="index.jsp">Home</a></li>
+                <li> <a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
                 <!--li> <a href="#room">Accomodations</a></li-->
                 <!--li> <a href="rates.jsp">Rates and Promos</a></li-->
                 <!--li> <a href="#restaurant">Event Packages</a></li-->
-                <li> <a href="reservation.jsp">Reservation</a></li>
+                <li> <a href="${pageContext.request.contextPath}/reservation.jsp">Reservation</a></li>
               </ul>
             </nav>
         </div>

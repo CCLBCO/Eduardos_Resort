@@ -45,20 +45,6 @@
                 out.println("<font color=red size=3px>"+login_msg+"</font>");
             %>
                 
-              <div class="popup" id="popup-1">
-                  <div class="overlay"></div>
-                  <div class="content">
-                      <div class="close-btn" onclick="togglePopup()">&times;</div>
-                      <h1>Enter Booking Code</h1>
-                      <form class="inputcode" method="post" action="cancelBooking">
-                          <input class="cancelbooking" type="text" placeholder="XXXXXXX" name="code" required>
-                          <button class="bksubmit">Submit</button>
-                      </form>
-                  </div>
-              </div>
-                
-              <button class="bk" onclick="togglePopup()">Cancel Booking</button>
-                
               <form method="post" action="ReservationServlet">
                 
                 <div class="inpbox full">

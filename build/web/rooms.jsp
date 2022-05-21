@@ -39,7 +39,7 @@
             </div>
             <p> This room is able to accomodate at least 4 persons, accompanied with complimentary breakfast. (plus Php 400.00 if additional per person)</p>
             <h5>Php 3,500.00</h5>
-            <form action="reservation.jsp">
+            <form action="${pageContext.request.contextPath}/reservation.jsp">
                 <button type="submit" class="flex1">
                 <span>Book Here</span>
                 <i class="fas fa-arrow-circle-right"></i>
@@ -63,7 +63,7 @@
             </div>
             <p> This room is able to accomodate at least 3 persons, accompanied with complimentary breakfast. (plus Php 400.00 if additional per person)</p>
             <h5>Php 2,500.00</h5>
-            <form action="reservation.jsp">
+            <form action="${pageContext.request.contextPath}reservation.jsp">
                 <button type="submit" class="flex1" action="">
                     <span>Book Here</span>
                     <i class="fas fa-arrow-circle-right"></i>
