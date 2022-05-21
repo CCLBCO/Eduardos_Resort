@@ -141,8 +141,10 @@ body{
 }
 form input {
     border: 0;
+    text-align: center;
     width: 74%;
     padding: 0 4%;
+    padding-bottom: 15px;
 }
 .form select:focus, form input {
   outline: none;
@@ -269,7 +271,7 @@ button.bk:hover, button.bksubmit{
   transform: scale(1.1);      /* enlarges text upon hover */
 }
 
-.container .form .popup .inputcode{
+.container .book .popup .content .inputcode{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -279,7 +281,7 @@ button.bk:hover, button.bksubmit{
     margin-bottom: 20px;
 }
 
-.container .form .popup .inputcode .cancelbooking{
+.container .book .popup .content .inputcode .cancelbooking{
     text-align: center;
     margin-bottom: 30px;
 }

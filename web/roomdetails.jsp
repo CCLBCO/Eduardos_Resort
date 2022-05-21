@@ -7,7 +7,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/2237df38d7.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="font/flaticon.css">
-        <link rel="stylesheet" type="text/css" href="css/roomdetails.css" />
+        <link rel="stylesheet" type="text/css" href="css/roomdetails.css">
     </head>
 
     <header class="header">
@@ -40,6 +40,8 @@
             String code = (String) request.getAttribute("code");
             String country = (String) request.getAttribute("country");
         %>
+        
+        <center>
         <%
             String login_msg = (String) request.getAttribute("error");
             if (login_msg != null) {
@@ -47,7 +49,10 @@
             } else {
                 out.println("<font color=white size=3px>" + login_msg + "</font>");
             }
-        %>      
+        %>
+        </center>
+    
+        <br>
         <div class="container">
             <div class="book">
                 <h1>Your Reservation</h1>
@@ -76,7 +81,7 @@
                         <div class="close-btn" onclick="togglePopup()">&times;</div>
                         <h1>Enter Booking Code</h1>
                         <form class="inputcode" method="post" action="cancelBooking">
-                            <input class="cancelbooking" type="text" placeholder="XXXXXXX" name="code" required>
+                                <input class="cancelbooking" type="text" placeholder="XXXXXXX" name="code" required>
                             <button class="bksubmit">Submit</button>
                         </form>
                     </div>
@@ -90,7 +95,6 @@
     <footer>
         <div class="waves">
             <div class="wave" id="wave1"></div>
-
             <div class="wave" id="wave2"></div>
             <div class="wave" id="wave3"></div>
             <div class="wave" id="wave4"></div>
