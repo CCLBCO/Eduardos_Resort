@@ -1,3 +1,5 @@
+/* global html2pdf */
+
 const button = document.getElementById('downPDF');
 console.log(button);
 

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/2237df38d7.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <link rel="stylesheet" type="text/css" href="font/flaticon.css">
         <link rel="stylesheet" type="text/css" href="css/roomdetails.css">
     </head>
@@ -53,8 +54,8 @@
         </center>
     
         <br>
-        <div class="container">
-            <div class="book">
+        <div class="container" id="container">
+            <div class="book" id="book">
                 <h1>Your Reservation</h1>
                 <ul class="details">
                     <li>Room: <b> <% out.println(room);%> </b> </li>
@@ -71,9 +72,9 @@
             <div class="buttons">
                 <button class="bk" onclick="togglePopup()">Cancel Booking</button>
 
-                <form>
-                    <button class="bk">Download PDF</button>
-                </form>
+<!--                <form>
+                    <button type="button" class="bk" id="rdPDF">Download PDF</button>
+                </form>-->
 
                 <div class="popup" id="popup-1">
                     <div class="overlay"></div>
@@ -110,5 +111,6 @@
                                 document.getElementById("popup-1").classList.toggle("active");
                             }
     </script>
+    <script src="js/downloadRoomDetails.js"></script>
 
 </html>

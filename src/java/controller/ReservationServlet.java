@@ -136,11 +136,12 @@ public class ReservationServlet extends HttpServlet {
                 
                 session = request.getSession();
                 session.setAttribute("code", randomizedCode);
-                response.sendRedirect("ReceiptController");
-                ps.close();
+ //               ps.close();
                 
                 // confirmNotif(email); // For Deployment
+                System.out.println("Reached notifs");
                 confirmNotif("xoulx16@gmail.com");
+                
                 
                 String forHandler = "<html> Hi Handler, <br> <br>"
                     + "The following customer has issued a reservation. Details are as follows: <br> <br>"
@@ -150,8 +151,11 @@ public class ReservationServlet extends HttpServlet {
                     + "Country: " + country + "<br><br>"
                     + "For further details about check-in and check-out time you may visit the HBMS.";
                      
-                
+                System.out.println("Reached notifs part 2");
                  handlerConfirmNotif("cecibuico@gmail.com", forHandler);
+                 
+                 System.out.println("Successfully Run!");
+                 response.sendRedirect("ReceiptController");
                 
             }
         } 
@@ -189,7 +193,7 @@ public class ReservationServlet extends HttpServlet {
     return convCost;
     }
     
-    public void confirmNotif(String email) throws MessagingException{
+    public void confirmNotif(String email) throws MessagingException, IOException{
         EmailConfirmationUtil.sendMail(email);
     }
     

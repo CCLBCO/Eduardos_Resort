@@ -124,7 +124,7 @@ public class ReceiptController extends HttpServlet {
                 request.setAttribute("phone", phnNumber);
                 request.setAttribute("cost", String.valueOf(convCost));
                 request.setAttribute("country", country);
-                rd = request.getRequestDispatcher("/receipt.jsp");            
+                rd = request.getServletContext().getRequestDispatcher("/receipt.jsp");           
                 rd.include(request, response);
 
             }
