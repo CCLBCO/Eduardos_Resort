@@ -39,7 +39,7 @@ public class EmailConfirmationUtil {
     public static void sendMail(String recepient, String name) throws MessagingException{
         System.out.println("Preparing to Send...");
         String senderAccount = "ttestuser1628@gmail.com";
-        String senderAccountPW = "applebottomjeans";
+        String senderAccountPW = "ihrwpylodfnjzten";
         
         
         Properties properties = new Properties();
@@ -48,7 +48,7 @@ public class EmailConfirmationUtil {
         properties.put("mail.smtp.host","smtp.gmail.com");
         properties.put("mail.smpt.port","25");
         properties.put("mail.smtp.ssl.enable", "true");
-        
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
         
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {

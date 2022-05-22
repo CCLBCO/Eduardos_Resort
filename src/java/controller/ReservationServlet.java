@@ -135,27 +135,27 @@ public class ReservationServlet extends HttpServlet {
 
                 // confirmNotif(email); // For Deployment
                 System.out.println("Reached notifs");
-                confirmNotif(email, cstmName);
-
-                String forHandler = "<html> Hi Handler, <br> <br>"
-                        + "The following customer has issued a reservation. Details are as follows: <br> <br>"
-                        + "Name: " + cstmName + "<br>"
-                        + "Email: " + email + "<br>"
-                        + "Phone Number: " + phnNumber + "<br>"
-                        + "Country: " + country + "<br><br>"
-                        + "For further details about check-in and check-out time you may visit the HBMS.";
-
-                String queryForHandler = "SELECT EMAIL FROM account";
-
-                fh = con.prepareStatement(queryForHandler);
-                ResultSet res = fh.executeQuery();
-
-                // Stores Data from the Database
-                while (res.next()) {
-                    fhEmail = res.getString("email");
-                    System.out.println("Notif for handler reached!!");
-                    handlerConfirmNotif(fhEmail, forHandler);
-                }
+//                confirmNotif(email, cstmName);
+//
+//                String forHandler = "<html> Hi Handler, <br> <br>"
+//                        + "The following customer has issued a reservation. Details are as follows: <br> <br>"
+//                        + "Name: " + cstmName + "<br>"
+//                        + "Email: " + email + "<br>"
+//                        + "Phone Number: " + phnNumber + "<br>"
+//                        + "Country: " + country + "<br><br>"
+//                        + "For further details about check-in and check-out time you may visit the HBMS.";
+//
+//                String queryForHandler = "SELECT EMAIL FROM account";
+//
+//                fh = con.prepareStatement(queryForHandler);
+//                ResultSet res = fh.executeQuery();
+//
+//                // Stores Data from the Database
+//                while (res.next()) {
+//                    fhEmail = res.getString("email");
+//                    System.out.println("Notif for handler reached!!");
+//                    handlerConfirmNotif(fhEmail, forHandler);
+//                }
                 
                 System.out.println("Successfully Run!");
                 response.sendRedirect("ReceiptController");
