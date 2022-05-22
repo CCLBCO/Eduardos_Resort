@@ -50,7 +50,8 @@ public class ManageRecordsServlet extends HttpServlet {
                     .append(":")
                     .append(config.getInitParameter("dbPort"))
                     .append("/")
-                    .append(config.getInitParameter("databaseName"));
+                    .append(config.getInitParameter("databaseName"))
+                    .append(config.getInitParameter("ssl"));
             con = DriverManager.getConnection(url.toString(),userDB,passDB);  
         } 
         catch (SQLException sqle){ } 

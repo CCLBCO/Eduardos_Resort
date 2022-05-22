@@ -86,15 +86,15 @@ public class EmailSuccessBookingUtil {
             messageBodyPart.setContent(htmlBody, "text/html");
             multipart.addBodyPart(messageBodyPart);
 
-            // creates image part
-            messageBodyPart = new MimeBodyPart();
-            DataSource fds = new FileDataSource("E:\\SE II\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
-            messageBodyPart.setDataHandler(new DataHandler(fds));
-            messageBodyPart.setHeader("Content-ID", "<image>");
-             
-            // add image to the multipart
-            multipart.addBodyPart(messageBodyPart);
-            
+//            // creates image part
+//            messageBodyPart = new MimeBodyPart();
+//            DataSource fds = new FileDataSource("E:\\SE II\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
+//            messageBodyPart.setDataHandler(new DataHandler(fds));
+//            messageBodyPart.setHeader("Content-ID", "<image>");
+//             
+//            // add image to the multipart
+//            multipart.addBodyPart(messageBodyPart);
+//            
             // add content
             messageBodyPart = new MimeBodyPart();
             String htmlBody2 = "<html> Hey " + name + ", <br> <br>"

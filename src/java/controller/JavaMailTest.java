@@ -13,7 +13,7 @@ import javax.mail.MessagingException;
  */
 public class JavaMailTest {
     public static void main(String[] args) throws MessagingException{
-        EmailConfirmationUtil.sendMail("xoulx16@gmail.com");
+        EmailConfirmationUtil.sendMail("xoulx16@gmail.com", "Joseph");
     }
     
 }

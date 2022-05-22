@@ -78,7 +78,8 @@ public class ReceiptController extends HttpServlet {
                     .append(":")
                     .append(config.getInitParameter("dbPort"))
                     .append("/")
-                    .append(config.getInitParameter("databaseName"));
+                    .append(config.getInitParameter("databaseName"))
+                    .append(config.getInitParameter("ssl"));
             con = DriverManager.getConnection(url.toString(),userDB,passDB);  
         } 
         catch (SQLException sqle){ } 
@@ -95,8 +96,8 @@ public class ReceiptController extends HttpServlet {
                 
                 randomizedCode = (String)session.getAttribute("code");
                 System.out.println("Code: " + randomizedCode);
-                query = "SELECT * FROM BOOKING_INFO WHERE BOOKING_CODE = ?";                  
-                PreparedStatement ps = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);   
+                query = "SELECT * FROM ctdd4m5zgklkh9rv.booking_info WHERE BOOKING_CODE = ?";                  
+                PreparedStatement ps = con.prepareStatement(query);   
                 
                 ps.setString(1, randomizedCode); 
                 

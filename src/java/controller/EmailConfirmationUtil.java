@@ -36,7 +36,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class EmailConfirmationUtil {
     
-    public static void sendMail(String recepient) throws MessagingException{
+    public static void sendMail(String recepient, String name) throws MessagingException{
         System.out.println("Preparing to Send...");
         String senderAccount = "ttestuser1628@gmail.com";
         String senderAccountPW = "applebottomjeans";
@@ -58,7 +58,7 @@ public class EmailConfirmationUtil {
         
         Session session = Session.getInstance(properties, auth);
         session.setDebug(true);
-        Message message = prepareMessage(session, senderAccount, recepient);
+        Message message = prepareMessage(session, senderAccount, recepient, name);
         
         Transport.send(message);
         System.out.println("Message Sent");
@@ -66,7 +66,7 @@ public class EmailConfirmationUtil {
     }
     
     
-    private static Message prepareMessage(Session session, String sA, String rec) throws MessagingException{
+    private static Message prepareMessage(Session session, String sA, String rec, String name) throws MessagingException{
         Map<String, String> mapInlineImages;
         
         Message msg = new MimeMessage(session);
@@ -82,22 +82,22 @@ public class EmailConfirmationUtil {
             
             // creates message part
             BodyPart messageBodyPart = new MimeBodyPart();
-            String htmlBody = "<img src=\"cid:image\">";
-            messageBodyPart.setContent(htmlBody, "text/html");
-            multipart.addBodyPart(messageBodyPart);
+//            String htmlBody = "<img src=\"cid:image\">";
+//            messageBodyPart.setContent(htmlBody, "text/html");
+//            multipart.addBodyPart(messageBodyPart);
 
-            // creates image part
-            messageBodyPart = new MimeBodyPart();
-            DataSource fds = new FileDataSource("E:\\SE II\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
-            messageBodyPart.setDataHandler(new DataHandler(fds));
-            messageBodyPart.setHeader("Content-ID", "<image>");
-             
-            // add image to the multipart
-            multipart.addBodyPart(messageBodyPart);
-            
+//            // creates image part
+//            messageBodyPart = new MimeBodyPart();
+//            DataSource fds = new FileDataSource("E:\\SE II\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
+//            messageBodyPart.setDataHandler(new DataHandler(fds));
+//            messageBodyPart.setHeader("Content-ID", "<image>");
+//             
+//            // add image to the multipart
+//            multipart.addBodyPart(messageBodyPart);
+//            
             // add content
             messageBodyPart = new MimeBodyPart();
-            String htmlBody2 = "<html> Hi Gil, <br> <br>"
+            String htmlBody2 = "<html> Hi " + name + ", <br><br>"
                     + "We would like inform you that your reservation has been sent! <br> <br>"
                     + "We're happy to hopefully see you once our handlers confirm your reservation. <br>"
                     + "Best Wishes, Eduardo's Resort "
