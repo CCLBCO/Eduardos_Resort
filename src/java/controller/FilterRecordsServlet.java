@@ -108,8 +108,8 @@ public class FilterRecordsServlet extends HttpServlet {
                     session.setAttribute("rsFromFilter", rsFromFilter);
                     session.setAttribute("statusFromFilter", statusRecords);
                     response.sendRedirect("ManageRecordsServlet");
-                    //allRecordsFromDB.close();
-                    //record.close();  
+                    
+                    record.close();  
                     
                 } catch(IOException e) {
                     e.printStackTrace();

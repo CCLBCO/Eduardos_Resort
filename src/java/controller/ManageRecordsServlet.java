@@ -151,7 +151,6 @@ public class ManageRecordsServlet extends HttpServlet {
                         path = request.getContextPath() + "/HBMS/cancelled.jsp";
                     }
 
-                    //allRecordsFromDB.close();
                     //record.close();  
 
                     response.sendRedirect(path);

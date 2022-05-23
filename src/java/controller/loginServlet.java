@@ -93,7 +93,7 @@ public class loginServlet extends HttpServlet {
                     p = res.getString("PASSWORD");
                     r = res.getString("ROLE");
                 }
-                
+                res.close();
                 decryptedPass = Security.decrypt(p); //decrypted password from database
       
                 if(userArg.equals(u) && passArg.equals(decryptedPass)){
@@ -137,6 +137,7 @@ public class loginServlet extends HttpServlet {
                     rd.include(request, response);
                 }
             }
+            con.close();
         } 
         catch (SQLException sqle){ }
     }

@@ -126,10 +126,10 @@ public class AccessRecords {
                     
         while(res.next())                                              
         {
-          email = sc.decrypt(res.getString("EMAIL"));
+          email = res.getString("EMAIL");
         }
          
-        return email;
+        return sc.decrypt(email);
     }
     
     // uses a query to get the email of a customer based on booking_id
@@ -206,11 +206,18 @@ public class AccessRecords {
         switch(status){
             //if it was an unconfirmed record, it will be updated to confirmed
             case "unconfirmed": statusToBeSwitchedTo = "1"; //1 means confirmed
+                                System.out.println("current editing user: " + username);
+                                updateEditTrace(bookingIDs, username);
+                                System.out.print("passed through UpdateEditTrace()!");
                                 loopThroughSuccessEmail(bookingIDs);
                 break;
             //if it was an confirmed record, it will be updated to unconfirmed, probably means that the handler made a mistake in confirming
             case "confirmed": statusToBeSwitchedTo = "0";         //0 means unconfirmed
+                              System.out.println("current editing user: " + username);
+                              updateEditTrace(bookingIDs, username);
+                              System.out.print("passed through UpdateEditTrace()!");
                               loopThroughHandlerErrorEmail(bookingIDs);
+                              
                 break;
             case "cancelled": statusToBeSwitchedTo = "0";         //0 means unconfirmed
                 break;
@@ -230,7 +237,6 @@ public class AccessRecords {
                 System.out.println("Number of records updated are: " + updated);
             }
             //function that updates LAST_EDITED_BY and LAST_EDITED_TIME
-            updateEditTrace(bookingIDs, username);
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -266,7 +272,7 @@ public class AccessRecords {
     }
     
     public void updateEditTrace(int[] bookingIDs, String username) throws SQLException{
-        
+        System.out.println("inside updateEditTrace()!");
         String updatequery = "UPDATE BOOKING_INFO SET LAST_EDITED_BY = ?, LAST_EDITED_TIME = ? WHERE BOOKING_ID = ?";
        
         try(PreparedStatement updateRecordStmt = con.prepareStatement(updatequery)){

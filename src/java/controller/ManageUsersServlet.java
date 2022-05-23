@@ -106,8 +106,7 @@ public class ManageUsersServlet extends HttpServlet {
                     //redirect 
                     path = request.getContextPath() + "/HBMS/manageUsers.jsp";
 
-                    //allRecordsFromDB.close();
-                    //record.close();  
+                    accounts.close();  
 
                     response.sendRedirect(path);
 

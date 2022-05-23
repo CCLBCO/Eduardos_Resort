@@ -185,8 +185,7 @@ public class EditRecordsServlet extends HttpServlet {
 
                     response.sendRedirect(path);
                     
-                    //allRecordsFromDB.close();
-                    //record.close();  
+                    record.close();  
                 } catch(SQLException e) {
                     e.printStackTrace();
                 }
