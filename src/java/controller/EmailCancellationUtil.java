@@ -39,7 +39,7 @@ public class EmailCancellationUtil {
     public static void sendMail(String recepient, String msg) throws MessagingException{
         System.out.println("Preparing to Send...");
         String senderAccount = "ttestuser1628@gmail.com";
-        String senderAccountPW = "applebottomjeans";
+        String senderAccountPW = "ihrwpylodfnjzten";
         
         
         Properties properties = new Properties();

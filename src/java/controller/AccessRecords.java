@@ -15,10 +15,12 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.mail.MessagingException;
+import controller.Security;
 
 
 public class AccessRecords {
     private final Connection con;
+    Security sc;
 
 
     
@@ -119,12 +121,12 @@ public class AccessRecords {
         PreparedStatement ps;
         ResultSet res;
         ps = con.prepareStatement(getEmailQuery);
-        ps .setInt(1, bookingID);
+        ps.setInt(1, bookingID);
         res = ps.executeQuery();
                     
         while(res.next())                                              
         {
-          email = res.getString("EMAIL");
+          email = sc.decrypt(res.getString("EMAIL"));
         }
          
         return email;
@@ -143,7 +145,7 @@ public class AccessRecords {
                     
         while(res.next())                                              
         {
-          name = res.getString("NAME");
+          name = sc.decrypt(res.getString("NAME"));
         }
          
         return name;
@@ -155,8 +157,8 @@ public class AccessRecords {
         for(int i = 0; bookingIDs.length > i; i++){
            email = getEmail(bookingIDs[i]);
            name = getName(bookingIDs[i]);
-//         successEmail(email, name);  // Will be used in deployment
-           successEmail("xoulx16@gmail.com", name); // Placeholder onleh
+           successEmail(email, name);  // Will be used in deployment
+//           successEmail("xoulx16@gmail.com", name); // Placeholder onleh
         }
     }
     
@@ -166,8 +168,8 @@ public class AccessRecords {
         for(int i = 0; bookingIDs.length > i; i++){
            email = getEmail(bookingIDs[i]);
            name = getName(bookingIDs[i]);
-//         discontinueEmail(email, name);  // Will be used in deployment
-           discontinueEmail("xoulx16@gmail.com", name); // Placeholder onleh
+           discontinueEmail(email, name);  // Will be used in deployment
+//           discontinueEmail("xoulx16@gmail.com", name); // Placeholder onleh
         }
     }
     
@@ -176,8 +178,8 @@ public class AccessRecords {
         String email;
         for(int i = 0; bookingIDs.length > i; i++){
            email = getEmail(bookingIDs[i]);
-//         handlerErrorEmail(email);  // Will be used in deployment
-           handlerErrorEmail("xoulx16@gmail.com"); // Placeholder onleh
+           handlerErrorEmail(email);  // Will be used in deployment
+//           handlerErrorEmail("xoulx16@gmail.com"); // Placeholder onleh
         }
     }
     

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import controller.Security;
 
 /**
  *
@@ -44,7 +45,7 @@ public class ViewBookingServlet extends HttpServlet {
     static StringBuffer url;
     static String userDB, passDB;                                                       // Username and Password from web.xml
     static String query, tempU, tempP, u, p, r, n, pckupDate,
-            drpDate, cstmName, email, country, phnNumber, randomizedCode, dateString, convRoom; 
+            drpDate, cstmName, email, country, phnNumber, bookingCode, dateString, convRoom; 
     LocalDate parsedPckDate, parsedDropDate;
     long days, cost;
     int status_id = 0;
@@ -54,6 +55,7 @@ public class ViewBookingServlet extends HttpServlet {
     HttpSession session; // userArg & passArg from Input
     RequestDispatcher rd;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+    Security sc;
                                       
     public void init(ServletConfig config) throws ServletException 
     {
@@ -93,27 +95,27 @@ public class ViewBookingServlet extends HttpServlet {
                 // ask if a session exists
                 HttpSession session = request.getSession();
                 
-                randomizedCode = (String)request.getParameter("code");
+                bookingCode = (String)request.getParameter("code");
                 // randomizedCode = "JOKXJ9H";
-                System.out.println("Code: " + randomizedCode);
+                System.out.println("Code: " + bookingCode);
                 
                 query = "SELECT * FROM BOOKING_INFO WHERE BOOKING_CODE = ?";                  
                 PreparedStatement ps = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);   
                 
-                ps.setString(1, randomizedCode); 
+                ps.setString(1, bookingCode); 
                 
                 ResultSet res = ps.executeQuery();                       
                 //Gets stored data from the Database
                 while(res.next())                                              
                 {
                     roomType = res.getInt("ROOM_ID");
-                    cstmName = res.getString("NAME");
+                    cstmName = sc.decrypt(res.getString("NAME"));
                     convPckDate = res.getDate("START_BOOKING");
                     convDropDate = res.getDate("END_BOOKING");
-                    email = res.getString("EMAIL");
-                    phnNumber = res.getString("PHONE_NUMBER");
+                    email = sc.decrypt(res.getString("EMAIL"));
+                    phnNumber = sc.decrypt(res.getString("PHONE_NUMBER"));
                     convCost = res.getInt("COST");
-                    country = res.getString("COUNTRY");
+                    country = sc.decrypt(res.getString("COUNTRY"));
                 }
                 
                 System.out.println(convPckDate);
@@ -124,7 +126,7 @@ public class ViewBookingServlet extends HttpServlet {
                 request.setAttribute("arrivalDate", dateFormat.format(convPckDate));
                 request.setAttribute("departDate", dateFormat.format(convDropDate));
                 request.setAttribute("email", email);
-                request.setAttribute("code", randomizedCode);
+                request.setAttribute("code", bookingCode);
                 request.setAttribute("phone", phnNumber);
                 request.setAttribute("cost", String.valueOf(convCost));
                 request.setAttribute("country", country);
@@ -138,6 +140,7 @@ public class ViewBookingServlet extends HttpServlet {
                 session.setAttribute("sPhone", phnNumber);
                 session.setAttribute("sCost", String.valueOf(convCost));
                 session.setAttribute("sCountry", country);
+                session.setAttribute("bookingCode", bookingCode);
                 
                 rd = request.getServletContext().getRequestDispatcher("/roomdetails.jsp");            
                 rd.include(request, response);

@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import controller.Security;
 
 /**
  *
@@ -50,6 +51,7 @@ public class ReceiptController extends HttpServlet {
     HttpSession session; // userArg & passArg from Input
     RequestDispatcher rd;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Security sc;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -97,13 +99,13 @@ public class ReceiptController extends HttpServlet {
                 //Gets stored data from the Database
                 while (res.next()) {
                     roomType = res.getInt("ROOM_ID");
-                    cstmName = res.getString("NAME");
+                    cstmName = sc.decrypt(res.getString("NAME"));
                     convPckDate = res.getDate("START_BOOKING");
                     convDropDate = res.getDate("END_BOOKING");
-                    email = res.getString("EMAIL");
-                    phnNumber = res.getString("PHONE_NUMBER");
+                    email = sc.decrypt(res.getString("EMAIL"));
+                    phnNumber = sc.decrypt(res.getString("PHONE_NUMBER"));
                     convCost = res.getInt("COST");
-                    country = res.getString("COUNTRY");
+                    country = sc.decrypt(res.getString("COUNTRY"));
                 }
 
                 convRoom = getRoomType(roomType);

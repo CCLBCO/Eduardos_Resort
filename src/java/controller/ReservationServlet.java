@@ -26,13 +26,14 @@ import javax.servlet.http.HttpSession;
 import static org.apache.commons.text.CharacterPredicates.DIGITS;
 import static org.apache.commons.text.CharacterPredicates.LETTERS;
 import org.apache.commons.text.RandomStringGenerator;
+import controller.Security;
 
 public class ReservationServlet extends HttpServlet {
 
     Connection con;
     static StringBuffer url;
     static String userDB, passDB;                                                       // Username and Password from web.xml
-    static String query, tempU, tempP, u, p, r, n, pckupDate, fhEmail,
+    static String query, tempU, tempP, u, p, r, n, pckupDate, fhEmail, tempEmail,
             drpDate, cstmName, email, country, phnNumber, randomizedCode, dateString;
     LocalDate parsedPckDate, parsedDropDate;
     long days, cost;
@@ -42,6 +43,7 @@ public class ReservationServlet extends HttpServlet {
     Timestamp currentDate;
     HttpSession session; // userArg & passArg from Input
     RequestDispatcher rd;
+    Security sc;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -81,13 +83,13 @@ public class ReservationServlet extends HttpServlet {
                 System.out.println(pckupDate);
                 drpDate = request.getParameter("drpDate");
                 System.out.println(drpDate);
-                cstmName = request.getParameter("cstmName");
+                cstmName = sc.encrypt(request.getParameter("cstmName"));
                 System.out.println(cstmName);
-                email = request.getParameter("email");
+                email = sc.encrypt(request.getParameter("email"));
                 System.out.println(email);
-                phnNumber = request.getParameter("phnNumber");
+                phnNumber = sc.encrypt(request.getParameter("phnNumber"));
                 System.out.println(phnNumber);
-                country = request.getParameter("country");
+                country = sc.encrypt(request.getParameter("country"));
                 System.out.println(country);
 
                 parsedPckDate = LocalDate.parse(pckupDate);

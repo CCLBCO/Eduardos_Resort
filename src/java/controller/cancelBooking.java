@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import controller.Security;
 
 /**
  *
@@ -34,6 +35,7 @@ public class cancelBooking extends HttpServlet {
     static String userDB, passDB;                                                       // Username and Password from web.xml
     static String query, dtbsCode, inputCode, updateQuery, getEmail, name, email, fhEmail;
     RequestDispatcher rd;
+    Security sc;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -79,6 +81,8 @@ public class cancelBooking extends HttpServlet {
 
                 inputCode = request.getParameter("code");
                 System.out.println("Code: " + inputCode);
+                String viewedCode = (String)session.getAttribute("bookingCode");
+                System.out.println("Booking Code: " + viewedCode);
 
                 query = "SELECT * FROM BOOKING_INFO WHERE STATUS_ID = 0 AND BOOKING_CODE = ? ";
                 updateQuery = "UPDATE BOOKING_INFO SET STATUS_ID = 2 WHERE BOOKING_CODE = ? AND STATUS_ID = 0";
@@ -90,9 +94,25 @@ public class cancelBooking extends HttpServlet {
                 ps.setString(1, inputCode);
 
                 ResultSet res = ps.executeQuery();
-
+                
+                // Runs if there is a mismatch in view booking code and cancellation input code
+                if (!inputCode.equals(viewedCode)) {
+                    System.out.println("Mismatch Cancel Input Code and View Booking Code");
+                    request.setAttribute("room", room);
+                    request.setAttribute("name", name);
+                    request.setAttribute("arrivalDate", pckDate);
+                    request.setAttribute("departDate", deptDate);
+                    request.setAttribute("email", email);
+                    request.setAttribute("phone", phnNumber);
+                    request.setAttribute("cost", cost);
+                    request.setAttribute("country", country);
+                    request.setAttribute("error", "Code mismatch!");
+                    rd = getServletContext().getRequestDispatcher("/roomdetails.jsp");
+                    rd.include(request, response);
+                }
+                        
                 //Gets stored data from the Database
-                if (!res.next()) {
+                else if (!res.next()) {
                     System.out.println("No such booking code");
                     request.setAttribute("room", room);
                     request.setAttribute("name", name);
@@ -120,8 +140,8 @@ public class cancelBooking extends HttpServlet {
                     res = ge.executeQuery();
 
                     while (res.next()) {
-                        email = res.getString("EMAIL");
-                        name = res.getString("NAME");
+                        email = sc.decrypt(res.getString("EMAIL"));
+                        name = sc.decrypt(res.getString("NAME"));
                         String forCustomer = "<html> Hi " + name + ", <br> <br>"
                             + "We are sorry to hear from you about your booking cancellation. <br> <br>"
                             + "May you soon consider us again for all your resort needs. <br><br>"

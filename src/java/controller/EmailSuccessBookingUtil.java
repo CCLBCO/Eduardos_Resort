@@ -39,7 +39,7 @@ public class EmailSuccessBookingUtil {
     public static void sendMail(String recepient, String name) throws MessagingException{
         System.out.println("Preparing to Send...");
         String senderAccount = "ttestuser1628@gmail.com";
-        String senderAccountPW = "applebottomjeans";
+        String senderAccountPW = "ihrwpylodfnjzten";
         
         
         Properties properties = new Properties();
@@ -82,10 +82,6 @@ public class EmailSuccessBookingUtil {
             
             // creates message part
             BodyPart messageBodyPart = new MimeBodyPart();
-            String htmlBody = "<img src=\"cid:image\"><br>";
-            messageBodyPart.setContent(htmlBody, "text/html");
-            multipart.addBodyPart(messageBodyPart);
-
 //            // creates image part
 //            messageBodyPart = new MimeBodyPart();
 //            DataSource fds = new FileDataSource("E:\\SE II\\Eduardos_Resort\\web\\image\\ER_logo_noBG.png");
