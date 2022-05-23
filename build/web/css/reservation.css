@@ -440,3 +440,21 @@ footer .wave#wave4
     background-position-x: 1000px;
   }
 }
+
+@media only screen and (max-width:1100px) {
+    .description{
+       display: none; 
+    }
+    
+    .form {
+        width: 100%;
+        padding: 5%;
+    }
+    
+    footer .payment {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    footer p{
+        font-size: 1.5vw;
+    }
+}

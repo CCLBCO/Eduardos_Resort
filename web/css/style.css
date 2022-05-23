@@ -6,6 +6,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .anchor{
@@ -237,7 +239,7 @@ header .sticky ul li a{
 }
 
 .home h1 {
-  font-size: 65px;
+  font-size: 4vw;
   font-weight: 400;
 }
 
@@ -382,7 +384,7 @@ input {
 .heading h2 {
   font-size: 30px;
   font-weight: 400;
-  margin: 20px 0 40px 0;
+  margin: 20px 0 0 0;
   color: #222222;
 }
 
@@ -843,7 +845,7 @@ footer .wave#wave4
 
 /*-----------------------------------------------------------------Media Query---------------------------------------------------------------*/
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width:1150px){
   /*-------------------------------------------------------------------------Anchor----------------------------------------------------------*/
   .anchor{
     display:block;
@@ -991,10 +993,12 @@ footer .wave#wave4
   }
   
   .home h1 {
-    font-size: 40px;
+    font-size: 4vw;
+    font-weight: 400;
   }
   
   .home .full_text{
+    font-size: 1vw;
     display: none;
   }
     
@@ -1018,17 +1022,21 @@ footer .wave#wave4
     margin: 60px 0 0 35px;
   }
 
-  .home h1 {
-    font-size: 40px;
-    font-weight: 400;
-  }
-
   .home .short_text {
-    font-weight: 400;
     line-height: 25px;
+    font-size: 2vw;
     font-family: sans-serif;
-    font-size: 19px;
     margin: 50px 0 0 0;
+  }
+  
+  button{
+     font-size: 1.8vw; 
+  }
+  .room .btn1 {
+      font-size: 1.8vw; 
+  }  
+  .room .btn2 {
+      font-size: 1.8vw; 
   }
   
   /*------------------------------------------------------------- Booking Reservation Button --------------------------------------------------------*/
@@ -1053,6 +1061,7 @@ footer .wave#wave4
     content: 'E';
     font-size: 500px;
     top: -120%;
+    font-size: 1.3vw;
     font-weight: bold;
     opacity: 0.25;
   }
@@ -1115,7 +1124,6 @@ footer .wave#wave4
   }
   
   .heading h5 {
-    font-size: 16px;
     font-weight: 400;
     letter-spacing: 2px;
     padding-top: 20px;
@@ -1123,14 +1131,14 @@ footer .wave#wave4
   }
   
   .heading h2 {
-    font-size: 30px;
+    font-size: 3vw;
     font-weight: 400;
     margin: 20px 0 40px 0;
     color: #222222;
   }
   
   .heading p {
-    font-size: 17px;
+    font-size: 2vw;
     margin-bottom: 20px;
     line-height: 25px;
     color: #5f5f5f;
@@ -1181,7 +1189,7 @@ footer .wave#wave4
   }
 
   .wrapper h2 {
-    font-size: 21px;
+    font-size: 3vw;
     font-weight: 400;
     margin: 20px;
     text-align: center;
@@ -1197,7 +1205,7 @@ footer .wave#wave4
 
   .wrapper span {
     margin: 20px;
-    font-size: 10px;
+    font-size: 1.5vw;
     margin: 0;
   }
 
@@ -1227,10 +1235,16 @@ footer .wave#wave4
     display: none;
   }
   
-  .room img{
-    width: 90vw;
-    height: 65vh;
+  .room h3 {
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-size: 2vw;
   }
+
+  .room p {
+    font-size: 1.5vw;
+  }
+  
   /*---------------------------------------------------------------------------Resturant-----------------------------------------------------------*/
   .restaurant .container,
   .about .container,
@@ -1249,6 +1263,15 @@ footer .wave#wave4
   .restaurant .left{
       display: none;
   }
+  
+  .restaurant h2 {
+  font-size: 2vw;
+}
+
+.accordionItem p {
+  font-size: 1.5vw;
+}
+
   /*--------------------------------------------------------------------------Gallery-------------------------------------------------------------*/
   .mtop {
     margin-top: -10%;
@@ -1257,8 +1280,12 @@ footer .wave#wave4
   footer .payment {
     grid-template-columns: repeat(4, 1fr);
   }
+  footer p{
+    font-size: 1.5vw;
+  }
+  
 }
-
+/*
 @media only screen and (max-width:525px) {
     .anchor{
         display: block;
