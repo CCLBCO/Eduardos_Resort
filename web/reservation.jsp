@@ -15,12 +15,6 @@
         <nav class="navbar flex1">
           <ul class="nav-menu">
             <li> <a href="index.jsp">Back</a></li>
-            <!--li> <a href="#room">Accomodations</a></li-->
-            <!--li> <a href="rates.jsp">Rates and Promos</a></li-->
-            <!--li> <a href="#restaurant">Event Packages</a></li-->
-            <!--li> <a href="rooms.jsp">Room Bookings</a></li-->
-            <!--li> <a href="reservation.jsp">Reservation</a></li-->
-            <!--li> <a href="login.jsp">Admin Login</a></li-->
           </ul>
         </nav>
     </div>
@@ -42,7 +36,6 @@
               <form method="post" action="ReservationServlet">
                 
                 <div class="inpbox full">
-                  <!--span class="flaticon-taxi"></span-->
                   <select id="rooms" name="rooms" required>
                     <option value="">Select Room Type</option>
                     <option value="1">Deluxe Room</option>
@@ -88,11 +81,22 @@
     <div class="wave" id="wave2"></div>
     <div class="wave" id="wave3"></div>
     <div class="wave" id="wave4"></div>
-</footer>
+    </div>
+    <ul class="social_icon">
+      <li><a href='#'><ion-icon name="logo-facebook"></ion-icon></a></li>
+      <li><a href='#'><ion-icon name="logo-twitter"></ion-icon></a></li>
+      <li><a href='#'><ion-icon name="logo-linkedin"></ion-icon></a></li>
+      <li><a href='#'><ion-icon name="logo-instagram"></ion-icon></a></li>
+    </ul>
+    <ul class="menu">
+        <li><p>Message us at eduardosresort@gmail.com</p></li>
+         <li><p>Call us at <strong>(043) 288-7153</strong> or <strong>09183227201</strong></p></li>
+    </ul>
+  </footer>
 
-<!--Wave Animation-->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!--Wave Animation-->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <!--Pop-up Animation -->
 <script>

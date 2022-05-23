@@ -91,7 +91,7 @@
   <div class="head_container">
     <div class="box">
       <div class="text">
-        <h1>Experience Paradise On Earth!</h1>
+        <h1>Experience<br>Paradise On Earth!</h1>
         <span class="full_text">Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera located at Nautical Highway Bayanan II, Calapan City Oriental Mindoro. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</span>
         <span class="short_text">Eduardo's Resort Corporation founded by Dr. Elizalde M. Herrera. Eduardo's Resort promotes tourism in the province, provides employment to local residents, helps the farmers maximize product of agricultural crops and supports swimmers and athletes.</span>
         <form action="reservation.jsp">
@@ -212,7 +212,7 @@
     <div class="heading_top flex1">
       <div class="heading">
         <h5><div class="text-2"><span class="animate-2"></span></div></h5>
-        <h2>Featured Rooms and Suites</h2>
+        <h2>Featured Rooms and Suites</h2><br>
       </div>
       <div class="button">
           <form action="${pageContext.request.contextPath}/rooms.jsp">
@@ -282,7 +282,6 @@
     <div class="right">
       <div class="text">
         <h2>Event Packages</h2>
-        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
       </div>
       <div class="accordionWrapper">
         <div class="accordionItem open">
@@ -351,7 +350,7 @@
     <div class="heading_top flex1">
       <div class="heading">
         <h5><div class="text-3"><span class="animate-3"></span></div></h5>
-        <h2>Photo Gallery of Our Resort</h2>
+        <h2>Photo Gallery of Our Resort</h2><br>
       </div>
       <div class="button">
         <button class="btn2">VIEW GALLERY</button>
