@@ -5,6 +5,7 @@
  */
 package model;
 
+import controller.Security;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -88,16 +89,20 @@ public class BookingRecord {
         return date_booked;
     }
     public String getName(){
-        return name;
+        String decryptedName = Security.decrypt(name);
+        return decryptedName;
     }
     public String getEmail(){
-        return email; 
+        String decryptedEmail = Security.decrypt(email);
+        return decryptedEmail; 
     }
     public String getPhoneNumber(){
-        return phone_number;
+        String decryptedPhoneNumber = Security.decrypt(phone_number);
+        return decryptedPhoneNumber;
     }
     public String getCountry(){
-        return country;
+        String decryptedCountry = Security.decrypt(country);
+        return decryptedCountry;
     }
     public String getRoomType(){
         return room_type; 
