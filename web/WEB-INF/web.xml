@@ -5,31 +5,35 @@
         <servlet-class>controller.ManageRecordsServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- ManageRecordsServlet -->
@@ -38,31 +42,35 @@
         <servlet-class>controller.loginServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- loginServlet -->
@@ -81,31 +89,35 @@
         <servlet-class>controller.ManageUsersServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- ManageUsersServlet -->
@@ -114,31 +126,35 @@
         <servlet-class>controller.ReservationServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- ReservationServlet -->
@@ -147,31 +163,35 @@
         <servlet-class>controller.EditRecordsServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- EditRecordsServlet -->
@@ -180,31 +200,35 @@
         <servlet-class>controller.ReceiptController</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- ReceiptController -->
@@ -213,31 +237,35 @@
         <servlet-class>controller.FilterRecordsServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <!-- FilterRecordsServlet -->
@@ -246,31 +274,35 @@
         <servlet-class>controller.cancelBooking</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <servlet>
@@ -278,31 +310,35 @@
         <servlet-class>controller.ForgotPasswordServlet</servlet-class>
         <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <servlet>
@@ -312,129 +348,145 @@
     <servlet>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>controller.ChangePasswordServlet</servlet-class>
-        <init-param>
+       <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <servlet>
         <servlet-name>EditAccountsServlet</servlet-name>
         <servlet-class>controller.EditAccountsServlet</servlet-class>
-        <init-param>
+       <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>controller.AddAccountServlet</servlet-class>
-        <init-param>
+       <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <servlet>
         <servlet-name>ViewBookingServlet</servlet-name>
         <servlet-class>controller.ViewBookingServlet</servlet-class>
-        <init-param>
+       <init-param>
             <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
-            <param-value>app</param-value>
+            <param-value>plzz34c44x7gyb8m</param-value>
         </init-param>
         <init-param>
             <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
+            <param-value>m6fpwmggsffpeue0</param-value>
         </init-param>
         <init-param>
             <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
+            <param-value>jdbc:mysql</param-value>
         </init-param>
         <init-param>
             <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
+            <param-value>eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com</param-value>
         </init-param>
         <init-param>
             <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
+            <param-value>3306</param-value>
         </init-param>
         <init-param>
             <param-name>databaseName</param-name>
-            <param-value>EduardosResort</param-value>
+            <param-value>ctdd4m5zgklkh9rv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssl</param-name>
+            <param-value>?useSSL=false</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

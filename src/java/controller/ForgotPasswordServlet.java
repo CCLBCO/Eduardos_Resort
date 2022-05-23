@@ -55,7 +55,8 @@ public class ForgotPasswordServlet extends HttpServlet {
                     .append(":")
                     .append(config.getInitParameter("dbPort"))
                     .append("/")
-                    .append(config.getInitParameter("databaseName"));
+                    .append(config.getInitParameter("databaseName"))
+                    .append(config.getInitParameter("ssl"));
             con = DriverManager.getConnection(url.toString(),userDB,passDB);  
         } 
         catch (SQLException sqle){ } 
@@ -66,7 +67,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, MessagingException {
         try{
             if(con != null){
-                query = "SELECT * FROM ACCOUNTS WHERE EMAIL = ?";
+                query = "SELECT * FROM account WHERE EMAIL = ?";
                 PreparedStatement ps = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 // Inputs from Login Page
                 email = request.getParameter("email");
@@ -103,7 +104,7 @@ public class ForgotPasswordServlet extends HttpServlet {
                     session.setAttribute("otpvalue", otp);
                     session.setAttribute("email", email);
                     
-                    rd = request.getRequestDispatcher("/onetimepin.jsp");            
+                    rd = request.getServletContext().getRequestDispatcher("/onetimepin.jsp");            
                     rd.forward(request, response);
                 }
             }

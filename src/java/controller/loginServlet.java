@@ -30,12 +30,14 @@ public class loginServlet extends HttpServlet {
         {
             System.out.println("driver: " + config.getInitParameter("jdbcClassName"));
             System.out.println(config.getInitParameter("dbUserName"));
+            System.out.println(config.getInitParameter("dbPassword"));
             
             
             // Getting the Parameters for the Connection
             Class.forName(config.getInitParameter("jdbcClassName"));
             userDB = config.getInitParameter("dbUserName");
             passDB = config.getInitParameter("dbPassword");
+            
            
 
             //StringBuffer is used to make the string changeable
@@ -45,8 +47,11 @@ public class loginServlet extends HttpServlet {
                     .append(":")
                     .append(config.getInitParameter("dbPort"))
                     .append("/")
-                    .append(config.getInitParameter("databaseName"));
+                    .append(config.getInitParameter("databaseName"))
+                    .append(config.getInitParameter("ssl"));
             con = DriverManager.getConnection(url.toString(),userDB,passDB);  
+            System.out.println(config.getInitParameter("url"));
+           
         } 
         catch (SQLException sqle){ } 
         catch (ClassNotFoundException nfe){ }
@@ -56,15 +61,16 @@ public class loginServlet extends HttpServlet {
     {
         try 
         {   // We need to not add PASS=? because the program cannot continue if the password is already wrong
-            query = "SELECT * FROM ACCOUNTS WHERE USERNAME = ?";                  
-            PreparedStatement ps = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);                    
+            query = "SELECT * FROM account WHERE USERNAME = ?";                  
+            PreparedStatement ps = con.prepareStatement(query);                    
             
             // Inputs from Login Page
             userArg = request.getParameter("username");
             passArg = request.getParameter("password");
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
            
-		boolean verify = VerifyCaptcha.verify(gRecaptchaResponse);
+//		boolean verify = VerifyCaptcha.verify(gRecaptchaResponse);
+                boolean verify = true;
                 System.out.println("Response: " + verify);
   
             // Checks for Blank Username and Password

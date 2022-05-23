@@ -47,7 +47,8 @@ public class ChangePasswordServlet extends HttpServlet {
                     .append(":")
                     .append(config.getInitParameter("dbPort"))
                     .append("/")
-                    .append(config.getInitParameter("databaseName"));
+                    .append(config.getInitParameter("databaseName"))
+                    .append(config.getInitParameter("ssl"));
             con = DriverManager.getConnection(url.toString(),userDB,passDB);  
         } 
         catch (SQLException | ClassNotFoundException sqle){ }
@@ -68,12 +69,12 @@ public class ChangePasswordServlet extends HttpServlet {
                    PreparedStatement ps;
                    
                    // For Updating Password
-                   updatePassQuery = "UPDATE ACCOUNTS SET PASSWORD = ? WHERE EMAIL = ?";
+                   updatePassQuery = "UPDATE ACCOUNT SET PASSWORD = ? WHERE EMAIL = ?";
                    
                    // if new password and confirm password does not match
                    if(!passConfArg.equals(passArg)){
                        request.setAttribute("error", "Password Does not Match!!");
-                       rd = request.getRequestDispatcher("/changepassword.jsp");            
+                       rd = request.getServletContext().getRequestDispatcher("/changepassword.jsp");            
                        rd.include(request, response);
                    }
                    else{
@@ -87,7 +88,7 @@ public class ChangePasswordServlet extends HttpServlet {
                        session.removeAttribute("email");
                        session.removeAttribute("otpvalue");
                        session.invalidate();
-                       rd = request.getRequestDispatcher("login.jsp");
+                       rd = request.getServletContext().getRequestDispatcher("/login.jsp");
                        rd.forward(request, response);
                    }
  
