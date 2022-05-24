@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import controller.Security;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -83,12 +85,11 @@ public class ViewBookingServlet extends HttpServlet {
                     .append(config.getInitParameter("ssl"));
             con = DriverManager.getConnection(url.toString(),userDB,passDB);  
         } 
-        catch (SQLException sqle){ } 
-        catch (ClassNotFoundException nfe){ }
+        catch (SQLException | ClassNotFoundException sqle){ }
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
 
         try {
         if (con != null) {
@@ -142,24 +143,37 @@ public class ViewBookingServlet extends HttpServlet {
                 session.setAttribute("sCountry", country);
                 session.setAttribute("bookingCode", bookingCode);
                 
+                ps.close();
+                res.close();
                 rd = request.getServletContext().getRequestDispatcher("/roomdetails.jsp");            
                 rd.include(request, response);
 
             }
         }
-        catch (SQLException sqle){ }
+        catch (SQLException sqle){ 
+        } finally {
+            con.close();
+        } 
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewBookingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewBookingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public String getRoomType(int roomType){

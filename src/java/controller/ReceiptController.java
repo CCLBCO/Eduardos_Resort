@@ -80,7 +80,7 @@ public class ReceiptController extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, MessagingException {
+            throws ServletException, IOException, MessagingException, SQLException {
 
         try {
             if (con != null) {
@@ -142,13 +142,18 @@ public class ReceiptController extends HttpServlet {
                     System.out.println("Notif for handler reached!!");
                     handlerConfirmNotif(fhEmail, forHandler);
                 }
-
+                
+                fh.close();
+                res.close();
                 rd = request.getServletContext().getRequestDispatcher("/receipt.jsp");
                 rd.include(request, response);
 
             }
         } catch (SQLException sqle) {
-        }
+          }
+          finally {
+            con.close();
+        } 
     }
 
     @Override
@@ -157,6 +162,8 @@ public class ReceiptController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (MessagingException ex) {
+            Logger.getLogger(ReceiptController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ReceiptController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -167,6 +174,8 @@ public class ReceiptController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (MessagingException ex) {
+            Logger.getLogger(ReceiptController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ReceiptController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

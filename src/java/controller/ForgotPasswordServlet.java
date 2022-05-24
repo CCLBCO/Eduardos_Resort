@@ -84,8 +84,8 @@ public class ForgotPasswordServlet extends HttpServlet {
                 if(!res.next()){
                     System.out.println("Email does not exist!!");
                     request.setAttribute("error", "Your booking has already been cancelled or Booking Code no longer exists!");
+                    ps.close();
                     res.close();
-                    
                     request.setAttribute("error", "Email does not exist!");
                     rd = request.getRequestDispatcher("forgotpassword.jsp");            
                     rd.forward(request, response);
@@ -104,11 +104,16 @@ public class ForgotPasswordServlet extends HttpServlet {
                     session.setAttribute("otpvalue", otp);
                     session.setAttribute("email", email);
                     
+                    ps.close();
+                    res.close();
                     rd = request.getServletContext().getRequestDispatcher("/onetimepin.jsp");            
                     rd.forward(request, response);
                 }
             }
-        } catch (SQLException sqle){ }
+        } catch (SQLException sqle){ 
+        } finally {
+            con.close();
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

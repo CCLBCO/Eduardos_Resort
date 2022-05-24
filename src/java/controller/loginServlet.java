@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -57,7 +59,7 @@ public class loginServlet extends HttpServlet {
         catch (ClassNotFoundException nfe){ }
     }
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException
     {
         try 
         {   // We need to not add PASS=? because the program cannot continue if the password is already wrong
@@ -93,6 +95,8 @@ public class loginServlet extends HttpServlet {
                     p = res.getString("PASSWORD");
                     r = res.getString("ROLE");
                 }
+                
+                ps.close();
                 res.close();
                 decryptedPass = Security.decrypt(p); //decrypted password from database
       
@@ -139,7 +143,10 @@ public class loginServlet extends HttpServlet {
             }
             con.close();
         } 
-        catch (SQLException sqle){ }
+        catch (SQLException sqle){ 
+        } finally {
+            con.close();
+        } 
     }
 
  @Override
@@ -152,6 +159,10 @@ public class loginServlet extends HttpServlet {
 @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(loginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

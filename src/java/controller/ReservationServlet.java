@@ -71,7 +71,7 @@ public class ReservationServlet extends HttpServlet {
         }
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException, SQLException {
         try {
             if (con != null) {
                 // Inputs from Reservation Page
@@ -129,42 +129,20 @@ public class ReservationServlet extends HttpServlet {
                 ps.setString(13, "none");
                 ps.setTimestamp(14, currentDate);
                 ps.executeUpdate();
+                
                 ps.close();
-
                 System.out.println("Reached Session Cookies");
                 session = request.getSession();
                 session.setAttribute("code", randomizedCode);
 
-                // confirmNotif(email); // For Deployment
-                System.out.println("Reached notifs");
-//                confirmNotif(email, cstmName);
-//
-//                String forHandler = "<html> Hi Handler, <br> <br>"
-//                        + "The following customer has issued a reservation. Details are as follows: <br> <br>"
-//                        + "Name: " + cstmName + "<br>"
-//                        + "Email: " + email + "<br>"
-//                        + "Phone Number: " + phnNumber + "<br>"
-//                        + "Country: " + country + "<br><br>"
-//                        + "For further details about check-in and check-out time you may visit the HBMS.";
-//
-//                String queryForHandler = "SELECT EMAIL FROM account";
-//
-//                fh = con.prepareStatement(queryForHandler);
-//                ResultSet res = fh.executeQuery();
-//
-//                // Stores Data from the Database
-//                while (res.next()) {
-//                    fhEmail = res.getString("email");
-//                    System.out.println("Notif for handler reached!!");
-//                    handlerConfirmNotif(fhEmail, forHandler);
-//                }
-                
                 System.out.println("Successfully Run!");
                 response.sendRedirect("ReceiptController");
                 con.commit();
             }
         } catch (SQLException sqle) {
-        }
+        } finally {
+            con.close();
+        } 
     }
 
     @Override
@@ -179,7 +157,7 @@ public class ReservationServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (MessagingException ex) {
+        } catch (MessagingException | SQLException ex) {
             Logger.getLogger(ReservationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

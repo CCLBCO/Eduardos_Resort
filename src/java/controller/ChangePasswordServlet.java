@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -55,7 +57,7 @@ public class ChangePasswordServlet extends HttpServlet {
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         
          try{
                if(con != null){
@@ -88,6 +90,7 @@ public class ChangePasswordServlet extends HttpServlet {
                        session.removeAttribute("email");
                        session.removeAttribute("otpvalue");
                        session.invalidate();
+                       ps.close();
                        rd = request.getServletContext().getRequestDispatcher("/login.jsp");
                        rd.forward(request, response);
                    }
@@ -95,7 +98,10 @@ public class ChangePasswordServlet extends HttpServlet {
                 }
                
             }
-            catch(SQLException sqle){}
+            catch(SQLException sqle){
+            } finally {
+            con.close();
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -110,7 +116,11 @@ public class ChangePasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       try {
+           processRequest(request, response);
+       } catch (SQLException ex) {
+           Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     /**
@@ -124,7 +134,11 @@ public class ChangePasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       try {
+           processRequest(request, response);
+       } catch (SQLException ex) {
+           Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     /**

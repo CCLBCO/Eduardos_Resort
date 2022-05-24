@@ -39,6 +39,8 @@ public class AccessAccounts {
         try{
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            ps.close();
+            rs.close();
             return rs;
         } catch (SQLException ex) 
         {ex.printStackTrace();}
@@ -55,7 +57,7 @@ public class AccessAccounts {
                 ResultSet.CONCUR_UPDATABLE)
            ){
             ps.setInt(1, user_id);
-            
+                        
             try(ResultSet rs = ps.executeQuery();){
                 rs.next();
                 
@@ -66,6 +68,7 @@ public class AccessAccounts {
                         rs.getString("password"),              
                         rs.getString("role")
                 );
+                
             }
         } catch (SQLException ex) 
         {ex.printStackTrace();}

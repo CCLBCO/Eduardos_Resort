@@ -64,7 +64,7 @@ public class cancelBooking extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, MessagingException {
+            throws ServletException, IOException, MessagingException, SQLException {
         HttpSession session = request.getSession();
 
         String room = (String) session.getAttribute("sRoom");
@@ -107,6 +107,8 @@ public class cancelBooking extends HttpServlet {
                     request.setAttribute("cost", cost);
                     request.setAttribute("country", country);
                     request.setAttribute("error", "Code mismatch!");
+                    ps.close();
+                    res.close();
                     rd = getServletContext().getRequestDispatcher("/roomdetails.jsp");
                     rd.include(request, response);
                 }
@@ -123,6 +125,8 @@ public class cancelBooking extends HttpServlet {
                     request.setAttribute("cost", cost);
                     request.setAttribute("country", country);
                     request.setAttribute("error", "Your booking has already been cancelled or Booking Code no longer exists!");
+                    ps.close();
+                    res.close();
                     rd = getServletContext().getRequestDispatcher("/roomdetails.jsp");
                     rd.include(request, response);
                     res.close();
@@ -150,6 +154,8 @@ public class cancelBooking extends HttpServlet {
                         emailNotif(email, forCustomer);
                     }
                     
+                    uc.close();
+                    ge.close();
                     res.close();
                     
                     String queryForHandler = "SELECT EMAIL FROM account";
@@ -167,14 +173,18 @@ public class cancelBooking extends HttpServlet {
                             + "The following customer, " + name + ", issue for cancellation has been processed. <br> <br>";
                         emailNotif(fhEmail, forHandler);             
                     }
-
+                    
+                    fh.close();
+                    res.close();
                     rd = request.getServletContext().getRequestDispatcher("/index.jsp");
                     rd.include(request, response);
                 }
 
             }
         } catch (SQLException sqle) {
-        }
+        } finally {
+            con.close();
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -191,7 +201,7 @@ public class cancelBooking extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (MessagingException ex) {
+        } catch (MessagingException | SQLException ex) {
             Logger.getLogger(cancelBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -209,7 +219,7 @@ public class cancelBooking extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (MessagingException ex) {
+        } catch (MessagingException | SQLException ex) {
             Logger.getLogger(cancelBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
