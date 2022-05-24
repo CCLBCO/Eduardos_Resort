@@ -176,6 +176,7 @@ public class cancelBooking extends HttpServlet {
                     
                     fh.close();
                     res.close();
+                    session.invalidate();
                     rd = request.getServletContext().getRequestDispatcher("/index.jsp");
                     rd.include(request, response);
                 }

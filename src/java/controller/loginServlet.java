@@ -79,11 +79,11 @@ public class loginServlet extends HttpServlet {
             if (userArg.equals("") || passArg.equals(""))
             {
                 request.setAttribute("error","Username or Password is Blank!");
-                rd = request.getRequestDispatcher("/login.jsp");            
+                rd = request.getServletContext().getRequestDispatcher("/login.jsp");            
                 rd.include(request, response);
             }
             
-            if (con != null) {            
+            else if (con != null) {            
                 //DB Wrapper Object
                 ps.setString(1, userArg);                                       // puts the inputted username
                 ResultSet res = ps.executeQuery();                              // executes the given query and its arguments
@@ -96,14 +96,12 @@ public class loginServlet extends HttpServlet {
                     r = res.getString("ROLE");
                 }
                 
-                ps.close();
-                res.close();
                 decryptedPass = Security.decrypt(p); //decrypted password from database
       
                 if(userArg.equals(u) && passArg.equals(decryptedPass)){
                     if(!verify){
                        request.setAttribute("error", "reCaptcha is Mandatory!");
-                       rd = request.getRequestDispatcher("/login.jsp");            
+                       rd = request.getServletContext().getRequestDispatcher("/login.jsp");            
                        rd.include(request, response);
                    }
                     else {
@@ -124,29 +122,27 @@ public class loginServlet extends HttpServlet {
                     if(passArg.equals(""))
                     {
                         request.setAttribute("error","Password is Blank!");
-                        rd = request.getRequestDispatcher("/login.jsp");            
+                        rd = request.getServletContext().getRequestDispatcher("/login.jsp");            
                         rd.include(request, response);
                     }
                     else if(!passArg.equals(decryptedPass))
                     {
                         request.setAttribute("error", "Incorrect Password!");
-                        rd = request.getRequestDispatcher("/login.jsp");            
+                        rd = request.getServletContext().getRequestDispatcher("/login.jsp");            
                         rd.include(request, response);
                     }
                 }
                 
                 else {
                     request.setAttribute("error", "Username does not exist!");
-                    rd = request.getRequestDispatcher("/login.jsp");            
+                    rd = request.getServletContext().getRequestDispatcher("/login.jsp");            
                     rd.include(request, response);
                 }
             }
             con.close();
         } 
         catch (SQLException sqle){ 
-        } finally {
-            con.close();
-        } 
+        }  
     }
 
  @Override

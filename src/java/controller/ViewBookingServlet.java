@@ -107,8 +107,15 @@ public class ViewBookingServlet extends HttpServlet {
                 
                 ResultSet res = ps.executeQuery();                       
                 //Gets stored data from the Database
-                while(res.next())                                              
-                {
+                if(!res.next()){
+                    ps.close();
+                    res.close();
+                    request.setAttribute("error", "Code does not exist!!");
+                    rd = getServletContext().getRequestDispatcher("/booking.jsp");
+                    rd.include(request, response);
+                }
+                
+                else {
                     roomType = res.getInt("ROOM_ID");
                     cstmName = sc.decrypt(res.getString("NAME"));
                     convPckDate = res.getDate("START_BOOKING");
@@ -117,37 +124,34 @@ public class ViewBookingServlet extends HttpServlet {
                     phnNumber = sc.decrypt(res.getString("PHONE_NUMBER"));
                     convCost = res.getInt("COST");
                     country = sc.decrypt(res.getString("COUNTRY"));
-                }
-                
-                System.out.println(convPckDate);
-                
-                convRoom = getRoomType(roomType);
-                request.setAttribute("room", convRoom);
-                request.setAttribute("name", cstmName);
-                request.setAttribute("arrivalDate", dateFormat.format(convPckDate));
-                request.setAttribute("departDate", dateFormat.format(convDropDate));
-                request.setAttribute("email", email);
-                request.setAttribute("code", bookingCode);
-                request.setAttribute("phone", phnNumber);
-                request.setAttribute("cost", String.valueOf(convCost));
-                request.setAttribute("country", country);
-                
-                session = request.getSession();
-                session.setAttribute("sRoom", convRoom);
-                session.setAttribute("sName", cstmName);
-                session.setAttribute("sArrivalDate", dateFormat.format(convPckDate));
-                session.setAttribute("sDepartDate", dateFormat.format(convDropDate));
-                session.setAttribute("sEmail", email);
-                session.setAttribute("sPhone", phnNumber);
-                session.setAttribute("sCost", String.valueOf(convCost));
-                session.setAttribute("sCountry", country);
-                session.setAttribute("bookingCode", bookingCode);
-                
-                ps.close();
-                res.close();
-                rd = request.getServletContext().getRequestDispatcher("/roomdetails.jsp");            
-                rd.include(request, response);
+                    convRoom = getRoomType(roomType);
+                    
+                    request.setAttribute("room", convRoom);
+                    request.setAttribute("name", cstmName);
+                    request.setAttribute("arrivalDate", dateFormat.format(convPckDate));
+                    request.setAttribute("departDate", dateFormat.format(convDropDate));
+                    request.setAttribute("email", email);
+                    request.setAttribute("code", bookingCode);
+                    request.setAttribute("phone", phnNumber);
+                    request.setAttribute("cost", String.valueOf(convCost));
+                    request.setAttribute("country", country);
 
+                    session = request.getSession();
+                    session.setAttribute("sRoom", convRoom);
+                    session.setAttribute("sName", cstmName);
+                    session.setAttribute("sArrivalDate", dateFormat.format(convPckDate));
+                    session.setAttribute("sDepartDate", dateFormat.format(convDropDate));
+                    session.setAttribute("sEmail", email);
+                    session.setAttribute("sPhone", phnNumber);
+                    session.setAttribute("sCost", String.valueOf(convCost));
+                    session.setAttribute("sCountry", country);
+                    session.setAttribute("bookingCode", bookingCode);
+
+                    ps.close();
+                    res.close();
+                    rd = request.getServletContext().getRequestDispatcher("/roomdetails.jsp");            
+                    rd.include(request, response);
+                }
             }
         }
         catch (SQLException sqle){ 
